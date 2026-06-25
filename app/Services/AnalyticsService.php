@@ -16,10 +16,6 @@ class AnalyticsService
         return Cache::remember('analytics:dashboard_metrics', 2, function () {
             return [
                 'total_users' => User::count(),
-                'total_categories' => Category::count(),
-                'total_subcategories' => Subcategory::count(),
-                'total_products' => Product::count(),
-
             ];
         });
     }

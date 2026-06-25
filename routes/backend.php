@@ -12,12 +12,6 @@ Route::resource('users', UserController::class);
 Route::patch('users/{user}/role', [UserController::class, 'updateRole'])->name('users.role');
 Route::patch('users/{user}/account-status', [UserController::class, 'updateAccountStatus'])->name('users.account-status');
 
-// Ecommerce Controller _____________________________________________________________
-Route::resource('categories', CategoryController::class);
-Route::resource('subcategories', SubcategoryController::class);
-Route::resource('products', ProductController::class);
-Route::delete('products/media/{media}', [ProductController::class, 'destroyMedia'])->name('products.media.destroy');
-
 // Dashboard Controller _______________________________________________________
 Route::controller(DashboardController::class)->prefix('/dashboard')->group(function () {
     Route::get('/', 'index')->name('admin.dashboard');

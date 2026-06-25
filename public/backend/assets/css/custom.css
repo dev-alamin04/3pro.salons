@@ -26,7 +26,7 @@
 
 /* For Input search focus */
 input#itemSearch:focus {
-    border: 1px solid #ffffff;
+    border: 1px solid #F2F3F5;
 }
 
 /* For Table Start */
@@ -54,21 +54,22 @@ input#itemSearch:focus {
 /* For Modal End */
 
 /* For Text-area start */
-/* textarea {
+textarea {
     display: block;
     width: 100%;
     padding: 0.56rem 0.75rem;
     font-size: 0.875rem;
     font-weight: 400;
     line-height: 1;
-    color: white !important;
-    background-color: #2a3038;
+    /* color: #212529; */
+    color: #F2F3F5 !important;
+    background-color: #27282D;
     background-clip: padding-box;
     border: 1px solid #2c2e33;
     appearance: none;
     border-radius: 2px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-} */
+}
 
 /* For Text-area End */
 .file-upload-browse {
@@ -119,24 +120,27 @@ input#itemSearch:focus {
     border-radius: 10px !important;
 }
 
-/* .form-select {
+
+/* ====================== Custom CSS ================  */
+.form-select {
     background-color: #2a3038 !important;
     border-radius: 2px !important;
     border: none !important;
-    color: white !important;
-} */
+    color: #F2F3F5 !important;
+}
 
+/* 
 th {
-    color: #0B2545 !important;
+    color: #27282D !important;
     font-weight: bolder !important;
 }
 
 td {
-    color: #0B2545 !important;
-}
+    color: #27282D !important;
+} */
 
 .page-title {
-    color: #0B2545 !important;
+    color: #F2F3F5 !important;
     font-weight: 700 !important;
 }
 
@@ -150,24 +154,36 @@ td {
 }
 
 .table-hover>tbody>tr:hover td {
-    color: #0B2545 !important;
+    color: #F2F3F5 !important;
     /* font-weight: bold !important; */
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    color: #F2F3F5 !important;
+    /* font-weight: 700; */
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+    color: #A9AFBB !important;
+
 }
 
 .table-hover>tbody>tr:hover a {
     /* font-weight: bold !important; */
 }
 
-.table-title,
-.modal-title,
-.card-title {
-    /* color: #0E2B8B; */
-    color: #0D0D12;
+.table-hover>tbody>tr {
+    /* font-weight: bold !important; */
+    background-color: transparent !important;
+    color: #A9AFBB !important;
+
 }
 
-.text-muted2 {
-   color: #666D80;
-
+.table-title,
+.modal-title {
+    color: #00b4c8;
 }
 
 /* table,
@@ -177,8 +193,60 @@ td {
     border-collapse: collapse;
 } */
 
-.text-success {
-    color: #0E2B8B !important;
+.table {
+    color: #F2F3F5 !important;
+}
+
+.card,
+.form-control,
+.form-select {
+    background-color: #27282D !important;
+    color: #F2F3F5 !important;
+}
+
+.form-select {
+    border: 1px #BBC1C9 solid !important;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
+    color: #A9AFBB !important;
+}
+
+.text-white {
+    color: #F2F3F5 !important;
+}
+
+.dropify-wrapper .dropify-preview {
+    background-color: #27282D !important;
+}
+
+.bg-green {
+    background-color: #00b4c8 !important;
+}
+
+.text-muted {
+    color: #A9AFBB !important;
+}
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+    border-color: #59595A;
+}
+
+.btn-warning {
+    background-color: #E2B84B !important;
+}
+
+.btn-danger {
+    background-color: #E04747 !important;
 }
 
 /* Override DataTables processing indicator styles */
@@ -187,23 +255,29 @@ td {
     border: none !important;
 }
 
-
-/* #################  */
-.bg-red {
-    background-color: #0E2B8B;
+.cursor-pointer {
+    cursor: pointer !important;
 }
 
-label {
-    color: #000 !important;
+.form-switch-lg .form-check-input {
+    width: 3rem;
+    height: 1.2rem;
+    cursor: pointer;
 }
 
-.text-primary {
-    color: #0E2B8B !important;
-}
-.bg-primary {
-    background-color: #0E2B8B !important;
+.form-switch-lg .form-check-input:checked {
+    background-position: right center;
 }
 
-.card{
-    border: #DFE1E7 1px solid !important;
+.form-switch-lg .form-check-label {
+    font-size: 1rem;
+    padding-left: 0.5rem;
+}
+
+.metismenu .has-arrow::after {
+    color: #ffffff !important;
+}
+
+.sidebar #sidebar_menu>li.mm-active>a::after {
+    color: #00b4c8 !important;
 }

@@ -1,7 +1,6 @@
 <style> 
-    .metric-card {
-        background: white;
-        border: #DFE1E7 1px solid;
+    .card {
+
         padding: 15px 15px;
     }
 
@@ -19,7 +18,7 @@
 
 <div class="row mb-4">
     <div class="col-md-3">
-        <div class="rounded-lg metric-card">
+        <div class="rounded-lg card">
             <div class="simgle_monitor_count metric-label d-flex justify-content-between">
                 <div class="icon-align"><i class="fa fa-users fa-lg text-primary"></i></div>
                 <div><a href=""><i class="fa fa-arrow-right fa-lg text-muted2"></i></a></div>
@@ -30,7 +29,7 @@
     </div>
     
     <div class="col-md-3">
-        <div class="rounded-lg metric-card">
+        <div class="rounded-lg card">
             <div class="simgle_monitor_count metric-label d-flex justify-content-between">
                 <div class="icon-align"><i class="fa-solid fa-layer-group fa-lg text-primary"></i></i></div>
                 <div><a href=""><i class="fa fa-arrow-right fa-lg text-muted2"></i></a></div>
@@ -41,7 +40,7 @@
     </div>
 
     <div class="col-md-3">
-        <div class="rounded-lg metric-card">
+        <div class="rounded-lg card">
             <div class="simgle_monitor_count metric-label d-flex justify-content-between">
                 <div class="icon-align"><i class="fa-solid fa-table-list fa-lg text-primary"></i></div>
                 <div><a href=""><i class="fa fa-arrow-right fa-lg text-muted2"></i></a></div>
@@ -52,7 +51,7 @@
     </div>
 
     <div class="col-md-3">
-        <div class="rounded-lg metric-card">
+        <div class="rounded-lg card">
             <div class="simgle_monitor_count metric-label d-flex justify-content-between">
                 <div class="icon-align"><i class="fa-brands fa-shopify fa-lg text-primary"></i></div>
                 <div><a href=""><i class="fa fa-arrow-right fa-lg text-muted2"></i></a></div>

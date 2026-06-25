@@ -7,7 +7,7 @@
 
 <!-- footer part -->
 
-<div class="footer_part bg-white shadow-lg">
+<div class="footer_part">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">

@@ -2,7 +2,8 @@
 /* Normal desktop :992px. */
 /* Tablet desktop :768px. */
 /* small mobile :320px. */
-@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&amp;display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&amp;display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* line 6, G:/admin_project/10 admin/cryptocurrency/scss/_extends.scss */
 .profile_info .profile_info_iner .profile_author_name {
@@ -12,12 +13,13 @@
 /**************** common css start ****************/
 /* line 3, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 body {
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Merriweather Sans", sans-serif; */
+  font-family: 'Public Sans', sans-serif;
   padding: 0;
   margin: 0;
   font-size: 14px;
   position: relative;
-  background: #F6F8FA;
+  background: #0B0B0D;
   color: #A9AFBB !important;
 }
 
@@ -182,9 +184,9 @@ h3,
 h4,
 h5,
 h6 {
-  color: #0D0D12;
-  /* color: #F2F3F5; */
-  font-family: "Open Sans", sans-serif;
+  /* color: #302D43; */
+  color: #F2F3F5;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 600;
   line-height: 1.2;
 }
@@ -230,7 +232,7 @@ p {
   margin-bottom: 0px;
   /* color: #6F7A92; */
   color: #A9AFBB;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 300;
 }
 
@@ -800,7 +802,7 @@ table.dataTable tbody td {
   font-weight: 500;
   line-height: 16px;
   margin-bottom: 22px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 
 @media (max-width: 991px) {
@@ -1086,8 +1088,8 @@ table.dataTable tbody td {
 /* line 757, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .cs_modal .modal-body {
   padding: 35px 30px !important;
-  background: #fff;
-  border-radius: 5px;
+  background: #27282D;
+  /* border-radius: 5px; */
 }
 
 @media (max-width: 575.98px) {
@@ -1551,7 +1553,7 @@ th:focus {
 /* line 1113, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .lms_checkbox_1 input:checked+.slider-check:before {
   transform: translateX(20px);
-  background: #0E2B8B;
+  background: #00b4c8;
 }
 
 /* line 1123, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
@@ -2014,7 +2016,7 @@ p a:hover {
 .heading_6 {
   font-size: 14px;
   font-weight: 600;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   color: #2E4765;
   margin-bottom: 0;
 }
@@ -2036,57 +2038,43 @@ p a:hover {
 
 /* line 1479, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .page-item.active .page-link {
-  background-color: #0E2B8B !important;
-  border-color: #0E2B8B !important;
+  background-color: #00b4c8 !important;
+  border-color: #00b4c8 !important;
   color: #fff !important;
 }
 
 /* line 1482, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .page-item.active .page-link:hover {
   color: #fff !important;
-  background-color: #0E2B8B !important;
-  border-color: #0E2B8B !important;
+  background-color: #00b4c8e6 !important;
+  border-color: #00b4c8e6 !important;
 }
 
 /* line 1488, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .page-link {
-  color: #0E2B8B !important;
+  color: #00b4c8 !important;
 }
 
 /* line 1490, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .page-link:hover {
   color: #fff !important;
-  background-color: #0E2B8B !important;
-  border-color: #0E2B8B !important;
+  background-color: #00b4c8e6 !important;
+  border-color: #00b4c8e6 !important;
 }
 
 /* line 1496, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .btn-primary {
-  color: #fff;
-  background-color: #0E2B8B;
-  border-color: #0E2B8B;
+  color: #000000;
+  background: linear-gradient(135deg, #00B4C8, #4361EE);
+  border-color: #00b4c8;
 }
 
 /* line 1501, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .btn-primary:hover {
-  color: #fff;
-  background-color: #0E2B8B;
-  border-color: #0E2B8B;
+  color: #000000;
+  background-color: #00b4c8e6;
+  border-color: #00b4c8e6;
 }
-
-.btn-info {
-  color: #fff;
-  background-color: #0E2B8B;
-  border-color: #0E2B8B;
-}
-
-/* line 1501, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
-.btn-info:hover {
-  color: #fff;
-  background-color: #0E2B8B;
-  border-color: #0E2B8B;
-}
-
 
 @media (max-width: 991px) {
 
@@ -2100,14 +2088,14 @@ p a:hover {
 .dashboard_header .dashboard_header_title h3 {
   font-size: 24px;
   font-weight: 600;
-  color: #0E2B8B;
-  /* color: #F2F3F5; */
+  /* color: #2E4765; */
+  color: #F2F3F5;
   margin-bottom: 7px;
 }
 
 /* line 1519, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .dashboard_header .dashboard_header_title h3 span {
-  color: #0E2B8B;
+  color: #00b4c8;
 }
 
 /* line 1523, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
@@ -2137,7 +2125,7 @@ p a:hover {
 .dashboard_breadcam ul li {
   font-size: 17px;
   font-weight: 400;
-  color: #0E2B8B;
+  color: #00b4c8;
   padding-left: 14px;
   position: relative;
 }
@@ -2154,7 +2142,7 @@ p a:hover {
 
 /* line 1552, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .dashboard_breadcam ul li::before {
-  color: #0E2B8B;
+  color: #00b4c8;
   content: "/";
   position: absolute;
   left: 4px;
@@ -2191,7 +2179,7 @@ p a:hover {
 .header_prise h5 {
   font-size: 16px;
   font-weight: 500;
-  color: #0E2B8B;
+  color: #00b4c8;
   margin-bottom: 0;
 }
 
@@ -2329,7 +2317,7 @@ p a:hover {
 
 /* line 1679, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
 .text-primary {
-  color: #5664d2 !important;
+  color: #00b4c8 !important;
 }
 
 /* line 1682, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
@@ -2701,7 +2689,7 @@ p a:hover {
   right: 0px;
   border-radius: 50%;
   top: 0px;
-  background-color: #486DCF;
+  /* background-color: #486DCF; */
 }
 
 @-webkit-keyframes notify-pulse {
@@ -2743,7 +2731,7 @@ p a:hover {
   display: block;
   color: #fff;
   line-height: 40px;
-  background: #0E2B8B;
+  background: #00b4c8;
   font-size: 15px;
   border-radius: 30px;
   -webkit-transition: 0.3s;
@@ -2800,7 +2788,7 @@ p a:hover {
   align-items: center;
   border-radius: 10px;
   background: rgba(95, 99, 242, 0.06);
-  color: #0E2B8B;
+  color: #00b4c8;
 }
 
 /* line 2049, G:/admin_project/10 admin/cryptocurrency/scss/_reset.scss */
@@ -2828,8 +2816,8 @@ p a:hover {
 /******** base color css ********/
 /* line 2, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
 .btn_1 {
-  background-color: #0E2B8B;
-  border: 1px solid #0E2B8B;
+  background-color: #00b4c8;
+  border: 1px solid #00b4c8;
   color: #fff;
   display: inline-block;
   padding: 11px 25px;
@@ -2852,7 +2840,7 @@ p a:hover {
 /* line 19, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
 .btn_1:hover {
   color: #fff;
-  background-color: #0E2B8B;
+  background-color: #00b4c8;
 }
 
 /* line 23, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
@@ -2864,8 +2852,8 @@ p a:hover {
 
 /* line 28, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
 .btn_1.green {
-  background-color: #0E2B8B;
-  border: 1px solid #0E2B8B;
+  background-color: #00b4c8;
+  border: 1px solid #00b4c8;
   color: #fff;
 }
 
@@ -3189,9 +3177,9 @@ p a:hover {
 
 /* line 269, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
 .white_btn:hover {
-  background: #0E2B8B;
+  background: #5886FF;
   color: #fff;
-  border-color: #0E2B8B;
+  border-color: #5886FF;
 }
 
 /* line 275, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
@@ -3297,8 +3285,8 @@ p a:hover {
 
 /* line 356, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
 .white_btn3:hover {
-  background-color: #0E2B8B !important;
-  border: 1px solid #0E2B8B !important;
+  background-color: #00b4c8 !important;
+  border: 1px solid #00b4c8 !important;
   color: #fff;
   opacity: 1 !important;
 }
@@ -3416,13 +3404,13 @@ p a:hover {
   font-size: 16px;
   font-weight: 300;
   padding: 4px 20px;
-  color: #242934;
+  color: #fff;
 }
 
 /* line 454, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
 .dropdown .dropdown-menu .dropdown-item:hover {
   color: #fff !important;
-  background: #0E2B8B;
+  background: #5886FF;
 }
 
 /* line 459, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
@@ -3567,8 +3555,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
 .CRM_dropdown.dropdown .dropdown-toggle:hover,
 .CRM_dropdown.dropdown .dropdown-toggle:focus {
   color: #fff;
-  background: #0E2B8B;
-  border: 1px solid #0E2B8B;
+  background: #5886FF;
+  border: 1px solid #5886FF;
   box-shadow: none;
 }
 
@@ -3592,7 +3580,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
 
 /* line 611, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
 .CRM_dropdown.dropdown .dropdown-menu .dropdown-item:hover {
-  color: #0E2B8B;
+  color: #5886FF;
 }
 
 /* line 618, G:/admin_project/10 admin/cryptocurrency/scss/_button.scss */
@@ -3696,7 +3684,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
   border-radius: 0px;
   margin: 0;
   /* background: #fff; */
-  background: #ffffff;
+  background: #27282D;
   border-radius: 0;
   margin: 0;
   border-radius: 0px;
@@ -3897,7 +3885,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
 .header_iner .header_right .header_notification_warp li .serach_button {
   width: 32px;
   height: 32px;
-  background: #0E2B8B;
+  background: #00b4c8;
   border-radius: 50%;
   text-align: center;
   line-height: 32px;
@@ -3964,7 +3952,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
   justify-content: center;
   align-items: center;
   flex: 47px 0 0;
-  background: #F6F8FA;
+  background: #0B0B0D;
 }
 
 /* line 226, G:/admin_project/10 admin/cryptocurrency/scss/_header.scss */
@@ -3985,9 +3973,9 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
   border-radius: 50%;
   right: -12px;
   top: -12px;
-  background: #486DCF;
+  background: #00b4c8;
   line-height: 22px;
-  border: 6px solid #fff;
+  /* border: 6px solid #fff; */
 }
 
 @media (max-width: 575.98px) {
@@ -4073,14 +4061,14 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
   top: -10px;
   right: 15px;
   border-width: 0 11px 12px 11px;
-  border-color: transparent transparent #0E2B8B transparent;
+  border-color: transparent transparent #00b4c8 transparent;
   z-index: 2;
 }
 
 /* line 309, G:/admin_project/10 admin/cryptocurrency/scss/_header.scss */
 .profile_info .profile_info_iner .profile_author_name {
   padding: 20px 25px;
-  background: #0E2B8B;
+  background: #00b4c8;
   border-radius: 0;
 }
 
@@ -4118,7 +4106,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
 /* line 339, G:/admin_project/10 admin/cryptocurrency/scss/_header.scss */
 .profile_info .profile_info_details a {
   /* color: #2E4765; */
-  color: #000000;
+  color: #F2F3F5;
   font-size: 14px;
   display: block;
   padding: 10px 0;
@@ -4127,7 +4115,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
 
 /* line 345, G:/admin_project/10 admin/cryptocurrency/scss/_header.scss */
 .profile_info .profile_info_details a:hover {
-  color: #0E2B8B;
+  color: #2E4765;
 }
 
 /* line 347, G:/admin_project/10 admin/cryptocurrency/scss/_header.scss */
@@ -4233,7 +4221,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
   font-size: 14px;
   font-weight: 400;
   color: #B3C8E1;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 
 /* line 421, G:/admin_project/10 admin/cryptocurrency/scss/_header.scss */
@@ -4300,7 +4288,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
   font-size: 16px;
   font-weight: 400;
   color: #000;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 
 /* line 475, G:/admin_project/10 admin/cryptocurrency/scss/_header.scss */
@@ -4368,13 +4356,13 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child::before {
 
 /* line 516, G:/admin_project/10 admin/cryptocurrency/scss/_header.scss */
 .serach_field_2 .search_inner input {
-  color: #F6F8FA;
+  color: #0B0B0D;
   font-size: 13px;
   height: 45px;
   width: 100%;
   border-radius: 5px;
   padding-left: 55px;
-  border: 1px solid #F6F8FA;
+  border: 1px solid #0B0B0D;
   padding-right: 15px;
 }
 
@@ -4523,19 +4511,18 @@ table.dataTable {
 /* line 40, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar .logo {
   margin: 0px;
-  /* background: #F6F8FA; */
+  background: #EFEFEF;
   /* padding: 24px; */
-  padding-top: 5px;
+  margin-top: 20px;
   margin-bottom: 0px;
 }
 
 /* line 47, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar .logo .large_logo img {
-  width: 85%;
-  height: 50px;
-  padding: 13px 5px;
-  margin-left: 10px;
-  margin-top: 5px;
+  /* width: 100%;
+  height: 75px; */
+  width: 80px;
+  height: 90px;
 }
 
 @media (max-width: 991px) {
@@ -4857,7 +4844,7 @@ table.dataTable {
   position: relative;
   background: transparent;
   color: #8F91AA;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   padding: 10px 10px 10px 26px;
   background: #fff;
   border-radius: 0;
@@ -4904,13 +4891,12 @@ table.dataTable {
 
 /* line 352, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar #sidebar_menu>li {
-  color: #666D80;
-
+  color: #8F91AA;
 }
 
 /* line 352, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar #sidebar_menu>li>a {
-  color: #000000;
+  color: #8F91AA;
   /* color: red; */
 }
 
@@ -4943,7 +4929,7 @@ table.dataTable {
 
 /* line 379, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar #sidebar_menu>li.mm-active>a i {
-  /* color: #A5ADC6; */
+  color: #00b4c8 !important;
 }
 
 /* line 382, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
@@ -5159,19 +5145,19 @@ body::-webkit-scrollbar {
 
 /* line 571, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar.dark_sidebar {
-  background: #ffffff;
+  background: #27282D;
 }
 
 /* line 573, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar.dark_sidebar .logo {
-  /* background: #F6F8FA; */
-  /* background: #ffffff; */
-
+  /* background: #182444; */
+  background: #27282D;
+  ;
 }
 
 /* line 576, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar.dark_sidebar #sidebar_menu>li ul {
-  background: #F6F8FA;
+  background: #0B0B0D;
 }
 
 /* line 579, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
@@ -5180,31 +5166,40 @@ body::-webkit-scrollbar {
 .sidebar.dark_sidebar #sidebar_menu>li>a.active,
 .sidebar.dark_sidebar #sidebar_menu>li>a:hover {
   /* background: #091023; */
-  background: #F6F8FA;
-  /* color: red !important; */
-  color: #0E2B8B !important;
+  background: #0B0B0D;
+  color: #00b4c8 !important;
+  font-weight: 500;
+}
+
+/* line 579, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
+.sidebar.dark_sidebar #sidebar_menu>li.mm-active>a>i,
+.sidebar.dark_sidebar #sidebar_menu>li.mm-active>a>i,
+.sidebar.dark_sidebar #sidebar_menu>li.mm-active>a.active>i,
+.sidebar.dark_sidebar #sidebar_menu>li>a.active>i,
+.sidebar.dark_sidebar #sidebar_menu>li>a>i:hover {
+  /* background: #091023; */
+  background: #0B0B0D;
+  color: #00b4c8 !important;
   font-weight: 500;
 }
 
 /* line 586, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar.dark_sidebar #sidebar_menu>li>a {
-  /* color: #fff; */
-  color: #666D80;
+  color: #fff;
   background: transparent;
 }
 
 /* line 590, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar.dark_sidebar #sidebar_menu>li ul li a.active,
 .sidebar.dark_sidebar #sidebar_menu>li ul li a:hover {
-  background: #F6F8FA !important;
-  /* color: #fff !important; */
-  color: #0E2B8B !important;
+  background: #0B0B0D !important;
+  color: #00b4c8 !important;
+  font-weight: 500;
 }
 
 /* line 595, G:/admin_project/10 admin/cryptocurrency/scss/_sidebar.scss */
 .sidebar.dark_sidebar #sidebar_menu>li ul li a {
-  /* color: #ACB6C4; */
-  color: #000000;
+  color: #ACB6C4;
   background: transparent;
 }
 
@@ -5226,7 +5221,7 @@ body::-webkit-scrollbar {
 
 /* line 6, G:/admin_project/10 admin/cryptocurrency/scss/_body_content.scss */
 .main-title h3 {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   font-weight: 700;
   font-size: 18px;
   color: #302D43;
@@ -5519,8 +5514,8 @@ body::-webkit-scrollbar {
   min-height: 68vh;
   transition: .5s;
   position: relative;
-  /* background: #F6F8FA; */
-  /* background: #ffffff; */
+  /* background: #0B0B0D; */
+  /* background: #27282D; */
   margin: 0;
   z-index: 22;
   border-radius: 0px;
@@ -5714,7 +5709,7 @@ body::-webkit-scrollbar {
   transition: 0.5s;
   color: #474D58;
   margin-bottom: 0px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   line-height: 1;
 }
 
@@ -5725,7 +5720,7 @@ body::-webkit-scrollbar {
   font-size: 14px;
   font-weight: 700;
   color: #8890B5;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   line-height: 1;
   margin-bottom: 15px;
 }
@@ -5963,7 +5958,7 @@ body::-webkit-scrollbar {
 }
 
 .dark_card {
-  background-color: #ffffff;
+  background-color: #27282D;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 10px;
@@ -6225,7 +6220,7 @@ body::-webkit-scrollbar {
   font-size: 14px;
   font-weight: 400;
   border-bottom: 0;
-  background: #F6F8FA;
+  background: #0B0B0D;
   border-bottom: 10px solid #fff;
   color: #6F7A92;
 }
@@ -6285,24 +6280,24 @@ body::-webkit-scrollbar {
   color: #6F7A92;
   white-space: nowrap;
   text-transform: capitalize;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   border: 0;
   background: #fff;
   border: 0 !important;
   background: transparent;
-  border-top: 1px solid #F6F8FA !important;
-  border-bottom: 1px solid #F6F8FA !important;
+  border-top: 1px solid #0B0B0D !important;
+  border-bottom: 1px solid #0B0B0D !important;
   position: relative;
 }
 
 /* line 306, G:/admin_project/10 admin/cryptocurrency/scss/_dashboard_part.scss */
 .QA_section .QA_table .table thead th:first-child {
-  border-left: 1px solid #F6F8FA !important;
+  border-left: 1px solid #0B0B0D !important;
 }
 
 /* line 309, G:/admin_project/10 admin/cryptocurrency/scss/_dashboard_part.scss */
 .QA_section .QA_table .table thead th:last-child {
-  border-right: 1px solid #F6F8FA !important;
+  border-right: 1px solid #0B0B0D !important;
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -6640,7 +6635,7 @@ body::-webkit-scrollbar {
 
 /* line 22, G:/admin_project/10 admin/cryptocurrency/scss/_footer.scss */
 .footer_part.fixed_footer .footer_iner {
-  border-top: 2px solid #0E2B8B;
+  border-top: 2px solid #00b4c8;
   background: #fff !important;
 }
 
@@ -6700,7 +6695,7 @@ body::-webkit-scrollbar {
 
 /* line 58, G:/admin_project/10 admin/cryptocurrency/scss/_footer.scss */
 .footer_part p a {
-  color: #0E2B8B;
+  color: #00b4c8;
 }
 
 /* line 60, G:/admin_project/10 admin/cryptocurrency/scss/_footer.scss */
@@ -6857,7 +6852,7 @@ tspan {
   color: #fff !important;
   font-size: 12px;
   font-weight: 500;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 
 /* line 25, G:/admin_project/10 admin/cryptocurrency/scss/_bar-chart.scss */
@@ -6868,7 +6863,7 @@ tspan {
   font-weight: 300;
   color: #7e7172;
   line-height: 12px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 
 /* line 35, G:/admin_project/10 admin/cryptocurrency/scss/_bar-chart.scss */
@@ -6894,7 +6889,7 @@ tspan {
   font-weight: 300;
   color: #7e7172;
   line-height: 12px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 
 /* line 58, G:/admin_project/10 admin/cryptocurrency/scss/_bar-chart.scss */
@@ -7276,7 +7271,7 @@ canvas#highlights {
   padding: 4px 15px 8px 15px;
   margin: 0;
   border-radius: 5px 5px 0 0;
-  /* background-color: #0E2B8B; */
+  /* background-color: #00b4c8; */
 }
 
 /* line 12, G:/admin_project/10 admin/cryptocurrency/scss/_summer_note.scss */
@@ -7301,13 +7296,13 @@ canvas#highlights {
 /* line 26, G:/admin_project/10 admin/cryptocurrency/scss/_summer_note.scss */
 .note-editor.note-frame .note-btn:hover {
   color: #fff;
-  background: #0E2B8B;
+  background: #00b4c8;
 }
 
 /* line 30, G:/admin_project/10 admin/cryptocurrency/scss/_summer_note.scss */
 .note-editor.note-frame .note-btn:hover i {
   color: #fff;
-  background: #0E2B8B;
+  background: #00b4c8;
 }
 
 /* line 34, G:/admin_project/10 admin/cryptocurrency/scss/_summer_note.scss */
@@ -8270,7 +8265,7 @@ canvas#highlights {
 
 /* line 40, G:/admin_project/10 admin/cryptocurrency/scss/_projects.scss */
 .dataTables_paginate a.current {
-  background: #00D82C !important;
+  background: #00b4c8!important;
   box-shadow: 0px 5px 10px rgba(0, 216, 44, 0.3) !important;
   border: 0 !important;
   color: #fff !important;
@@ -8278,7 +8273,7 @@ canvas#highlights {
 
 /* line 46, G:/admin_project/10 admin/cryptocurrency/scss/_projects.scss */
 .dataTables_paginate a:hover {
-  background: #00D82C !important;
+  background: #00b4c8!important;
   box-shadow: 0px 5px 10px rgba(0, 216, 44, 0.3) !important;
   border: 0 !important;
   color: #fff !important;
@@ -8319,7 +8314,7 @@ canvas#highlights {
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   color: #fff !important;
   border: 1px solid #00D82C;
-  background-color: #00D82C !important;
+  background-color: #00b4c8!important;
   box-shadow: 0px 5px 10px rgba(0, 216, 44, 0.3) !important;
 }
 
@@ -8479,7 +8474,7 @@ canvas#highlights {
   position: relative;
   position: relative;
   padding: 13px 20px;
-  background: #0E2B8B;
+  background: #00b4c8;
   box-shadow: 0px 5px 10px rgba(76, 110, 248, 0.3);
   color: #fff;
   -webkit-transition: 0.3s;
@@ -8589,7 +8584,7 @@ canvas#highlights {
   position: relative;
   position: relative;
   padding: 13px 20px;
-  background: #0E2B8B;
+  background: #00b4c8;
   box-shadow: 0px 5px 10px rgba(76, 110, 248, 0.3);
   color: #fff;
   -webkit-transition: 0.3s;
@@ -8849,8 +8844,8 @@ canvas#highlights {
 
 /* line 282, G:/admin_project/10 admin/cryptocurrency/scss/_faq.scss */
 .messages_box_area .messages_chat .single_message_chat .message_content_view.red_border {
-  border: 1px solid #0E2B8B;
-  background: #0E2B8B;
+  border: 1px solid #00b4c8;
+  background: #00b4c8;
 }
 
 /* line 285, G:/admin_project/10 admin/cryptocurrency/scss/_faq.scss */
@@ -9036,7 +9031,7 @@ canvas#highlights {
 /* line 30, G:/admin_project/10 admin/cryptocurrency/scss/_mailbox.scss */
 .email-sidebar ul li.active a {
   background: rgba(136, 79, 251, 0.1);
-  color: #0E2B8B !important;
+  color: #00b4c8 !important;
 }
 
 /* line 36, G:/admin_project/10 admin/cryptocurrency/scss/_mailbox.scss */
@@ -9061,12 +9056,12 @@ canvas#highlights {
 /* line 50, G:/admin_project/10 admin/cryptocurrency/scss/_mailbox.scss */
 .email-sidebar ul li a:hover {
   background: rgba(136, 79, 251, 0.1);
-  color: #0E2B8B !important;
+  color: #00b4c8 !important;
 }
 
 /* line 53, G:/admin_project/10 admin/cryptocurrency/scss/_mailbox.scss */
 .email-sidebar ul li a:hover i {
-  color: #0E2B8B;
+  color: #00b4c8;
 }
 
 /* line 57, G:/admin_project/10 admin/cryptocurrency/scss/_mailbox.scss */
@@ -9126,7 +9121,7 @@ canvas#highlights {
 /* line 44, ../../../../../../xampp/htdocs/CRM_frontend/admin/public/frontend/scss/_predefine.scss */
 /* line 112, G:/admin_project/10 admin/cryptocurrency/scss/_mailbox.scss */
 .primary_checkbox input:checked~.checkmark {
-  background: #0E2B8B !important;
+  background: #00b4c8 !important;
   box-shadow: 0px 5px 10px rgba(59, 118, 239, 0.3) !important;
   transition: .3s;
 }
@@ -9429,7 +9424,7 @@ canvas#highlights {
 /* line 199, G:/admin_project/10 admin/cryptocurrency/scss/_byer_table.scss */
 .theme_bg_1 {
   /* background: #A37BFD !important; */
-  background: #0E2B8B !important;
+  background: #00b4c8 !important;
 }
 
 /* line 202, G:/admin_project/10 admin/cryptocurrency/scss/_byer_table.scss */
@@ -9459,12 +9454,12 @@ canvas#highlights {
 
 /* line 217, G:/admin_project/10 admin/cryptocurrency/scss/_byer_table.scss */
 .theme_color_6 {
-  color: #0E2B8B !important;
+  color: #00b4c8 !important;
 }
 
 /* line 220, G:/admin_project/10 admin/cryptocurrency/scss/_byer_table.scss */
 .theme_bg_6 {
-  background: #0E2B8B !important;
+  background: #00b4c8 !important;
 }
 
 /* line 223, G:/admin_project/10 admin/cryptocurrency/scss/_byer_table.scss */
@@ -10001,7 +9996,7 @@ canvas#highlights {
 /* line 615, G:/admin_project/10 admin/cryptocurrency/scss/_byer_table.scss */
 .common_tab_btn a.active {
   color: #fff;
-  background-color: #0E2B8B;
+  background-color: #00b4c8;
 }
 
 /* line 622, G:/admin_project/10 admin/cryptocurrency/scss/_byer_table.scss */
@@ -10554,7 +10549,7 @@ canvas#highlights {
 /* line 18, G:/admin_project/10 admin/cryptocurrency/scss/_datepicker.scss */
 .default-datepicker .datepicker-inline .datepicker .datepicker--content .datepicker--days .datepicker--days-names .datepicker--day-name {
   font-size: 14px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   color: #2b2b2b;
   font-size: 14px;
 }
@@ -10578,8 +10573,8 @@ canvas#highlights {
 
 /* line 36, G:/admin_project/10 admin/cryptocurrency/scss/_datepicker.scss */
 .default-datepicker .datepicker-inline .datepicker .datepicker--content .datepicker--days .datepicker--cells .datepicker--cell-day:hover {
-  background: #0E2B8B;
-  border: 2px solid #0E2B8B;
+  background: #5886FF;
+  border: 2px solid #5886FF;
   color: #fff;
 }
 
@@ -10587,7 +10582,7 @@ canvas#highlights {
 .default-datepicker .datepicker-inline .datepicker .datepicker--nav-title {
   font-size: 18px;
   font-weight: 500;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
   color: #302D43;
 }
 
@@ -10612,7 +10607,7 @@ canvas#highlights {
   font-weight: 500;
   font-size: 18px;
   color: #302D43;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 
 /* line 67, G:/admin_project/10 admin/cryptocurrency/scss/_datepicker.scss */
@@ -10686,14 +10681,14 @@ canvas#highlights {
   color: #fff !important;
   border-radius: 30px;
   font-weight: bold;
-  border: 2px solid #0E2B8B;
-  background: #0E2B8B;
+  border: 2px solid #5886FF;
+  background: #5886FF;
 }
 
 /* line 130, G:/admin_project/10 admin/cryptocurrency/scss/_datepicker.scss */
 .default-datepicker .datepicker--cell.-focus- {
-  background: #0E2B8B;
-  border: 2px solid #0E2B8B;
+  background: #5886FF;
+  border: 2px solid #5886FF;
   color: #fff;
 }
 
@@ -10714,20 +10709,20 @@ canvas#highlights {
 /* line 149, G:/admin_project/10 admin/cryptocurrency/scss/_datepicker.scss */
 .datepicker--cell.-selected- {
   border: none;
-  background: #0E2B8B;
+  background: #5886FF;
   color: #fff;
 }
 
 /* line 154, G:/admin_project/10 admin/cryptocurrency/scss/_datepicker.scss */
 .datepicker--cell.-selected-.-current- {
   border: none;
-  background: #0E2B8B;
+  background: #5886FF;
   color: #fff;
 }
 
 /* line 160, G:/admin_project/10 admin/cryptocurrency/scss/_datepicker.scss */
 .default-datepicker .datepicker-inline .datepicker .datepicker--content .datepicker--days .datepicker--cells .datepicker--cell.-selected- {
-  background: #0E2B8B;
+  background: #5886FF;
   color: #fff;
   border-radius: 30px;
   position: relative;
@@ -10735,7 +10730,7 @@ canvas#highlights {
 
 /* line 168, G:/admin_project/10 admin/cryptocurrency/scss/_datepicker.scss */
 .datepicker--cell.-focus- {
-  background: #0E2B8B;
+  background: #5886FF;
   color: #fff;
 }
 
@@ -10744,7 +10739,7 @@ canvas#highlights {
   color: #000;
   border-radius: 30px;
   font-weight: bold;
-  border: 2px solid #0E2B8B;
+  border: 2px solid #5886FF;
 }
 
 /* line 178, G:/admin_project/10 admin/cryptocurrency/scss/_datepicker.scss */
@@ -11754,7 +11749,7 @@ a.pswp__share--download:hover {
 /*# sourceMappingURL=photoswipe.css.map */
 /* line 2, G:/admin_project/10 admin/cryptocurrency/scss/_notification_menu.scss */
 .Menu_NOtification_Wrap {
-  background: #FFFFFF;
+  background: #27282D;
   box-shadow: 0px 10px 15px rgba(6, 0, 8, 0.22);
   border-radius: 10px;
   position: absolute;
@@ -11794,7 +11789,7 @@ a.pswp__share--download:hover {
 .Menu_NOtification_Wrap .notification_Header {
   padding: 15px 20px;
   border-radius: 0px;
-  background: #0E2B8B;
+  background: #00b4c8;
 }
 
 /* line 29, G:/admin_project/10 admin/cryptocurrency/scss/_notification_menu.scss */
@@ -11851,8 +11846,8 @@ a.pswp__share--download:hover {
 
 /* line 70, G:/admin_project/10 admin/cryptocurrency/scss/_notification_menu.scss */
 .Menu_NOtification_Wrap .nofity_footer {
-  padding: 13px 20px;
-  background: #F5F7F9;
+  /* padding: 13px 20px; */
+  background: #00b4c8;
   border-radius: 0px;
 }
 
@@ -11896,7 +11891,7 @@ a.pswp__share--download:hover {
 
 /* line 108, G:/admin_project/10 admin/cryptocurrency/scss/_notification_menu.scss */
 .CHAT_MESSAGE_POPUPBOX .CHAT_POPUP_HEADER {
-  background: #0E2B8B;
+  background: #00b4c8;
   border-radius: 0px;
   padding: 27px 20px;
   position: relative;
@@ -12070,7 +12065,7 @@ a.pswp__share--download:hover {
 
 /* line 239, G:/admin_project/10 admin/cryptocurrency/scss/_notification_menu.scss */
 .CHAT_MESSAGE_POPUPBOX .CHAT_POPUP_BODY .CHATING_SENDER.CHATING_RECEIVEr .SEND_SMS_VIEW {
-  background: #0E2B8B;
+  background: #00b4c8;
 }
 
 /* line 243, G:/admin_project/10 admin/cryptocurrency/scss/_notification_menu.scss */
@@ -12087,7 +12082,7 @@ a.pswp__share--download:hover {
 
 /* line 251, G:/admin_project/10 admin/cryptocurrency/scss/_notification_menu.scss */
 .CHAT_MESSAGE_POPUPBOX .CHAT_POPUP_BODY .CHATING_SENDER .SEND_SMS_VIEW {
-  background: #0E2B8B;
+  background: #5886FF;
   border-radius: 5px;
   padding: 10px 15px;
 }
@@ -13108,12 +13103,12 @@ a.pswp__share--download:hover {
   display: inline-block;
   border-radius: 2px;
   padding: 5px 17px;
-  color: #0E2B8B;
+  color: #00b4c8;
 }
 
 /* line 107, G:/admin_project/10 admin/cryptocurrency/scss/_predefine.scss */
 .badge_btn_4:hover {
-  color: #0E2B8B;
+  color: #00b4c8;
 }
 
 /* line 111, G:/admin_project/10 admin/cryptocurrency/scss/_predefine.scss */
@@ -13179,7 +13174,7 @@ a.pswp__share--download:hover {
   display: inline-block;
   border-radius: 2px;
   padding: 6px 17px;
-  background: #0E2B8B;
+  background: #00b4c8;
   color: #fff;
   transition: .3s;
 }
@@ -13194,7 +13189,7 @@ a.pswp__share--download:hover {
 .badge_btn_9 {
   font-size: 14px;
   font-weight: 500;
-  background: #0E2B8B;
+  background: #00b4c8;
   display: inline-block;
   border-radius: 3px;
   padding: 3px 17px;
@@ -13668,7 +13663,7 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 
 /* line 36, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
 .text-muted {
-  color: #818898 !important;
+  color: #a4abc5 !important;
 }
 
 /* line 39, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
@@ -13691,12 +13686,12 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 /* line 52, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
 .ribbon1 span.rib1-primary::before,
 .ribbon1 span.rib1-primary {
-  background: #0E2B8B;
+  background: #00b4c8;
 }
 
 /* line 55, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
 .ribbon1.rib1-primary::after {
-  border-top-color: #0E2B8B;
+  border-top-color: #00b4c8;
 }
 
 /* line 58, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
@@ -13714,7 +13709,7 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 /* line 68, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
 .ribbon1 span.rib1-primary::before,
 .ribbon1 span.rib1-primary {
-  background: #0E2B8B;
+  background: #00b4c8;
 }
 
 /* line 71, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
@@ -13734,7 +13729,7 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 
 /* line 81, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
 .ribbon1 span.rib1-primary::after {
-  background: #0E2B8B;
+  background: #00b4c8;
 }
 
 /* line 84, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
@@ -13801,7 +13796,7 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 /* line 128, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
 .single-pro-detail .pro-features li {
   line-height: 26px;
-  color: #818898;
+  color: #a4abc5;
 }
 
 /* line 131, G:/admin_project/10 admin/cryptocurrency/scss/_product.scss */
@@ -14020,12 +14015,12 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 
 /* line 80, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.mini_sidebar #sidebar_menu>li ul li a.active {
-  color: #0E2B8B !important;
+  color: #5886FF !important;
 }
 
 /* line 84, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.mini_sidebar #sidebar_menu>li>a {
-  background: #ffffff;
+  background: #27282D;
   padding-left: 0px;
   display: grid;
   grid-template-columns: 44px auto !important;
@@ -14047,11 +14042,11 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 }
 
 /* line 103, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
-/* .sidebar.mini_sidebar #sidebar_menu>li>a:hover,
+.sidebar.mini_sidebar #sidebar_menu>li>a:hover,
 .sidebar.mini_sidebar #sidebar_menu>li>a.active {
-  background: #F6F8FA;
+  background: #0B0B0D;
   width: 330px;
-} */
+}
 
 /* line 108, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.mini_sidebar #sidebar_menu>li>a:hover .nav_icon_small,
@@ -14060,14 +14055,10 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 }
 
 /* line 111, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
-/* .sidebar.mini_sidebar #sidebar_menu>li>a:hover .nav_title,
+.sidebar.mini_sidebar #sidebar_menu>li>a:hover .nav_title,
 .sidebar.mini_sidebar #sidebar_menu>li>a.active .nav_title {
   display: inline-block;
-} */
-/* .sidebar.mini_sidebar #sidebar_menu>li>a:hover .nav_title,
-.sidebar.mini_sidebar #sidebar_menu>li>a.active .nav_title {
-  display: inline-block;
-} */
+}
 
 /* line 114, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.mini_sidebar #sidebar_menu>li>a:hover.has-arrow::after,
@@ -14076,10 +14067,10 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 }
 
 /* line 119, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
-/* .sidebar.mini_sidebar #sidebar_menu>li:hover>a,
+.sidebar.mini_sidebar #sidebar_menu>li:hover>a,
 .sidebar.mini_sidebar #sidebar_menu>li.mm-active>a {
   width: 330px !important;
-} */
+}
 
 /* line 123, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.mini_sidebar #sidebar_menu>li:hover>a:hover,
@@ -14088,8 +14079,8 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 .sidebar.mini_sidebar #sidebar_menu>li.mm-active>a.active {
   width: 330px;
   opacity: 1;
-  background: #F6F8FA !important;
-  color: #0E2B8B !important;
+  background: #0B0B0D !important;
+  color: #5886FF !important;
 }
 
 /* line 130, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
@@ -14123,7 +14114,7 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 
 /* line 148, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.mini_sidebar #sidebar_menu>li.mm-active>a {
-  background: #F6F8FA;
+  background: #0B0B0D;
 }
 
 /* line 151, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
@@ -14132,9 +14123,9 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 }
 
 /* line 154, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
-/* .sidebar.mini_sidebar #sidebar_menu>li.mm-active>a .nav_title {
+.sidebar.mini_sidebar #sidebar_menu>li.mm-active>a .nav_title {
   display: inline-block;
-} */
+}
 
 /* line 157, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.mini_sidebar #sidebar_menu>li.mm-active>a.has-arrow::after {
@@ -14238,18 +14229,18 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 /* line 245, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.dark_sidebar.mini_sidebar #sidebar_menu>li>a:hover,
 .sidebar.dark_sidebar.mini_sidebar #sidebar_menu>li>a:active {
-  background: #F6F8FA;
+  background: #0B0B0D;
 }
 
 /* line 248, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.dark_sidebar.mini_sidebar #sidebar_menu>li.mm-active>a {
-  background: #F6F8FA;
-  /* color: #fff !important; */
+  background: #0B0B0D;
+  color: #fff !important;
 }
 
 /* line 252, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.mini_sidebar.dark_sidebar #sidebar_menu>li ul {
-  background: #ffffff;
+  background: #27282D;
   opacity: 1;
 }
 
@@ -14261,14 +14252,13 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 
 /* line 260, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.dark_sidebar.mini_sidebar #sidebar_menu>li ul li a {
-  color: #666D80;
+  color: #fff;
   width: 194px;
 }
 
 /* line 264, G:/admin_project/10 admin/cryptocurrency/scss/_mini_menu.scss */
 .sidebar.dark_sidebar.mini_sidebar #sidebar_menu>li.mm-active ul {
   width: 194px;
-  display: none;
 }
 
 /* line 1, G:/admin_project/10 admin/cryptocurrency/scss/_profilebox_new.scss */
@@ -15126,7 +15116,7 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 
 /* line 125, G:/admin_project/10 admin/cryptocurrency/scss/_bitcrypto.scss */
 .anlite_table {
-  background: #0E2B8B;
+  background: #5886FF;
 }
 
 /* line 127, G:/admin_project/10 admin/cryptocurrency/scss/_bitcrypto.scss */
@@ -15255,7 +15245,7 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 .tickers-black-sm .tickercontainer {
   background-color: #252525;
   color: #fff;
-  border-top: 5px solid #0E2B8B;
+  border-top: 5px solid #5886FF;
   left: 0;
   right: 0;
   margin-right: 30px;
@@ -15274,7 +15264,7 @@ table.lms_table_active3.dataTable thead .sorting_desc::after {
 .tickers-black-lg .tickercontainer {
   background-color: #252525;
   color: #fff;
-  border-top: 5px solid #0E2B8B;
+  border-top: 5px solid #5886FF;
   left: 0;
   right: 0;
   margin-right: 30px;

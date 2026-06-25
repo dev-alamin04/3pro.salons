@@ -38,7 +38,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background: linear-gradient(0deg, #0E2B8B, #090909);
+            background: linear-gradient(0deg, #00b4c8, #090909);
             text-align: center;
         }
 
@@ -98,7 +98,7 @@
         }
 
         .bg-blue-500 {
-            background-color: #0E2B8B;
+            background-color: #00b4c8;
         }
 
         /* Button styles */
@@ -109,7 +109,7 @@
             left: 20px;
             padding: 0.8em 2em;
             font-size: 1.2em;
-            color: #0E2B8B;
+            color: #00b4c8;
             background-color: #ffffff;
             text-decoration: none;
             border-radius: 5px;

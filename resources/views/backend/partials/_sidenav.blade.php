@@ -1,23 +1,21 @@
 <!-- sidebar  -->
-<nav id="sidebar" class="sidebar" >
+<nav id="sidebar" class="sidebar dark_sidebar">
+
     <!-- Logo  -->
     <div class="logo d-flex justify-content-center">
         <a class="large_logo" href="{{ route('admin.dashboard') }}"><img
-                src="{{ asset($systemSetting->logo ?? 'backend/assets/images/logo-default.svg') }} " alt="" /></a>
+                src="{{ asset($systemSetting->logo ?? 'backend/assets/images/logo-default.png') }}" alt="" /></a>
         <a class="small_logo" href="{{ route('admin.dashboard') }}">
             <img class="rounded-circle"
-                src="{{ asset($systemSetting->favicon ?? 'backend/assets/images/logo-minimize.svg') }}" alt="logo"
-                style="object-fit: contain; height: 35px; width: 45px; margin-top: 5px;" />
+                src="{{ asset($systemSetting->favicon ?? 'backend/assets/images/logo-default.png') }}" alt="logo"
+                style="height: 50px;width:50px;" />
         </a>
 
         <div class="sidebar_close_icon d-lg-none">
             <i class="ti-close"></i>
         </div>
     </div>
-    <li class="">
-        <hr>
-    </li>
-    <ul id="sidebar_menu" class="mt-5">
+      <ul id="sidebar_menu" class="mt-5">
         <li class="">
             <a href="/admin/dashboard" aria-expanded="false" class="active">
                 <div class="nav_icon_small">
@@ -38,30 +36,20 @@
                 </div>
             </a>
         </li>
-
-        <li class="">
-            <a class="has-arrow" href="#" aria-expanded="false">
-                <div class="nav_icon_small">
-                    <i class="fas fa-shopping-basket"></i>
-                </div>
-                <div class="nav_title">
-                    <span>Ecommerce</span>
-                </div>
-            </a>
-            <ul>
-                <li> <a href="/admin/categories">Categories</a> </li>
-                <li> <a href="/admin/subcategories">Subcategories</a> </li>
-                <li> <a href="/admin/products">Products</a> </li>
-            </ul>
-        </li>
-
         {{-- <li class="">
-            <a>              
+            <a href="/admin/cms-contents" aria-expanded="false" class="active">
+                <div class="nav_icon_small">
+                    <i class="fas fa-sticky-note"></i>
+                </div>
                 <div class="nav_title">
-                    <span>Settings & Support</span>
+                    <span>CMS</span>
                 </div>
             </a>
         </li> --}}
+
+        <li class="">
+            <hr>
+        </li>
 
 
         <li class="">
@@ -70,14 +58,14 @@
                     <i class="fa-solid fa-gear"></i>
                 </div>
                 <div class="nav_title">
-                    <span>Settings</span>
+                    <span>{{ __('sidebar.settings') }}</span>
                 </div>
             </a>
             <ul>
-                <li> <a href="/admin/profile">Profile Settings</a> </li>
-                <li> <a href="/admin/system-setting">System Settings</a> </li>
-                <li> <a href="/admin/dynamic-page">Dynamic Page</a> </li>
-                <li> <a href="/admin/mail-setting">Mail Settings</a> </li>
+                <li> <a href="/admin/profile">{{ __('settings.profile') }}</a> </li>
+                <li> <a href="/admin/system-setting">{{ __('settings.system') }}</a> </li>
+                <li> <a href="/admin/dynamic-page">{{ __('settings.dynamic_page') }}</a> </li>
+                <li> <a href="/admin/mail-setting">{{ __('settings.mail') }}</a> </li>
             </ul>
         </li>
     </ul>

@@ -91,3 +91,58 @@
     }
 </style>
 {{-- dropify and ck-editor end --}}
+
+
+{{-- dropify and ck-editor end --}}
+<style>
+.header_iner {
+    height: 70px !important;
+    padding: 0 20px !important;
+    margin: 0 !important;
+}
+
+.logo {
+    height: 70px !important;
+    padding: 0 12px !important;
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(166, 90, 138, 0.15);
+}
+
+.header_iner .container-fluid,
+.header_iner .row {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* top gap remove */
+body .content-wrapper,
+body .main_content {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+</style>
+<style>
+.sidebar .logo .large_logo img {
+    width: 100% !important;
+    height: 70px !important;
+    max-width: 100% !important;
+    min-width: unset !important;
+    min-height: unset !important;
+    max-height: unset !important;
+    padding: 8px 10px !important;
+    margin: 0 !important;
+    object-fit: contain !important;
+}
+
+.sidebar .logo {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.sidebar .logo .large_logo {
+    width: 100% !important;
+    display: block !important;
+}
+</style>

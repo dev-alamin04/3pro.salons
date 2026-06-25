@@ -107,9 +107,9 @@ Use **Bearer Token** authentication for protected routes.
 ## Design System
 
 ### Button and Banner Color
-- `#D92D20` → `#0E2B8B`
-- Button info `#35E07Be6` → `#0E2B8B`
-- Link `#0d6efd` → `#0E2B8B`
+- `#D92D20` → `#00b4c8`
+- Button info `#35E07Be6` → `#00b4c8`
+- Link `#0d6efd` → `#00b4c8`
 - Text muted `#a4abc5` → `#818898`
 
 ### Sidebar

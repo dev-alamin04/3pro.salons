@@ -23,7 +23,7 @@
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="container" style="width:600px; max-width:600px; background:#FFFFFF; border-radius:12px; overflow:hidden; border:1px solid #eee;">
           <!-- Top accent -->
           <tr>
-            <td style="height:6px; background:#D4AF37; font-size:0; line-height:0;">&nbsp;</td>
+            <td style="height:6px; background:#00b4c8; font-size:0; line-height:0;">&nbsp;</td>
           </tr>
 
           <!-- Header / Brand -->

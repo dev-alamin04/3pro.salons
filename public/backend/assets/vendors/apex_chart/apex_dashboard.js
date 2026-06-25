@@ -44,7 +44,7 @@ var options1 = {
             }
         }
     },
-    colors: [ "#0E2B8B" , "#06FFFF","#0017FF","#383358"],
+    colors: [ "#00b4c8" , "#06FFFF","#0017FF","#383358"],
     
     markers: {
         size: 6,

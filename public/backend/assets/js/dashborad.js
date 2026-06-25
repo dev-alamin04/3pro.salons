@@ -10,7 +10,7 @@
                     labels: res.chart.labels,
                     datasets: [{
                         data: res.chart.values,
-                        backgroundColor: ["#0E2B8B", "#E2B84B","#F2F3F5" ]
+                        backgroundColor: ["#00b4c8", "#E2B84B","#F2F3F5" ]
                     }]
                 };
 

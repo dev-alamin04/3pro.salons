@@ -8,7 +8,7 @@ $(document).ready(function () {
         "theme": "dark",
         "dataDateFormat": "YYYY-MM-DD",
         "precision": 2,
-        "color": "#0E2B8B",
+        "color": "#00b4c8",
         "valueAxes": [{
             "id": "v1",
             "title": "Sales",
@@ -55,7 +55,7 @@ $(document).ready(function () {
             "valueAxis": "v2",
             "bullet": "round",
             "bulletBorderAlpha": 1,
-            "bulletColor": "#0E2B8B",
+            "bulletColor": "#00b4c8",
             "bulletSize": 5,
             "hideBulletsCount": 50,
             "lineThickness": 2,
@@ -70,7 +70,7 @@ $(document).ready(function () {
             "valueAxis": "v2",
             "bullet": "round",
             "bulletBorderAlpha": 1,
-            "bulletColor": "#0E2B8B",
+            "bulletColor": "#00b4c8",
             "bulletSize": 5,
             "hideBulletsCount": 50,
             "lineThickness": 2,
@@ -89,7 +89,7 @@ $(document).ready(function () {
             "scrollbarHeight": 50,
             "backgroundAlpha": 0,
             "selectedBackgroundAlpha": 0.9,
-            "selectedBackgroundColor": "#0E2B8B",
+            "selectedBackgroundColor": "#00b4c8",
             "graphFillAlpha": 0,
             "graphLineAlpha": 0.5,
             "selectedGraphFillAlpha": 0,
@@ -112,7 +112,7 @@ $(document).ready(function () {
         },
         "legend": {
             "useGraphSettings": true,
-            "color": "#0E2B8B",
+            "color": "#00b4c8",
             "position": "top"
         },
         "balloon": {
@@ -360,7 +360,7 @@ $(document).ready(function () {
             "autoGridCount": false,
             "gridCount": 50,
             "gridAlpha": 0.1,
-            "gridColor": "#0E2B8B",
+            "gridColor": "#00b4c8",
             "axisColor": "#ddd",
             "dateFormats": [{
                 "period": 'DD',
@@ -444,7 +444,7 @@ $(document).ready(function () {
             "equalWidths": false,
             "valueWidth": 120,
             "useGraphSettings": true,
-            "color": "#0E2B8B"
+            "color": "#00b4c8"
         }
     });
 
@@ -459,7 +459,7 @@ $(document).ready(function () {
 
         "addClassNames": true,
         "startDuration": 1,
-        "color": "#0E2B8B",
+        "color": "#00b4c8",
         "marginLeft": 0,
 
         "categoryField": "date",
@@ -469,7 +469,7 @@ $(document).ready(function () {
             "autoGridCount": false,
             "gridCount": 50,
             "gridAlpha": 0.1,
-            // "gridColor": "#0E2B8B",
+            // "gridColor": "#00b4c8",
             "axisColor": "#555555",
             "dateFormats": [{
                 "period": 'DD',
@@ -575,7 +575,7 @@ $(document).ready(function () {
             "equalWidths": false,
             "valueWidth": 120,
             "useGraphSettings": true,
-            "color": "#0E2B8B"
+            "color": "#00b4c8"
         }
     });
 
