@@ -23,17 +23,10 @@
                     data: 'email',
                     name: 'email'
                 },
-                {
-                    data: 'phone',
-                    name: 'phone'
-                },
+
                 {
                     data: 'joined_at',
                     name: 'joined_at'
-                },
-                {
-                    data: 'location',
-                    name: 'location'
                 },
                 {
                     data: 'is_active',

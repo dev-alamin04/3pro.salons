@@ -14,14 +14,13 @@ class UserController extends Controller
     {
         
         if ($request->ajax()) {
-            $query = User::user()->latest();
+            $query = User::where('role', '!=', 'admin')->latest()->get();
+
             return DataTables::of($query)
                 ->addIndexColumn()
                 ->addColumn('name', fn(User $u) => $u->name ?? 'N/A')
                 ->addColumn('email', fn(User $u) => $u->email ?? 'N/A')
-                ->addColumn('phone', fn(User $u) => $u->phone ?? 'N/A')
                 ->addColumn('joined_at', fn(User $u) => $u->joined_at?->format('d-M-Y h:i A') ?? 'N/A')
-                ->addColumn('location', fn(User $u) => $u->location ?? 'N/A')
                 ->addColumn('is_active', function (User $u) {
                     $next    = $u->is_active ? 0 : 1;
                     $checked = $u->is_active ? 'checked' : '';

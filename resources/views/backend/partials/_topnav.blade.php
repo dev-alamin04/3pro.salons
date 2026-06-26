@@ -2,7 +2,7 @@
 a#themeToggleBtn,
 a#fullscreenBtn {
     font-size: 16px;
-    color: rgba(166, 90, 138, 1);
+    color: rgb(16, 146, 179);
     cursor: pointer;
 }
 
@@ -28,14 +28,14 @@ a#fullscreenBtn {
 
 .nav_icon_wrap i {
     font-size: 16px;
-    color: rgba(166, 90, 138, 1);
+    color: rgb(73, 122, 187);
 }
 
 .admin_picture {
     width: 38px;
     height: 38px;
     object-fit: cover;
-    border: 2px solid rgba(166, 90, 138, 0.4);
+    border: 2px solid rgba(53, 132, 206, 0.4);
 }
 </style>
 
@@ -76,13 +76,16 @@ a#fullscreenBtn {
                     <div class="profile_info d-flex align-items-center gap-2">
                         <div class="profile_thumb" style="position:relative;">
                             @php
-                                $profilePhoto = Auth::user()->avatar_path
-                                    ? asset(Auth::user()->avatar_path)
-                                    : asset('backend/assets/img/profile.png');
+                                $profilePhoto = Auth::user()->profile_photo_url;
+                                $Photo = Auth::user()->avatar_path;
                             @endphp
-                            <img class="admin_picture rounded-circle"
-                                src="{{ $profilePhoto }}"
-                                alt="profile" />
+                            @if ($Photo == null)
+                                <img class="img-xs rounded-circle admin_picture" src="{{ $profilePhoto }}"
+                                    alt="" />
+                            @else
+                                <img class="img-xs rounded-circle admin_picture"
+                                    src="{{ asset("uploads/profileImages/$Photo") }}" alt="" />
+                            @endif
 
                             {{-- Online dot --}}
                             <span style="

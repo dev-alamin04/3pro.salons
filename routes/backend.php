@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Backend\Dashboard\DashboardController;
-use App\Http\Controllers\Web\Backend\Ecommerce\CategoryController;
-use App\Http\Controllers\Web\Backend\Ecommerce\ProductController;
-use App\Http\Controllers\Web\Backend\Ecommerce\SubcategoryController;
+use App\Http\Controllers\Web\Backend\Salon\SalonController;
 use App\Http\Controllers\Web\Backend\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +17,10 @@ Route::controller(DashboardController::class)->prefix('/dashboard')->group(funct
     Route::get('/transaction-history', 'transactionHistory');
     Route::get('/sales-chart', 'salesChart');
 });
+
+Route::resource('salons', SalonController::class);
+Route::get('salons/{salon}/assign', [SalonController::class, 'assignedUsers'])->name('salons.assign');
+Route::post('salons/{salon}/assign', [SalonController::class, 'assignUser'])->name('salons.assign.user');
+Route::delete('salons/{salon}/users/{user}', [SalonController::class, 'removeUser'])->name('salons.remove.user');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');

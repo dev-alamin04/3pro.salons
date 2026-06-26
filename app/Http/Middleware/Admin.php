@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -22,7 +21,7 @@ class Admin
             Auth::logout();
             abort(403, 'Please Contract Our Support');
         }
-        if ($user->hasRole('admin')) {
+        if ($user->role == 'admin') {
             return $next($request);
         }
 

@@ -7,11 +7,10 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable, HasProfilePhoto,HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable, HasProfilePhoto;
 
     protected $guarded = [];
 
@@ -50,25 +49,24 @@ class User extends Authenticatable
         return $q->where('is_active', true);
     }
 
-    public function scopeUser($q)
-{
-    return $q->whereDoesntHave('roles', function($query) {
-        $query->where('name', 'admin');
-    });
-}
- 
-
     public function notifications()
     {
         return $this->hasMany(Notification::class);
     }
-
 
     public function settings()
     {
         return $this->hasMany(Setting::class, 'user_id');
     }
 
+    public function mysalon()
+    {
+        return $this->belongsTo(UserSalon::class, 'user_id');
+    }
 
+    public function salon_assigned_by()
+    {
+        return $this->belongsTo(UserSalon::class, 'user_id');
+    }
 
 }

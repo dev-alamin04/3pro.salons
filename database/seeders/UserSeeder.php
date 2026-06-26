@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\User;
@@ -17,25 +16,29 @@ class UserSeeder extends Seeder
          * ROLE => USER DATA
          */
         $roleUsers = [
-            'admin' => [
+            'admin'  => [
                 'name'  => 'Admin',
                 'email' => 'admin@gmail.com',
                 'phone' => '01521539767',
+                'role'  => 'admin',
             ],
             'admin2' => [
                 'name'  => 'alamin',
                 'email' => 'mhalamin04@gmail.com',
                 'phone' => '01521539767',
+                'role'  => 'role',
             ],
-            'user' => [
+            'user'   => [
                 'name'  => 'User',
                 'email' => 'user@gmail.com',
                 'phone' => '01712345679',
+                'role'  => 'user',
             ],
-            'user2' => [
+            'user2'  => [
                 'name'  => 'alamin',
                 'email' => 'alamin@gmail.com',
                 'phone' => '01712345681',
+                'role'  => 'user',
             ],
         ];
 
@@ -46,6 +49,7 @@ class UserSeeder extends Seeder
                 [
                     'name'              => $userData['name'],
                     'phone'             => $userData['phone'],
+                    'role'              => $userData['role'],
                     'password'          => $password,
                     'is_active'         => true,
                     'email_verified_at' => now(),
@@ -53,10 +57,6 @@ class UserSeeder extends Seeder
                 ]
             );
 
-            // Assign role if it exists
-            if (Role::where('name', $roleName)->exists()) {
-                $user->syncRoles([$roleName]);
-            }
         }
     }
 }

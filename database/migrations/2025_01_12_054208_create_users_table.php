@@ -4,8 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use function Laravel\Prompts\table;
-
 return new class extends Migration
 {
     /**
@@ -19,20 +17,20 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->string('phone', 30)->nullable();
             $table->string('password')->nullable();
-            $table->string('avatar_path')->nullable();            
+            $table->string('avatar_path')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->boolean('is_login_alerts')->default(true);
             $table->string('location')->nullable();
+            $table->string('secret_key')->nullable();
             $table->timestamp('joined_at')->nullable();
-
-            $table->string('designation')->nullable();
-
+            
+            $table->string('role')->default('stuff');
             $table->json('metadata')->nullable()->comment('Flexible storage for additional user data');
-
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('term_accept')->default(true);
             $table->string('provider', 50)->nullable();
             $table->longText('provider_id')->nullable();
+            $table->string('specialist')->nullable();
+            $table->decimal('badage')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

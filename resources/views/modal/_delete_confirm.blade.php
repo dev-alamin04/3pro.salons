@@ -7,11 +7,12 @@
                 <div class="modal-title" id="exampleModalLongTitle">
                     <input type="hidden" name="delete_id" id="delete_id">
                     <input type="hidden" name="delete_type" id="delete_type">
-                    <div align="middle">
-                        <img src="{{ asset('backend/assets/icon/delete-icon.png') }}" alt="">
+                    <div align="middle" style="padding: 10px;">
+                        <!-- <img src="{{ asset('backend/assets/icon/delete-icon.png') }}" alt=""> -->
+                         <i class="fa-regular fa-trash-can fa-2xl" style="color: aliceblue; margin-top: auto;"></i>
                     </div>
                     <br> 
-                    <h5 style="color: black">Do you want to Delete?</h5>
+                    <h5 style="color: white">Do you want to Delete?</h5>
                     <div></div>
                     <div class="text-muted">You won't be able to recover it!!</div>
                     <br>

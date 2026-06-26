@@ -36,20 +36,17 @@
                 </div>
             </a>
         </li>
-        {{-- <li class="">
-            <a href="/admin/cms-contents" aria-expanded="false" class="active">
+        <!-- <li class="">
+            <a href="{{ route('salons.index') }}" aria-expanded="false">
                 <div class="nav_icon_small">
-                    <i class="fas fa-sticky-note"></i>
+                    <i class="fas fa-store"></i>
                 </div>
                 <div class="nav_title">
-                    <span>CMS</span>
+                    <span>Salon Management</span>
                 </div>
             </a>
-        </li> --}}
+        </li> -->
 
-        <li class="">
-            <hr>
-        </li>
 
 
         <li class="">
@@ -58,14 +55,14 @@
                     <i class="fa-solid fa-gear"></i>
                 </div>
                 <div class="nav_title">
-                    <span>{{ __('sidebar.settings') }}</span>
+                    <span>Settings</span>
                 </div>
             </a>
             <ul>
-                <li> <a href="/admin/profile">{{ __('settings.profile') }}</a> </li>
-                <li> <a href="/admin/system-setting">{{ __('settings.system') }}</a> </li>
-                <li> <a href="/admin/dynamic-page">{{ __('settings.dynamic_page') }}</a> </li>
-                <li> <a href="/admin/mail-setting">{{ __('settings.mail') }}</a> </li>
+                <li> <a href="/admin/profile">Profile</a> </li>
+                <li> <a href="/admin/system-setting">System Settings</a> </li>
+                <li> <a href="/admin/dynamic-page">Dynamic pages</a> </li>
+                <li> <a href="/admin/mail-setting">Mail Settings</a> </li>
             </ul>
         </li>
     </ul>
