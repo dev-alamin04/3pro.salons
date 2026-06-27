@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Backend\Dashboard\DashboardController;
+use App\Http\Controllers\Web\Backend\Onboarding\OnboardingController;
 use App\Http\Controllers\Web\Backend\Salon\SalonController;
 use App\Http\Controllers\Web\Backend\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,5 @@ Route::post('salons/{salon}/assign', [SalonController::class, 'assignUser'])->na
 Route::delete('salons/{salon}/users/{user}', [SalonController::class, 'removeUser'])->name('salons.remove.user');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+Route::resource('onboardings', OnboardingController::class)->except(['create', 'show']);
+Route::patch('onboardings/{onboarding}/status', [OnboardingController::class, 'updateStatus'])->name('onboardings.status');

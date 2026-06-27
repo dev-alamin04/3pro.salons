@@ -36,7 +36,7 @@
                 </div>
             </a>
         </li>
-        <!-- <li class="">
+        <li class="">
             <a href="{{ route('salons.index') }}" aria-expanded="false">
                 <div class="nav_icon_small">
                     <i class="fas fa-store"></i>
@@ -45,7 +45,18 @@
                     <span>Salon Management</span>
                 </div>
             </a>
-        </li> -->
+        </li>
+
+        <li class="">
+            <a href="{{ route('onboardings.index') }}" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <i class="fas fa-list-check"></i>
+                </div>
+                <div class="nav_title">
+                    <span>Onboarding</span>
+                </div>
+            </a>
+        </li>
 
 
 

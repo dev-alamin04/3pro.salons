@@ -22,8 +22,10 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('secret_key')->nullable();
             $table->timestamp('joined_at')->nullable();
-            
-            $table->string('role')->default('stuff');
+
+            $table->boolean('is_used_key')->default(false);
+
+            $table->string('role')->default('staff');
             $table->json('metadata')->nullable()->comment('Flexible storage for additional user data');
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('term_accept')->default(true);

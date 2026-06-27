@@ -8,7 +8,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <x-table-header title="User Management" subtitle="Manage all users across the platform." />
+                        <x-table-header title="User Management"  :route="route('users.create')" />
                         <div class="table-responsive w-100">
                             <table class="table reloadAdminTable table-hover" id="data-table">
                                 <thead>

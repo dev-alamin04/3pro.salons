@@ -15,29 +15,30 @@ use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
 {
     use ApiResponse;
+    
 
-    public function register(StoreUserRequest $request)
-    {
-        $data = $request->validated();
-        $role = $data['role'];
-        unset($data['role']);
-        $data['password'] = Hash::make($request->password);
+    // public function register(StoreUserRequest $request)
+    // {
+    //     $data = $request->validated();
+    //     $role = $data['role'];
+    //     unset($data['role']);
+    //     $data['password'] = Hash::make($request->password);
 
-        $data['joined_at'] = now()->toDateTimeString();
+    //     $data['joined_at'] = now()->toDateTimeString();
         
-        $user = User::create($data);
+    //     $user = User::create($data);
 
-        $user->settings()->create([]);
+    //     $user->settings()->create([]);
 
-        // Assign role based on selection
-        $user->assignRole($role);
+    //     // Assign role based on selection
+    //     $user->assignRole($role);
         
-        if ($user) {
-            return OtpHelper::sendEmailOtp($user->email, 'register');
-        }
+    //     if ($user) {
+    //         return OtpHelper::sendEmailOtp($user->email, 'register');
+    //     }
 
-        return $this->error($user, 'Failed to register user', 500);
-    }
+    //     return $this->error($user, 'Failed to register user', 500);
+    // }
 
     public function resendOtp(Request $request)
     {

@@ -29,8 +29,13 @@
 
     <div class="col-md-6 mb-3">
     <label class="form-label">Start Sequence</label>
-    <input type="number" name="start_sequence" class="form-control @error('start_sequence') is-invalid @enderror"
-        value="{{ old('start_sequence', $salon->start_sequence ?? '') }}">
+    <input type="text"
+    name="start_sequence"
+    maxlength="4"
+    inputmode="numeric"
+    oninput="this.value=this.value.replace(/\D/g,'')"
+    class="form-control @error('start_sequence') is-invalid @enderror"
+    value="{{ old('start_sequence', $salon->start_sequence ?? '') }}">
     @error('start_sequence') <div class="invalid-feedback">{{ $message }}</div> @enderror
     </div>
     <!-- <div class="col-md-6 mb-3">

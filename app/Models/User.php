@@ -37,6 +37,8 @@ class User extends Authenticatable
         'deleted_at'        => 'datetime',
         'metadata'          => 'array',
         'joined_at'         => 'datetime',
+
+        'is_used_key'       => 'boolean'
     ];
 
     // Scopes
@@ -61,12 +63,12 @@ class User extends Authenticatable
 
     public function mysalon()
     {
-        return $this->belongsTo(UserSalon::class, 'user_id');
+        return $this->hasOne(UserSalon::class, 'user_id');
     }
 
     public function salon_assigned_by()
     {
-        return $this->belongsTo(UserSalon::class, 'user_id');
+        return $this->hasMany(UserSalon::class, 'assined_by');
     }
 
 }

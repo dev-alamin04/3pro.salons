@@ -14,6 +14,25 @@ class LoginController extends Controller
 {
     use ApiResponse;
 
+    public function setPassword(Request $request)
+    {
+        $validated = $request->validate([
+            "password"   => "required|string|min:8",
+            "secret_key" => "required|exists:users,secret_key",
+        ]);
+
+        $user = User::where('secret_key', $validated['secret_key'])->first();
+        if (! $user || $user->is_used_key == true) {
+            return $this->error([], 'Secret key is invalid or already used', 422);
+        }
+        $user->update(['password' => Hash::make($validated['password']), 'email_verified_at' => now(), 'is_used_key' => true]);
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+        return $this->success(['user' => $user,
+            'token'                       => $token,
+            'token_type'                  => 'Bearer'], 'user password set successfully', 201);
+    }
+    
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -26,35 +45,27 @@ class LoginController extends Controller
         }
 
         $user = User::where('email', $request->email)->first();
-        
-        if (!$user->email_verified_at) {
+
+        if (! $user->email_verified_at) {
             return $this->error(null, 'Please verify your email before logging in.', 403);
         }
 
-        if (!Hash::check($request->password, $user->password)) {
+        if (! Hash::check($request->password, $user->password)) {
             return $this->error(null, 'Invalid email or password', 401);
         }
 
         // Check account status
-        if (!$user->is_active) {
+        if (! $user->is_active) {
             return $this->error(null, 'Your account is inactive. Please contact support.', 403);
         }
 
         // Create token
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        // Get all assigned roles
-        $roles = $user->roles()->select('id', 'name')->get();
-
-        // Get all permissions from all roles
-        $permissions = $user->getAllPermissions()->pluck('name');
-
         return $this->success([
-            'user'        => $user->only(['id', 'name', 'email', 'is_active', ]),
-            'roles'       => $roles->pluck('name'), 
-            'permissions' => $permissions, 
-            'token'       => $token,
-            'token_type'  => 'Bearer',
+            'user'       => $user,
+            'token'      => $token,
+            'token_type' => 'Bearer',
         ], 'Login successful');
     }
 
@@ -86,7 +97,7 @@ class LoginController extends Controller
         $cacheKey  = 'user_otp_' . $request->email;
         $cachedOtp = Cache::get($cacheKey);
 
-        if (!$cachedOtp || $cachedOtp != $request->otp) {
+        if (! $cachedOtp || $cachedOtp != $request->otp) {
             return $this->error(null, 'OTP is invalid or expired.', 400);
         }
 
@@ -111,7 +122,7 @@ class LoginController extends Controller
         $cacheKey  = 'user_otp_' . $request->email;
         $cachedOtp = Cache::get($cacheKey);
 
-        if (!$cachedOtp || $cachedOtp != $request->otp) {
+        if (! $cachedOtp || $cachedOtp != $request->otp) {
             return $this->error(null, 'OTP is invalid or expired.', 400);
         }
 

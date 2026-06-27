@@ -3,7 +3,8 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
-use App\Http\Controllers\Api\Auth\SocialAuthController;
+use App\Http\Controllers\Api\Salons\SalonController;
+use App\Http\Controllers\Api\Salons\TeamManagementController;
 use Illuminate\Support\Facades\Route;
 
 // API v1 routes --------------------------------------------------------------------------
@@ -22,10 +23,8 @@ Route::middleware('throttle:5,1')->controller(LoginController::class)->group(fun
     Route::post('verify-reset-otp', 'verifyOtp');
     Route::post('reset-resend-otp', 'resendOtp');
     Route::post('reset-password', 'resetPassword');
+    Route::post('set-password', 'setPassword');
 });
-
-// Social Login -------------------------------------------------------------------------
-Route::post('social-login', [SocialAuthController::class, 'socialLogin'])->middleware('throttle:5,1');
 
 // Protected routes -------------------------------------------------------------------
 Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
@@ -39,4 +38,11 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
         Route::post('logout-all', 'logoutAll');
         Route::delete('delete-account', 'destroy');
     });
+
+    Route::get('get-onboardings', [SalonController::class, 'index']);
+    Route::get('onboardings', [SalonController::class, 'getSalonOnboardings']);
+    Route::post('set-onboardings', [SalonController::class, 'syncOnboardings']);
+    Route::delete('remove-onboardings/{salonOnboarding}', [SalonController::class, 'removeOnboarding']);
+
+    Route::post('create-account', [TeamManagementController::class, 'createAccount']);
 });

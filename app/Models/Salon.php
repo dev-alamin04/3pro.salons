@@ -11,8 +11,17 @@ class Salon extends Model
     protected $guarded = [];
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_salons')
-            ->withPivot('assined_by', 'metadata')
-            ->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_salons')->withPivot('assined_by', 'metadata')->withTimestamps();
     }
+
+    public function onboardings()
+    {
+        return $this->belongsToMany(Onboarding::class, 'onboarding_salon');
+    }
+
+    public function salonOnboardings()
+    {
+        return $this->hasMany(OnboardingSalon::class, 'salon_id');
+    }
+
 }
