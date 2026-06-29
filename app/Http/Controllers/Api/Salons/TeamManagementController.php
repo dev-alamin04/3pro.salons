@@ -19,4 +19,11 @@ class TeamManagementController extends Controller
         $user     = app(UserController::class)->userCreate($request, $salon_id);
         return $this->success($user, "account create successfully");
     }
+
+    public function myTeams(Request $request)
+    {
+        $user = $request->user();
+
+        $teammembers = $user->mysalon()->team($user->mysalon->salon_id, "owner")->get();
+    }
 }

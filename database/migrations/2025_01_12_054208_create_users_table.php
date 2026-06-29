@@ -22,17 +22,20 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->string('secret_key')->nullable();
             $table->timestamp('joined_at')->nullable();
-
             $table->boolean('is_used_key')->default(false);
-
             $table->string('role')->default('staff');
+            $table->string('specialist')->nullable();
+            $table->decimal('badage')->default(0);
+            $table->decimal('tier_lavel')->default(0);
+            $table->string('pronoun')->nullable();
+            $table->string('exprience_level')->default('foundation');
+            $table->string('disc_tag')->nullable();
+
             $table->json('metadata')->nullable()->comment('Flexible storage for additional user data');
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('term_accept')->default(true);
             $table->string('provider', 50)->nullable();
             $table->longText('provider_id')->nullable();
-            $table->string('specialist')->nullable();
-            $table->decimal('badage')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

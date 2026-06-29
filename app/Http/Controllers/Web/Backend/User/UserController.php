@@ -65,16 +65,18 @@ class UserController extends Controller
     public function userCreate(Request $request, $salon_id)
     {
         $validated = $request->validate([
-            'name'  => 'required|string|min:3',
-            'email' => 'required|email|unique:users',
-            'role'  => 'required|string|in:staff,owner,lead',
+            'name'       => 'required|string|min:3',
+            'email'      => 'required|email|unique:users',
+            'role'       => 'required|string|in:staff,owner,lead',
+            'specialist' => 'nullable|string',
         ]);
 
         $user = User::create([
-            'name'      => $validated['name'],
-            'email'     => $validated['email'],
-            'role'      => $validated['role'],
-            'joined_at' => now(),
+            'name'       => $validated['name'],
+            'email'      => $validated['email'],
+            'role'       => $validated['role'],
+            'specialist' => $validated['specialist'] ?? null,
+            'joined_at'  => now(),
         ]);
 
         if (! empty($salon_id)) {

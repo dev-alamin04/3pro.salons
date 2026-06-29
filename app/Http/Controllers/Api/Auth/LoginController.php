@@ -26,13 +26,17 @@ class LoginController extends Controller
             return $this->error([], 'Secret key is invalid or already used', 422);
         }
         $user->update(['password' => Hash::make($validated['password']), 'email_verified_at' => now(), 'is_used_key' => true]);
+        $piller = ['time', 'cleanliness', 'appearance', 'self_motivation', 'downtime'];
+        foreach ($piller as $p) {
+            $user->myPiller()->create(['name' => $p]);
+        }
 
         $token = $user->createToken('auth_token')->plainTextToken;
         return $this->success(['user' => $user,
             'token'                       => $token,
             'token_type'                  => 'Bearer'], 'user password set successfully', 201);
     }
-    
+
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [

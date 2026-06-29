@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class User extends Authenticatable
 {
@@ -38,7 +40,7 @@ class User extends Authenticatable
         'metadata'          => 'array',
         'joined_at'         => 'datetime',
 
-        'is_used_key'       => 'boolean'
+        'is_used_key'       => 'boolean',
     ];
 
     // Scopes
@@ -70,5 +72,26 @@ class User extends Authenticatable
     {
         return $this->hasMany(UserSalon::class, 'assined_by');
     }
+
+    public function mygoal()
+    {
+        return $this->hasMany(Goal::class, 'user_id');
+    }
+    public function goal_assigned_by()
+    {
+        return $this->hasMany(Goal::class, 'assigned_by');
+    }
+
+    public function myPiller()
+    {
+        return $this->hasMany(UserPiller::class, 'user_id');
+    }
+
+
+    public function badge_assigned_by(){
+        return $this->hasMany(Badge::class, 'assigned_by');
+    }
+
+    
 
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Goals\GoalController;
 use App\Http\Controllers\Api\Salons\SalonController;
 use App\Http\Controllers\Api\Salons\TeamManagementController;
 use Illuminate\Support\Facades\Route;
@@ -45,4 +46,11 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::delete('remove-onboardings/{salonOnboarding}', [SalonController::class, 'removeOnboarding']);
 
     Route::post('create-account', [TeamManagementController::class, 'createAccount']);
+
+    Route::post('goal-create', [GoalController::class, 'store']);
+    Route::get('last-goal/{user}', [GoalController::class, 'lastGaol']);
+    Route::get('my-goals', [GoalController::class, 'myGoals']);
+    Route::post('update-goal/level/{goal}', [GoalController::class, 'updateLevel']);
+
+    Route::get('piller-details/{user}', [GoalController::class, 'pillerDetails']);
 });
