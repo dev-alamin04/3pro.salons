@@ -28,14 +28,13 @@ class SalonController extends Controller
             return $this->error([], "you can't take this action");
         }
 
-        $salon = $request->user()->mysalon->salon;
+        $salon = $request->user()->currentSalon?->salon;
 
         if (! $salon) {
             return $this->error([], 'No salon assigned.');
         }
 
         $onboardings = $salon->salonOnboardings()->select(['id', 'title', 'is_active'])->get();
-
         return $this->success($onboardings, 'Successfully fetched salon onboardings.');
     }
 
@@ -50,7 +49,7 @@ class SalonController extends Controller
             return $this->error([], "you can't take this action");
         }
 
-        $salon = $request->user()->mysalon->salon;
+        $salon = $request->user()->currentSalon?->salon;
 
         if (! $salon) {
             return $this->error([], 'No salon assigned.');
@@ -73,35 +72,31 @@ class SalonController extends Controller
         return $this->success([], 'Successfully added onboardings.');
     }
 
-    // Single onboarding remove
     public function removeOnboarding(Request $request, OnboardingSalon $salonOnboarding)
     {
         if ($request->user()->role !== 'owner') {
             return $this->error([], "you can't take this action");
         }
 
-        $salon = $request->user()->mysalon->salon;
+        $salon = $request->user()->currentSalon?->salon;
 
         if (! $salon || $salonOnboarding->salon_id !== $salon->id) {
             return $this->error([], 'Unauthorized.');
         }
 
         $salonOnboarding->delete();
-
         return $this->success([], 'Successfully removed onboarding.');
     }
 
     public function addOnboarding(Request $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-        ]);
+        $request->validate(['title' => 'required|string|max:255']);
 
         if ($request->user()->role !== 'owner') {
             return $this->error([], "you can't take this action");
         }
 
-        $salon = $request->user()->mysalon->salon;
+        $salon = $request->user()->currentSalon?->salon;
 
         if (! $salon) {
             return $this->error([], 'No salon assigned.');

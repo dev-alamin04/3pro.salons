@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_salons', function (Blueprint $table) {
+        Schema::create('daily_tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('assigned_by')->constrained('users')->cascadeOnDelete();
             $table->foreignId('salon_id')->constrained('salons')->cascadeOnDelete();
-            $table->foreignId('assined_by')->constrained('users')->cascadeOnDelete();
-            $table->boolean('is_current')->default(false);
-            $table->json('metadata')->nullable()->comment('optional it will be use in future if need');
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->date('target_date')->nullable();
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_salons');
+        Schema::dropIfExists('daily_tasks');
     }
 };

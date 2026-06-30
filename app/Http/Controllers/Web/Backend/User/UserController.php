@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Mail\SecretKeyMail;
 use App\Models\Salon;
 use App\Models\User;
-use App\Models\UserSalon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\DataTables;
@@ -83,11 +82,12 @@ class UserController extends Controller
             $salon = Salon::findOrFail($salon_id);
 
             $request->user()->salon_assigned_by()->create([
-                'user_id'  => $user->id,
-                'salon_id' => $salon_id,
+                'user_id'    => $user->id,
+                'salon_id'   => $salon_id,
+                'is_current' => true,
             ]);
 
-            $user->update(['secret_key' => $this->generateSecretKey($user, $salon)]);
+            $user->update(['secret_key' => $this->generateSecretKey($user)]);
             Mail::to($user->email)->send(new SecretKeyMail($user));
         }
 
@@ -120,12 +120,35 @@ class UserController extends Controller
         $user->delete();
         return response()->json(['status' => 'success']);
     }
-    private function generateSecretKey(User $user, Salon $salon): string
+    private function generateSecretKey(User $user): string
     {
-        $assignedCount = UserSalon::where('salon_id', $salon->id)->count();
-        $nextNumber    = ($salon->start_sequence ?? 1000) + $assignedCount;
-        $initials      = collect(explode(' ', trim($user->name)))->map(fn($word) => strtoupper(substr($word, 0, 1)))->take(2)->implode('');
+        do {
+            $randomNumber = str_pad(random_int(0, 9999), 4, '0', STR_PAD_LEFT);
+            $initials     = $this->generateInitials($user->name);
+            $secretKey    = "3PRO-{$randomNumber}-{$initials}";
+        } while (User::where('secret_key', $secretKey)->exists());
 
-        return '3PRO-' . $nextNumber . '-' . $initials;
+        return $secretKey;
+    }
+
+    private function generateInitials(string $name): string
+    {
+        $words = collect(explode(' ', trim($name)))->filter();
+
+        if ($words->count() === 1) {
+            $base = strtoupper(substr($words->first(), 0, 2));
+        } else {
+            $base = strtoupper(substr($words->first(), 0, 1) . substr($words->last(), 0, 1));
+        }
+
+        $code  = $base;
+        $count = 1;
+
+        while (User::where('secret_key', 'like', "3PRO-%-{$code}")->exists()) {
+            $count++;
+            $code = $base . $count;
+        }
+
+        return $code;
     }
 }

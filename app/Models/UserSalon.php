@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class UserSalon extends Model
 {
     protected $guarded = [];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'is_current',
+        'assined_by',
+    ];
     public function salon()
     {
         return $this->belongsTo(Salon::class, 'salon_id');
@@ -23,5 +30,10 @@ class UserSalon extends Model
             ->whereHas('user', function ($q) use ($role) {
                 $q->where('role', '!=', $role ?? 'admin');
             });
+    }
+
+    public function scopeCurrent(Builder $query)
+    {
+        return $query->where('is_current', true);
     }
 }

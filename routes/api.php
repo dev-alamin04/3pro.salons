@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Goals\GoalController;
+use App\Http\Controllers\Api\Salons\BadgeController;
 use App\Http\Controllers\Api\Salons\SalonController;
 use App\Http\Controllers\Api\Salons\TeamManagementController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::delete('remove-onboardings/{salonOnboarding}', [SalonController::class, 'removeOnboarding']);
 
     Route::post('create-account', [TeamManagementController::class, 'createAccount']);
+    Route::get('my-team', [TeamManagementController::class, 'myTeams']);
 
     Route::post('goal-create', [GoalController::class, 'store']);
     Route::get('last-goal/{user}', [GoalController::class, 'lastGaol']);
@@ -53,4 +55,13 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::post('update-goal/level/{goal}', [GoalController::class, 'updateLevel']);
 
     Route::get('piller-details/{user}', [GoalController::class, 'pillerDetails']);
+
+    Route::get('badges-history/{user}', [BadgeController::class, 'badgesHistory']);
+
+    Route::get('badges', [BadgeController::class, 'index']);
+    Route::get('badges/{badge}', [BadgeController::class, 'show']);
+    Route::post('badges', [BadgeController::class, 'storeBadge']);
+    Route::put('badges/{badge}', [BadgeController::class, 'updateBadge']);
+    Route::delete('badges/{badge}', [BadgeController::class, 'destroy']);
+
 });

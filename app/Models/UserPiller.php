@@ -13,4 +13,7 @@ class UserPiller extends Model
         return $query->where('name', $name);
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

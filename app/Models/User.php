@@ -7,8 +7,6 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Builder;
-
 
 class User extends Authenticatable
 {
@@ -65,7 +63,12 @@ class User extends Authenticatable
 
     public function mysalon()
     {
-        return $this->hasOne(UserSalon::class, 'user_id');
+        return $this->hasMany(UserSalon::class, 'user_id');
+    }
+
+    public function currentSalon()
+    {
+        return $this->hasOne(UserSalon::class, 'user_id')->where('is_current', true);
     }
 
     public function salon_assigned_by()
@@ -87,11 +90,14 @@ class User extends Authenticatable
         return $this->hasMany(UserPiller::class, 'user_id');
     }
 
-
-    public function badge_assigned_by(){
+    public function badge_assigned_by()
+    {
         return $this->hasMany(Badge::class, 'assigned_by');
     }
 
-    
+    public function myBadges()
+    {
+        return $this->hasMany(Badge::class, 'user_id');
+    }
 
 }
