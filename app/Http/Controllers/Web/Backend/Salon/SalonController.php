@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Web\Backend\Salon;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\Backend\User\UserController;
 use App\Http\Requests\Salon\SalonRequest;
 use App\Models\Salon;
 use App\Models\User;
@@ -129,21 +130,8 @@ class SalonController extends Controller
             'assined_by' => Auth::id(),
         ]);
 
-        $user->update(['secret_key' => $this->generateSecretKey($user, $salon)]);
+        $user->update(['secret_key' => app(UserController::class)->generateSecretKey($user)]);
         return response()->json(['status' => 'success']);
-    }
-
-    private function generateSecretKey(User $user, Salon $salon): string
-    {
-
-        $assignedCount = UserSalon::where('salon_id', $salon->id)->count();
-
-        $nextNumber = ($salon->start_sequence ?? 1000) + $assignedCount;
-
-        $initials = collect(explode(' ', trim($user->name)))
-            ->map(fn($word) => strtoupper(substr($word, 0, 1)))->take(2)->implode('');
-
-        return '3PRO-' . $nextNumber . '-' . $initials;
     }
 
     public function removeUser(Salon $salon, User $user)

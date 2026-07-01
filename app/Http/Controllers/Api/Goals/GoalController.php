@@ -79,6 +79,8 @@ class GoalController extends Controller
                 'exprience_level' => $user->exprience_level,
                 'pronoun'         => $user->pronoun,
                 'salon_name'      => $user->currentSalon?->salon?->name,
+                'badge'           => $user->badage,
+                'tier_level'      => $user->tier_lavel,
             ],
             'pillars' => $pillars,
         ];

@@ -8,17 +8,17 @@ class Badge extends Model
     protected $guarded = [];
 
     protected $casts = [
-        "is_visialbe" => "boolean",
+        "is_visible" => "boolean",
+        "created_at"  => "datetime"
     ];
 
     protected $hidden = [
-        'created_at',
         'updated_at',
         "user_id",
         "assigned_by",
         "piller_id",
         "salon_id",
-        "is_visialbe",
+        "is_visible",
     ];
 
     public function user()
@@ -34,5 +34,9 @@ class Badge extends Model
     public function pillar()
     {
         return $this->belongsTo(UserPiller::class, "piller_id");
+    }
+    public function salon()
+    {
+        return $this->belongsTo(Salon::class, "salon_id");
     }
 }

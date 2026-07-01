@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('salon_id')->constrained('salons')->cascadeOnDelete();
             $table->text('notes')->nullable();
             $table->string('status')->default('pending');
-            $table->boolean('is_visialbe')->default(true);
+            $table->boolean('is_visible')->default(false);
             $table->string('perfomence_level')->nullable()->comment('foundation,mastery,advanced');
             $table->timestamps();
         });

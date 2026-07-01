@@ -19,12 +19,6 @@ class SalonRequest extends FormRequest
             'lat'            => 'nullable|string',
             'lang'           => 'nullable|string',
             'address'        => 'nullable|string',
-            'start_sequence' => 'nullable|integer|min:1',
-            'salon_id'       => [
-                'nullable', 'string',
-                Rule::unique('salons', 'salon_id')->ignore($this->salon?->id),
-                Rule::unique('users', 'secret_key'),
-            ],
             'avatar'         => 'nullable|image|max:2048',
         ];
     }

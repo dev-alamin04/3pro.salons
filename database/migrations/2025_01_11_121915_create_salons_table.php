@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('lat')->nullable();
             $table->string('lang')->nullable();
             $table->string('address')->nullable();
-            $table->unsignedInteger('start_sequence')->nullable();
             $table->string('avatar_path')->nullable();
             $table->string('salon_id')->nullable();
             $table->softDeletes();

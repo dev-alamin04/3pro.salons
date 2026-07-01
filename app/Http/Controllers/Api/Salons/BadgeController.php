@@ -45,7 +45,7 @@ class BadgeController extends Controller
             'piller_id'        => 'required|exists:user_pillers,id',
             'notes'            => 'nullable|string',
             'perfomence_level' => 'required|string',
-            'is_visialbe'      => 'required|boolean',
+            'is_visible'       => 'required|boolean',
         ]);
         $validated['salon_id'] = $request->user()->currentSalon->id;
 
@@ -73,7 +73,7 @@ class BadgeController extends Controller
             'piller_id'        => 'sometimes|required|exists:user_pillers,id',
             'notes'            => 'nullable|string',
             'perfomence_level' => 'sometimes|required|string',
-            'is_visialbe'      => 'sometimes|required|boolean',
+            'is_visible'       => 'sometimes|required|boolean',
         ]);
 
         if (isset($validated['piller_id']) && $validated['piller_id'] != $badge->piller_id) {
@@ -98,10 +98,9 @@ class BadgeController extends Controller
         $user = $request->user();
 
         if ($user->role === 'owner' && $badge->salon_id === $user->currentSalon->id) {
-            $badge->update(['status' => $request->stattus]);
+            $badge->update(['status' => $request->status]);
             return $this->success($badge->fresh(), 'update successfully');
         }
-
         return $this->success($badge->fresh(), "you can't take this action");
     }
     public function destroy(Badge $badge)
@@ -143,7 +142,12 @@ class BadgeController extends Controller
         if ($currentIndex !== false && isset(self::EXPERIENCE_LEVELS[$currentIndex + 1])) {
             $user->exprience_level = self::EXPERIENCE_LEVELS[$currentIndex + 1];
         }
-
         $user->save();
+    }
+
+    public function pillarDetails(Request $request, UserPiller $pillar)
+    {
+        $badges = $request->user()->myBadges()->where('piller_id', $pillar->id)->with(['assinedBy:id,name', 'pillar:id,name,level,completed'])->latest()->get();
+        return $this->success($badges, "successfully get pillar details");
     }
 }

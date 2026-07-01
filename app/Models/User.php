@@ -100,4 +100,13 @@ class User extends Authenticatable
         return $this->hasMany(Badge::class, 'user_id');
     }
 
+    public function task_assinged_by()
+    {
+        return $this->hasMany(DailyTask::class, 'assigned_by');
+    }
+
+    public function myTask()
+    {
+        return $this->hasMany(DailyTask::class, 'user_id');
+    }
 }

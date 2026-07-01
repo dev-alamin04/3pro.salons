@@ -3,11 +3,12 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 
-class OtpCodeMail extends Mailable
+class OtpCodeMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -28,7 +29,7 @@ class OtpCodeMail extends Mailable
             ->with([
                 'code'       => $this->code,
                 'ttl'        => $this->ttlMinutes,
-                'supportUrl' => 'https://ifireprotection.com/contact',
+                'supportUrl' => 'https://dayba.com/contact',
                 'logoUrl'    => $logoUrl,
                 'appName'    => config('app.name', 'iFire Protection'),
                 'sentAt'     => now()->format('M d, Y H:i'),

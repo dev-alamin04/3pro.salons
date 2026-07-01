@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Goals\GoalController;
 use App\Http\Controllers\Api\Salons\BadgeController;
+use App\Http\Controllers\Api\Salons\DailyTaskController;
 use App\Http\Controllers\Api\Salons\SalonController;
 use App\Http\Controllers\Api\Salons\TeamManagementController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,9 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
 
     Route::post('create-account', [TeamManagementController::class, 'createAccount']);
     Route::get('my-team', [TeamManagementController::class, 'myTeams']);
+    Route::post('team-switch/{user}', [TeamManagementController::class, 'teamswitch']);
+    Route::post('/find-by-secret', [TeamManagementController::class, 'findbySecretKey']);
+    Route::get('/history/{user}', [TeamManagementController::class, 'ProfileHistory']);
 
     Route::post('goal-create', [GoalController::class, 'store']);
     Route::get('last-goal/{user}', [GoalController::class, 'lastGaol']);
@@ -63,5 +67,11 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::post('badges', [BadgeController::class, 'storeBadge']);
     Route::put('badges/{badge}', [BadgeController::class, 'updateBadge']);
     Route::delete('badges/{badge}', [BadgeController::class, 'destroy']);
+    Route::get('/pillar-details/{pillar}', [BadgeController::class, 'pillarDetails']);
+
+    Route::post('daily-task', [DailyTaskController::class, 'store']);
+    Route::put('daily-task/{dailyTask}', [DailyTaskController::class, 'update']);
+    Route::delete('daily-task/{dailyTask}', [DailyTaskController::class, 'destroy']);
+    Route::post('daily-task/{dailyTask}/mark-as-completed', [DailyTaskController::class, 'markasCompleted']);
 
 });

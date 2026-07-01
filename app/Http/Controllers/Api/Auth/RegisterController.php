@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Actions\CreateTenantAction;
 use App\Helpers\OtpHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Web\Backend\User\UserController;
 use App\Http\Requests\User\StoreUserRequest;
+use App\Models\Salon;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
@@ -15,39 +16,37 @@ use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
 {
     use ApiResponse;
-    
 
-    // public function register(StoreUserRequest $request)
-    // {
-    //     $data = $request->validated();
-    //     $role = $data['role'];
-    //     unset($data['role']);
-    //     $data['password'] = Hash::make($request->password);
+    private const REGISTER_CACHE_TTL_MINUTES = 10;
 
-    //     $data['joined_at'] = now()->toDateTimeString();
-        
-    //     $user = User::create($data);
+    public function register(StoreUserRequest $request)
+    {
+        $data              = $request->validated();
+        $data['role']      = 'owner'; // Default role for registration
+        $data['password']  = Hash::make($request->password);
+        $data['joined_at'] = now()->toDateTimeString();
 
-    //     $user->settings()->create([]);
+        Cache::put(
+            $this->registerDataCacheKey($data['email']),
+            $data,
+            now()->addMinutes(self::REGISTER_CACHE_TTL_MINUTES)
+        );
 
-    //     // Assign role based on selection
-    //     $user->assignRole($role);
-        
-    //     if ($user) {
-    //         return OtpHelper::sendEmailOtp($user->email, 'register');
-    //     }
-
-    //     return $this->error($user, 'Failed to register user', 500);
-    // }
+        return OtpHelper::sendEmailOtp($data['email'], 'register');
+    }
 
     public function resendOtp(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
         ]);
 
         if ($validator->fails()) {
             return $this->error($validator->errors(), 'Validation failed', 422);
+        }
+
+        if (! Cache::has($this->registerDataCacheKey($request->email))) {
+            return $this->error(null, 'No pending registration found for this email', 404);
         }
 
         return OtpHelper::sendEmailOtp($request->email, 'register');
@@ -56,7 +55,7 @@ class RegisterController extends Controller
     public function verifyRegisterOtp(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
             'otp'   => 'required|integer',
         ]);
 
@@ -64,32 +63,62 @@ class RegisterController extends Controller
             return $this->error($validator->errors(), 'Validation failed', 422);
         }
 
-        $cacheKey  = 'user_otp_' . $request->email;
-        $cachedOtp = Cache::get($cacheKey);
+        $otpCacheKey = 'user_otp_' . $request->email;
+        $cachedOtp   = Cache::get($otpCacheKey);
 
-        if (!$cachedOtp || $cachedOtp != $request->otp) {
+        if (! $cachedOtp || $cachedOtp != $request->otp) {
             return $this->error(null, 'OTP expired or invalid!', 400);
         }
 
-        $user = User::where('email', $request->email)->first();
+        $dataCacheKey = $this->registerDataCacheKey($request->email);
+        $data         = Cache::get($dataCacheKey);
 
-        if (!$user) {
-            return $this->error(null, 'User not found', 404);
+        if (! $data) {
+            return $this->error(null, 'Registration data expired, please register again', 400);
         }
 
-        // Verify email
+        $location = $data['location'] ?? null;
+        unset($data['location']);
+
+        $user = User::create($data);
+
+        $code = app(UserController::class)->generateSecretKey($user);
+        $user->update(['secret_key' => $code]);
+
+        $piller = ['time', 'cleanliness', 'appearance', 'self_motivation', 'downtime'];
+        foreach ($piller as $p) {
+            $user->myPiller()->create(['name' => $p]);
+        }
+
+        $salon = Salon::create([
+            'name'     => $data['name'],
+            'location' => $location,
+        ]);
+
+        $user->salon_assigned_by()->create([
+            'salon_id'   => $salon->id,
+            'is_current' => true,
+            'user_id'    => $user->id,
+        ]);
+
         $user->update([
             'email_verified_at' => now(),
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        // Clear OTP
-        Cache::forget($cacheKey);
+        // Clear OTP and cached registration data
+        Cache::forget($otpCacheKey);
+        Cache::forget($dataCacheKey);
 
         return $this->success([
-            'user' => $user->fresh()->load('roles'),
+            'user'  => $user->fresh(),
             'token' => $token,
         ], 'Email verified successfully!');
+    }
+
+    private function registerDataCacheKey(string $email): string
+    {
+        return 'user_register_data_' . $email;
     }
 }

@@ -120,7 +120,7 @@ class UserController extends Controller
         $user->delete();
         return response()->json(['status' => 'success']);
     }
-    private function generateSecretKey(User $user): string
+    public function generateSecretKey(User $user): string
     {
         do {
             $randomNumber = str_pad(random_int(0, 9999), 4, '0', STR_PAD_LEFT);
@@ -131,7 +131,7 @@ class UserController extends Controller
         return $secretKey;
     }
 
-    private function generateInitials(string $name): string
+    public function generateInitials(string $name): string
     {
         $words = collect(explode(' ', trim($name)))->filter();
 

@@ -6,12 +6,6 @@
         @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
     </div>
 
-    <div class="col-md-6 mb-3">
-        <label class="form-label">Salon ID</label>
-        <input type="text" name="salon_id" class="form-control @error('salon_id') is-invalid @enderror"
-            value="{{ old('salon_id', $salon->salon_id ?? '') }}">
-        @error('salon_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
-    </div>
 
     <div class="col-md-6 mb-3">
         <label class="form-label">Location</label>
@@ -27,17 +21,7 @@
         @error('address') <div class="invalid-feedback">{{ $message }}</div> @enderror
     </div>
 
-    <div class="col-md-6 mb-3">
-    <label class="form-label">Start Sequence</label>
-    <input type="text"
-    name="start_sequence"
-    maxlength="4"
-    inputmode="numeric"
-    oninput="this.value=this.value.replace(/\D/g,'')"
-    class="form-control @error('start_sequence') is-invalid @enderror"
-    value="{{ old('start_sequence', $salon->start_sequence ?? '') }}">
-    @error('start_sequence') <div class="invalid-feedback">{{ $message }}</div> @enderror
-    </div>
+
     <!-- <div class="col-md-6 mb-3">
         <label class="form-label">Latitude</label>
         <input type="text" name="lat" class="form-control @error('lat') is-invalid @enderror"

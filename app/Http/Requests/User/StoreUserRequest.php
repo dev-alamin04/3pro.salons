@@ -16,7 +16,7 @@ class StoreUserRequest extends BaseRequest
             'name'     => 'nullable|string|max:50',
             'email'    => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|string|min:6',
-            'role'     => 'required|string|exists:roles,name',
+            'location' => 'nullable|string|max:100',
         ];
     }
 }
