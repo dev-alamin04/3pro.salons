@@ -47,19 +47,14 @@ class BadgeController extends Controller
             'perfomence_level' => 'required|string',
             'is_visible'       => 'required|boolean',
         ]);
-        $validated['salon_id'] = $request->user()->currentSalon->id;
+        $validated['salon_id'] = $request->user()->currentSalon->salon_id ?? null;
 
         $badge = DB::transaction(function () use ($request, $validated) {
             $badge = $request->user()->badge_assigned_by()->create($validated);
 
-            $pillar = UserPiller::find($validated['piller_id']);
-            $pillar->increment('completed');
-
-            $targetUser = User::find($validated['user_id']);
-            $targetUser->increment('badage');
-
-            $this->checkAndLevelUp($targetUser->fresh());
-
+            if ($request->user->role === 'owner') {
+                $this->incrementDecrement($validated['piller_id'], $validated['user_id']);
+            }
             return $badge;
         });
 
@@ -92,13 +87,16 @@ class BadgeController extends Controller
     public function acceptReject(Request $request, Badge $badge)
     {
         $request->validate([
-            'status' => 'required|string|in:approved|rejected',
+            'status' => 'required|string|in:approved,rejected',
         ]);
 
         $user = $request->user();
 
-        if ($user->role === 'owner' && $badge->salon_id === $user->currentSalon->id) {
+        if ($user->role === 'owner' && $badge->salon_id === $user->currentSalon?->salon_id) {
             $badge->update(['status' => $request->status]);
+            if ($request->status === 'approved') {
+                $this->incrementDecrement($badge->piller_id, $badge->user_id);
+            }
             return $this->success($badge->fresh(), 'update successfully');
         }
         return $this->success($badge->fresh(), "you can't take this action");
@@ -145,6 +143,18 @@ class BadgeController extends Controller
         $user->save();
     }
 
+    public function incrementDecrement($piller_id, $user_id)
+    {
+        $pillar = UserPiller::find($piller_id);
+
+        $pillar->increment('completed');
+        $targetUser = User::find($user_id);
+        $targetUser->increment('badage');
+
+        $this->checkAndLevelUp($targetUser->fresh());
+
+        return true;
+    }
     public function pillarDetails(Request $request, UserPiller $pillar)
     {
         $badges = $request->user()->myBadges()->where('piller_id', $pillar->id)->with(['assinedBy:id,name', 'pillar:id,name,level,completed'])->latest()->get();

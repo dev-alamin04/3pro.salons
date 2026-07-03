@@ -24,4 +24,9 @@ class Salon extends Model
         return $this->hasMany(OnboardingSalon::class, 'salon_id');
     }
 
+    public function salonBadges()
+    {
+        return $this->hasMany(Badge::class, 'salon_id');
+    }
+
 }

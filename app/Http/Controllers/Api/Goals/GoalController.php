@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Api\Goals;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\Goal;
 use App\Models\User;
 use App\Traits\ApiResponse;
@@ -69,19 +70,7 @@ class GoalController extends Controller
         $pillars = $user->myPiller()->select(['id', 'user_id', 'name', 'completed', 'level'])->latest()->get();
 
         $response = [
-            'user'    => [
-                'id'              => $user->id,
-                'name'            => $user->name,
-                'avatar_path'     => $user->avatar_path,
-                'secret_key'      => $user->secret_key,
-                'specialist'      => $user->specialist,
-                'disc_tag'        => $user->disc_tag,
-                'exprience_level' => $user->exprience_level,
-                'pronoun'         => $user->pronoun,
-                'salon_name'      => $user->currentSalon?->salon?->name,
-                'badge'           => $user->badage,
-                'tier_level'      => $user->tier_lavel,
-            ],
+            'user'    => UserResource::make($user),
             'pillars' => $pillars,
         ];
 

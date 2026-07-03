@@ -52,6 +52,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::post('team-switch/{user}', [TeamManagementController::class, 'teamswitch']);
     Route::post('/find-by-secret', [TeamManagementController::class, 'findbySecretKey']);
     Route::get('/history/{user}', [TeamManagementController::class, 'ProfileHistory']);
+    Route::get('/dashboard', [TeamManagementController::class, 'dashboard']);
 
     Route::post('goal-create', [GoalController::class, 'store']);
     Route::get('last-goal/{user}', [GoalController::class, 'lastGaol']);
@@ -68,6 +69,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::put('badges/{badge}', [BadgeController::class, 'updateBadge']);
     Route::delete('badges/{badge}', [BadgeController::class, 'destroy']);
     Route::get('/pillar-details/{pillar}', [BadgeController::class, 'pillarDetails']);
+    Route::post('/badge-reponsed/{badge}', [BadgeController::class, 'acceptReject']);
 
     Route::post('daily-task', [DailyTaskController::class, 'store']);
     Route::put('daily-task/{dailyTask}', [DailyTaskController::class, 'update']);

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api\Salons;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\Backend\User\UserController;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\UserSalon;
 use App\Traits\ApiResponse;
@@ -25,7 +26,7 @@ class TeamManagementController extends Controller
         return $this->success($user, 'Account created successfully');
     }
 
-    public function myTeams(Request $request)
+    public function team(Request $request)
     {
         $user     = $request->user();
         $salon_id = $user->currentSalon?->salon_id;
@@ -40,9 +41,14 @@ class TeamManagementController extends Controller
                 'user.myPiller:id,user_id,name,level,completed',
             ])->get();
 
-        return $this->success($teamMembers, 'Successfully fetched team members.');
+        return $teamMembers;
     }
 
+    public function myTeams(Request $request)
+    {
+        $teamMembers = $this->team($request);
+        return $this->success($teamMembers, 'Successfully fetched team members.');
+    }
     public function teamswitch(Request $request, User $user)
     {
         if (! in_array($request->user()->role, ['owner', 'lead'])) {
@@ -81,13 +87,44 @@ class TeamManagementController extends Controller
 
     public function ProfileHistory(Request $request, User $user)
     {
-        $badges = $user->myBadges()->with(['assinedBy:id,name', 'salon:id,name'])->where('is_visible', true)->latest()->get();
+        $badges  = $user->myBadges()->with(['assinedBy:id,name', 'salon:id,name'])->where('is_visible', true)->latest()->get();
         $history = $user->myBadges()->selectRaw('YEAR(created_at) as year, COUNT(*) as count')->groupBy('year')->orderBy('year', 'desc')->get();
 
         return $this->success([
             'badges'  => $badges,
             'history' => $history,
         ], 'Profile history fetched successfully');
+    }
+
+    public function dashboard(Request $request)
+    {
+        $user     = $request->user();
+        $salon_id = $user->currentSalon?->salon_id;
+
+        if (! $salon_id) {
+            return $this->error([], 'No salon assigned.');
+        }
+
+        $teamMembersCount = UserSalon::team($salon_id, 'owner')->count();
+        $leaderCount      = UserSalon::where('salon_id', $salon_id)->whereHas('user', function ($query) {
+            $query->whereIn('role', ['lead']);
+        })->count();
+        $teamMembers = $this->team($request);
+        $badgesCount = $teamMembers->sum(function ($member) use ($salon_id) {
+            return $member->user?->myBadges()->where('salon_id', $salon_id)->count() ?? 0;
+        });
+        $onboardings   = $user->currentSalon?->salon?->salonOnboardings()->latest()->get() ?? collect();
+        $pendingBadges = $user->currentSalon?->salon?->salonBadges()->where('status', 'pending')->latest()->get() ?? collect();
+
+        return $this->success([
+            'user'               => UserResource::make($user),
+            'team_members_count' => $teamMembersCount,
+            'leader_count'       => $leaderCount,
+            'tasks_count'        => $teamMembers,
+            'badges_count'       => $badgesCount,
+            'onboardings'        => $onboardings,
+            'pendingBadges'      => $pendingBadges,
+        ], 'Dashboard data fetched successfully');
     }
 
 }

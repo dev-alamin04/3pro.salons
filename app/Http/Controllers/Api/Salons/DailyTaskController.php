@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api\Salons;
 
 use App\Http\Controllers\Controller;
 use App\Models\DailyTask;
+use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
@@ -58,5 +59,11 @@ class DailyTaskController extends Controller
 
         $dailyTask->delete();
         return $this->success([], "Task deleted successfully");
+    }
+
+    public function myTasks(Request $request, User $user)
+    {
+        $tasks = $user->myTasks()->where('target_date', today())->orWhere('target_date', today()->subDay())->latest()->get();
+        return $this->success($tasks, "Successfully fetched my tasks");
     }
 }
