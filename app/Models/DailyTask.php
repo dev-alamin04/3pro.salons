@@ -5,8 +5,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class DailyTask extends Model
 {
+
     protected $guarded = [];
 
+    protected $casts = [
+        'target_date'  => 'date',
+        'is_completed' => 'boolean',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

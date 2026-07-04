@@ -63,7 +63,7 @@ class DailyTaskController extends Controller
 
     public function myTasks(Request $request, User $user)
     {
-        $tasks = $user->myTasks()->where('target_date', today())->orWhere('target_date', today()->subDay())->latest()->get();
+        $tasks = $user->myTask()->where('target_date', today())->orWhere('target_date', today()->subDay())->latest()->get();
         return $this->success($tasks, "Successfully fetched my tasks");
     }
 }
