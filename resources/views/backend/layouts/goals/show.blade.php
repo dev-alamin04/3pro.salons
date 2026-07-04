@@ -86,15 +86,16 @@
                                 </p>
                             </div>
                             <div class="col-md-6">
-                                <label class="text-muted small">Progress</label>
-                                <div class="d-flex align-items-center gap-2">
-                                    <div class="progress flex-grow-1" style="height: 10px;">
-                                        @php $percent = min(((int) $goal->progress / 5) * 100, 100); @endphp
-                                        <div class="progress-bar bg-primary" style="width: {{ $percent }}%"></div>
-                                    </div>
-                                    <span class="fw-semibold">{{ $goal->progress }}/5</span>
+                            <label class="text-muted small">Progress</label>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="progress flex-grow-1" style="height: 10px;">
+                                    @php $percent = min(((int) $goal->progress / 5) * 100, 100); @endphp
+                                    <div class="bg-primary" style="width: {{ number_format($percent, 2) }}%"></div>
                                 </div>
+                                <span class="fw-semibold">{{ $goal->progress }}/5</span>
+                                <span class="text-muted small">({{ number_format($percent, 2) }}%)</span>
                             </div>
+                        </div>
                         </div>
                         @if($goal->description)
                             <div class="mb-3">

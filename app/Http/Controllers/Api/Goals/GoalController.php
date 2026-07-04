@@ -63,6 +63,11 @@ class GoalController extends Controller
         }
 
         $goal->update(['progress' => $request->progress]);
+        if( $goal->progress >= 5) {
+            $goal->update(['status' => 'completed']);
+        }else {
+            $goal->update(['status' => 'in_progress']);
+        }
 
         return $this->success($goal, 'Goal updated successfully');
     }

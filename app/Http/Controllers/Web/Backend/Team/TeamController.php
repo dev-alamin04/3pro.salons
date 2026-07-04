@@ -49,9 +49,9 @@ class TeamController extends Controller
         return view('backend.layouts.team.index');
     }
 
-    public function show(User $user)
+    public function show(User $team)
     {
-        $user->load([
+        $team->load([
             'currentSalon.salon',
             'mygoal' => fn($q) => $q->with('assinedBy')->latest()->limit(10),
             'myBadges' => fn($q) => $q->with(['assinedBy', 'salon', 'pillar'])->latest()->limit(10),
@@ -60,6 +60,6 @@ class TeamController extends Controller
             'userSkill',
         ]);
 
-        return view('backend.layouts.team.show', compact('user'));
+        return view('backend.layouts.team.show', compact('team'));
     }
 }

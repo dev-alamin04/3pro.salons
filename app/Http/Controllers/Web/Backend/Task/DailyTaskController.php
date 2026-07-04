@@ -44,14 +44,15 @@ class DailyTaskController extends Controller
         return view('backend.layouts.tasks.index');
     }
 
-    public function show(DailyTask $dailyTask)
+    public function show(DailyTask $task)
     {
-        $dailyTask->load([
+
+        $task->load([
             'user',
             'assignedBy',
             'user.currentSalon.salon',
         ]);
 
-        return view('backend.layouts.tasks.show', compact('dailyTask'));
+        return view('backend.layouts.tasks.show', compact('task'));
     }
 }

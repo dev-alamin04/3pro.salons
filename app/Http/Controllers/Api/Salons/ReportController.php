@@ -87,7 +87,7 @@ class ReportController extends Controller
         });
 
         $praiseCount = $teamMembers->sum(function ($member) use ($salon_id) {
-            return $member->user?->myBadges()->where('salon_id', $salon_id)->where('is_valid', true)->where('created_at', '>=', now()->subDays(30))->count() ?? 0;
+            return $member->user?->myBadges()->where('salon_id', $salon_id)->where('is_visible', true)->where('created_at', '>=', now()->subDays(30))->count() ?? 0;
         });
         return $this->success([
             'total_reports'      => $totalReports,

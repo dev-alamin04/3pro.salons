@@ -89,10 +89,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::apiResource('skills', SkillController::class)->parameters(['skills' => 'skill']);
 
     // Reports -----------------------------------------------------------------
-    Route::post('report', [ReportController::class, 'store']);
-    Route::get('reports', [ReportController::class, 'index']);
-    Route::get('reports/{report}', [ReportController::class, 'show']);
-    Route::put('reports/{report}', [ReportController::class, 'update']);
-    Route::delete('reports/{report}', [ReportController::class, 'destroy']);
+
+    Route::apiResource('reports', ReportController::class)->parameters(['reports' => 'report']);
     Route::get('reports-summary', [ReportController::class, 'reportSummary']);
 });
