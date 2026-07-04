@@ -35,7 +35,7 @@
                 <div><a href=""><i class="fa fa-arrow-right fa-lg text-muted2"></i></a></div>
             </div>
             <h4 class="metric-value counter mt-2">{{ number_format($total_categories ?? 0) }}</h4>
-            <small class="text-muted2">Total Categories</small>
+            <small class="text-muted2">Total salons</small>
         </div>
     </div>
 
@@ -46,7 +46,7 @@
                 <div><a href=""><i class="fa fa-arrow-right fa-lg text-muted2"></i></a></div>
             </div>
             <h4 class="metric-value counter mt-2">{{ number_format($total_subcategories ?? 0) }}</h4>
-            <small class="text-muted2">Total Subcategories</small>
+            <small class="text-muted2">Total Goals</small>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
                 <div><a href=""><i class="fa fa-arrow-right fa-lg text-muted2"></i></a></div>
             </div>
             <h4 class="metric-value counter mt-2">{{ number_format($total_products ?? 0) }}</h4>
-            <small class="text-muted2">Total Products</small>
+            <small class="text-muted2">Total Badges</small>
         </div>
     </div>
 </div>

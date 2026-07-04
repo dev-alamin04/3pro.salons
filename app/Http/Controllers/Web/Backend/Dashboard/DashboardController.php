@@ -16,9 +16,6 @@ class DashboardController extends Controller
 
         return view('backend.layouts.dashboard.index', [
              ...$metrics,
-            'range'                   => $range,
-            'applications_chart_data' => $analytics->getApplicationsChartData($range),
-
         ]);
     }
 }
