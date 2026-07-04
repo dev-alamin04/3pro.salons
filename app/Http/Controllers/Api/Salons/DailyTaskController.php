@@ -47,7 +47,10 @@ class DailyTaskController extends Controller
 
     public function markasCompleted(Request $request, DailyTask $dailyTask)
     {
-        $dailyTask->update(['status' => 'completed']);
+        if ($dailyTask->user_id !== $request->user()->id) {
+            return $this->error([], "You are not authorized to mark this task as completed");
+        }
+        $dailyTask->update(['is_completed' => true]);
         return $this->success($dailyTask, "Task marked as completed");
     }
 

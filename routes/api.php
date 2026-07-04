@@ -6,7 +6,9 @@ use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Goals\GoalController;
 use App\Http\Controllers\Api\Salons\BadgeController;
 use App\Http\Controllers\Api\Salons\DailyTaskController;
+use App\Http\Controllers\Api\Salons\ReportController;
 use App\Http\Controllers\Api\Salons\SalonController;
+use App\Http\Controllers\Api\Salons\SkillController;
 use App\Http\Controllers\Api\Salons\TeamManagementController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,11 +44,13 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
         Route::delete('delete-account', 'destroy');
     });
 
+    // Salon Onboarding -----------------------------------------------------------------
     Route::get('get-onboardings', [SalonController::class, 'index']);
     Route::get('onboardings', [SalonController::class, 'getSalonOnboardings']);
     Route::post('set-onboardings', [SalonController::class, 'syncOnboardings']);
     Route::delete('remove-onboardings/{salonOnboarding}', [SalonController::class, 'removeOnboarding']);
 
+    // Team Management -------------------------------------------------------------------
     Route::post('create-account', [TeamManagementController::class, 'createAccount']);
     Route::get('my-team', [TeamManagementController::class, 'myTeams']);
     Route::post('team-switch/{user}', [TeamManagementController::class, 'teamswitch']);
@@ -54,15 +58,17 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::get('/history/{user}', [TeamManagementController::class, 'ProfileHistory']);
     Route::get('/dashboard', [TeamManagementController::class, 'dashboard']);
 
+    // Goals -------------------------------------------------------------------
+
     Route::post('goal-create', [GoalController::class, 'store']);
     Route::get('last-goal/{user}', [GoalController::class, 'lastGaol']);
     Route::get('my-goals', [GoalController::class, 'myGoals']);
     Route::post('update-goal/level/{goal}', [GoalController::class, 'updateLevel']);
-
+    Route::get('salon-user', [GoalController::class, 'salonUser']);
     Route::get('piller-details/{user}', [GoalController::class, 'pillerDetails']);
 
+    // Badges -------------------------------------------------------------------
     Route::get('badges-history/{user}', [BadgeController::class, 'badgesHistory']);
-
     Route::get('badges', [BadgeController::class, 'index']);
     Route::get('badges/{badge}', [BadgeController::class, 'show']);
     Route::post('badges', [BadgeController::class, 'storeBadge']);
@@ -71,10 +77,22 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::get('/pillar-details/{pillar}', [BadgeController::class, 'pillarDetails']);
     Route::post('/badge-reponsed/{badge}', [BadgeController::class, 'acceptReject']);
 
+    // Daily Task -------------------------------------------------------------------
+
     Route::post('daily-task', [DailyTaskController::class, 'store']);
     Route::put('daily-task/{dailyTask}', [DailyTaskController::class, 'update']);
     Route::delete('daily-task/{dailyTask}', [DailyTaskController::class, 'destroy']);
     Route::post('daily-task/{dailyTask}/mark-as-completed', [DailyTaskController::class, 'markasCompleted']);
     Route::get('tasks/{user}', [DailyTaskController::class, 'myTasks']);
 
+    // Skills -------------------------------------------------------------------
+    Route::apiResource('skills', SkillController::class)->parameters(['skills' => 'skill']);
+
+    // Reports -----------------------------------------------------------------
+    Route::post('report', [ReportController::class, 'store']);
+    Route::get('reports', [ReportController::class, 'index']);
+    Route::get('reports/{report}', [ReportController::class, 'show']);
+    Route::put('reports/{report}', [ReportController::class, 'update']);
+    Route::delete('reports/{report}', [ReportController::class, 'destroy']);
+    Route::get('reports-summary', [ReportController::class, 'reportSummary']);
 });

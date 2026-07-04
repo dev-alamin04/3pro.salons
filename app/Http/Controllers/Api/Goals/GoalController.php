@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\Goal;
 use App\Models\User;
+use App\Models\UserSalon;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
@@ -75,5 +76,22 @@ class GoalController extends Controller
         ];
 
         return $this->success($response, "pillar details fetched successfully");
+    }
+
+    public function salonUser(Request $request)
+    {
+        $user     = $request->user();
+        $salon_id = $user->currentSalon?->salon_id;
+
+        if (! $salon_id) {
+            return $this->error([], 'No salon assigned.');
+        }
+
+        $teamMembers = UserSalon::team($salon_id, 'owner')
+            ->with([
+                'user:id,name,email,role,avatar_path,specialist,pronoun,exprience_level',
+            ])->get();
+
+        return $this->success($teamMembers, 'Successfully fetched team members.');
     }
 }

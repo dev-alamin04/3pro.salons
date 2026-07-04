@@ -113,4 +113,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(DailyTask::class, 'user_id');
     }
+
+    public function userSkill()
+    {
+        return $this->hasMany(UserSkill::class, 'user_id');
+    }
+
+    public function report_assigned_by()
+    {
+        return $this->hasMany(Report::class, 'repoted_by');
+    }
+
+    public function myReport()
+    {
+        return $this->hasMany(Report::class, 'user_id');
+    }
 }
