@@ -45,9 +45,7 @@
                     <span>Salon Management</span>
                 </div>
             </a>
-        </li>
-
-        <li class="">
+        </li>        <li class="">
             <a href="{{ route('onboardings.index') }}" aria-expanded="false">
                 <div class="nav_icon_small">
                     <i class="fas fa-list-check"></i>
@@ -58,7 +56,60 @@
             </a>
         </li>
 
+        <li class="">
+            <a href="{{ route('admin.goals.index') }}" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="nav_title">
+                    <span>Goals</span>
+                </div>
+            </a>
+        </li>
 
+        <li class="">
+            <a href="{{ route('admin.reports.index') }}" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="nav_title">
+                    <span>Reports</span>
+                </div>
+            </a>
+        </li>
+
+        <li class="">
+            <a href="{{ route('admin.badges.index') }}" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div class="nav_title">
+                    <span>Badges</span>
+                </div>
+            </a>
+        </li>
+
+        <li class="">
+            <a href="{{ route('admin.team.index') }}" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <i class="fas fa-users-gear"></i>
+                </div>
+                <div class="nav_title">
+                    <span>Team Management</span>
+                </div>
+            </a>
+        </li>
+
+        <li class="">
+            <a href="{{ route('admin.tasks.index') }}" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="nav_title">
+                    <span>Daily Tasks</span>
+                </div>
+            </a>
+        </li>
 
         <li class="">
             <a class="has-arrow" href="#" aria-expanded="false">

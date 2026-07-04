@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\Web\Backend\Badge\BadgeController;
 use App\Http\Controllers\Web\Backend\Dashboard\DashboardController;
+use App\Http\Controllers\Web\Backend\Goal\GoalController;
 use App\Http\Controllers\Web\Backend\Onboarding\OnboardingController;
+use App\Http\Controllers\Web\Backend\Report\ReportController;
 use App\Http\Controllers\Web\Backend\Salon\SalonController;
+use App\Http\Controllers\Web\Backend\Task\DailyTaskController;
+use App\Http\Controllers\Web\Backend\Team\TeamController;
 use App\Http\Controllers\Web\Backend\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +32,19 @@ Route::delete('salons/{salon}/users/{user}', [SalonController::class, 'removeUse
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 Route::resource('onboardings', OnboardingController::class)->except(['create', 'show']);
 Route::patch('onboardings/{onboarding}/status', [OnboardingController::class, 'updateStatus'])->name('onboardings.status');
+
+// Goals Controller _________________________________________________________________
+Route::get('goals/{userId}/user-goals', [GoalController::class, 'userGoals'])->name('admin.goals.user');
+Route::resource('goals', GoalController::class)->only(['index', 'show'])->names('admin.goals');
+
+// Reports Controller _________________________________________________________________
+Route::resource('reports', ReportController::class)->only(['index', 'show'])->names('admin.reports');
+
+// Badges Controller _________________________________________________________________
+Route::resource('badges', BadgeController::class)->only(['index', 'show'])->names('admin.badges');
+
+// Team Management Controller _________________________________________________________________
+Route::resource('team', TeamController::class)->only(['index', 'show'])->names('admin.team');
+
+// Daily Tasks Controller _________________________________________________________________
+Route::resource('tasks', DailyTaskController::class)->only(['index', 'show'])->names('admin.tasks');
