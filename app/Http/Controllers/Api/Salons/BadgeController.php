@@ -52,7 +52,8 @@ class BadgeController extends Controller
         $badge = DB::transaction(function () use ($request, $validated) {
             $badge = $request->user()->badge_assigned_by()->create($validated);
 
-            if ($request->user->role === 'owner') {
+            if ($request->user()->role === 'owner') {
+                $badge->update(['status' => 'approved']);
                 $this->incrementDecrement($validated['piller_id'], $validated['user_id']);
             }
             return $badge;
@@ -64,13 +65,13 @@ class BadgeController extends Controller
     public function updateBadge(Request $request, Badge $badge)
     {
         $validated = $request->validate([
-            'user_id'          => 'sometimes|required|exists:users,id',
             'piller_id'        => 'sometimes|required|exists:user_pillers,id',
             'notes'            => 'nullable|string',
             'perfomence_level' => 'sometimes|required|string',
             'is_visible'       => 'sometimes|required|boolean',
         ]);
 
+        $validated['user_id'] = $badge->user_id;
         if (isset($validated['piller_id']) && $validated['piller_id'] != $badge->piller_id) {
             $oldPillar = UserPiller::find($badge->piller_id);
             $oldPillar?->decrement('completed');

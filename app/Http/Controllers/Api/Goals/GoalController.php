@@ -32,7 +32,7 @@ class GoalController extends Controller
 
     public function lastGaol(Request $request, User $user)
     {
-        $goal = $user->mygoal()->with('assinedBy:id,name')->where('assigned_by', $request->user()->id)->where('is_public', true)->latest()->first();
+        $goal = $user->mygoal()->with('assinedBy:id,name')->where('assigned_by', $request->user()->id)->where('is_public', true)->latest()->get();
         return $this->success($goal, 'successfully get goal');
     }
 

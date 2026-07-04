@@ -82,6 +82,9 @@ class TeamManagementController extends Controller
             "secret_key" => "required|string|exists:users,secret_key",
         ]);
         $user = User::where("secret_key", $request->secret_key)->first();
+        $user->setAttribute('current_salon_id', $user->currentSalon?->salon_id);
+        $user->setAttribute('current_salon_name', $user->currentSalon?->salon?->name);
+        $user->makeHidden('currentSalon');
         return $this->success($user, "find user successfully");
     }
 

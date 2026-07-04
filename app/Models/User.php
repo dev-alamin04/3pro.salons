@@ -23,6 +23,10 @@ class User extends Authenticatable
         'is_active',
         'created_at',
         'updated_at',
+        'deleted_at',
+        'is_used_key',
+        'metadata',
+        'term_accept',
     ];
 
     protected $casts = [

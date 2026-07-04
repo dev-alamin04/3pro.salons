@@ -23,6 +23,7 @@ class UserResource extends JsonResource
             'exprience_level' => $this->exprience_level,
             'pronoun'         => $this->pronoun,
             'salon_name'      => $this->currentSalon?->salon?->name,
+            'salon_location'  => $this->currentSalon?->salon?->location,
             'badge'           => $this->badage,
             'tier_level'      => $this->tier_lavel,
         ];

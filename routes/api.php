@@ -75,5 +75,6 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::put('daily-task/{dailyTask}', [DailyTaskController::class, 'update']);
     Route::delete('daily-task/{dailyTask}', [DailyTaskController::class, 'destroy']);
     Route::post('daily-task/{dailyTask}/mark-as-completed', [DailyTaskController::class, 'markasCompleted']);
+    Route::get('tasks/{user}', [DailyTaskController::class, 'myTasks']);
 
 });
