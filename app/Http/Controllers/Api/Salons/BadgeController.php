@@ -137,9 +137,9 @@ class BadgeController extends Controller
         UserPiller::where('user_id', $user->id)->update(['completed' => 0]);
         $user->badge = 0;
 
-        $currentIndex = array_search($user->exprience_level, self::EXPERIENCE_LEVELS);
+        $currentIndex = array_search($user->experience_level, self::EXPERIENCE_LEVELS);
         if ($currentIndex !== false && isset(self::EXPERIENCE_LEVELS[$currentIndex + 1])) {
-            $user->exprience_level = self::EXPERIENCE_LEVELS[$currentIndex + 1];
+            $user->experience_level = self::EXPERIENCE_LEVELS[$currentIndex + 1];
         }
         $user->save();
     }

@@ -94,7 +94,7 @@ class GoalController extends Controller
 
         $teamMembers = UserSalon::team($salon_id, 'owner')
             ->with([
-                'user:id,name,email,role,avatar_path,specialist,pronoun,exprience_level',
+                'user:id,name,email,role,avatar_path,specialist,pronoun,experience_level',
             ])->get();
 
         return $this->success($teamMembers, 'Successfully fetched team members.');

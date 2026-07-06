@@ -33,8 +33,8 @@
                         @if($team->pronoun)
                             <p class="text-muted small"><strong>Pronoun:</strong> {{ $team->pronoun }}</p>
                         @endif
-                        @if($team->exprience_level)
-                            <p class="text-muted small"><strong>Experience:</strong> {{ ucfirst($team->exprience_level) }}</p>
+                        @if($team->experience_level)
+                            <p class="text-muted small"><strong>Experience:</strong> {{ ucfirst($team->experience_level) }}</p>
                         @endif
                         <hr>
                         <div class="text-start">
