@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
+use App\Models\UserSalon;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -46,6 +46,11 @@ class AuthController extends Controller
         if ($request->hasFile('avatar_path')) {
             $data['avatar_path'] = uploadFile($request->file('avatar_path'), 'uploads/profileImages');
         }
+        if ($request->user()->role === 'owner' && $request->has('location')) {
+            $user->currentSalon->salon->update(['location' => $data['location'], 'avatar_path' => $data['avatar_path'] ?? $user->currentSalon->salon->avatar_path]);
+        }
+
+        unset($data['location']);
 
         updateAndRespond(User::class, $data, $user->id, 'avatar_path');
 
@@ -76,10 +81,15 @@ class AuthController extends Controller
 
     public function profile(Request $request)
     {
-        $user = $request->user();
+        $user = $request->user()->load('currentSalon.salon:id,name,location');
 
-        $user->load()
-        return $this->success($user->load('settings'), 'User profile retrieved successfully.');
+        $salonId = $user->currentSalon?->salon_id;
+
+        $teamCount = $salonId ? UserSalon::team($salonId)->current()->count() : 0;
+
+        $user->setAttribute('teamCount', $teamCount);
+
+        return $this->success($user, 'User profile retrieved successfully.');
     }
 
     public function logout(Request $request)

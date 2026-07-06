@@ -18,10 +18,13 @@ class UpdateUserRequest extends BaseRequest
 
         return [
             'name'        => 'nullable|string|max:50',
-            'phone'       => 'nullable|string|max:30',
-            'email'       => 'nullable|email:rfc,dns|unique:users,email,' . $userId,
             'avatar_path' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:20480', // 20MB
             'location'    => 'nullable|string|max:255',
+            'pronoun'     => 'nullable|string|max:50',
+            'specialist'  => 'nullable|string|max:100',
+            'disc_tag'    => 'nullable|string|max:50',
+            'badges_alert' => 'nullable|boolean',
+            'goals_alert'  => 'nullable|boolean',
         ];
     }
 }
