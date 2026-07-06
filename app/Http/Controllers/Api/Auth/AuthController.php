@@ -78,7 +78,7 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        $user->load('m')
+        $user->load()
         return $this->success($user->load('settings'), 'User profile retrieved successfully.');
     }
 
