@@ -42,7 +42,7 @@
 
                             {{-- Set Password Button --}}
                             <div style="text-align:center;margin-bottom:32px;">
-                                <a href="{{ config('app.frontend_url') }}/set-password?key={{ urlencode($user->secret_key) }}"
+                                <a href="{{ config('app.frontend_url') }}?key={{ urlencode($user->secret_key) }}"
                                 style="display:inline-block;background-color:#00D4FF;color:#04151a;font-size:15px;font-weight:600;padding:14px 40px;border-radius:8px;text-decoration:none;letter-spacing:0.5px;">
                                     Set Password →
                                 </a>

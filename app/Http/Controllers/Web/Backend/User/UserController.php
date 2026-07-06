@@ -79,8 +79,6 @@ class UserController extends Controller
         ]);
 
         if (! empty($salon_id)) {
-            $salon = Salon::findOrFail($salon_id);
-
             $request->user()->salon_assigned_by()->create([
                 'user_id'    => $user->id,
                 'salon_id'   => $salon_id,
