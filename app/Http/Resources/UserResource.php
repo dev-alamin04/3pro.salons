@@ -14,18 +14,18 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'              => $this->id,
-            'name'            => $this->name,
-            'avatar_path'     => $this->avatar_path,
-            'secret_key'      => $this->secret_key,
-            'specialist'      => $this->specialist,
-            'disc_tag'        => $this->disc_tag,
-            'exprience_level' => $this->exprience_level,
-            'pronoun'         => $this->pronoun,
-            'salon_name'      => $this->currentSalon?->salon?->name,
-            'salon_location'  => $this->currentSalon?->salon?->location,
-            'badge'           => $this->badage,
-            'tier_level'      => $this->tier_lavel,
+            'id'               => $this->id,
+            'name'             => $this->name,
+            'avatar_path'      => $this->avatar_path,
+            'secret_key'       => $this->secret_key,
+            'specialist'       => $this->specialist,
+            'disc_tag'         => $this->disc_tag,
+            'experience_level' => $this->experience_level,
+            'pronoun'          => $this->pronoun,
+            'salon_name'       => $this->currentSalon?->salon?->name,
+            'salon_location'   => $this->currentSalon?->salon?->location,
+            'badge'            => $this->badge,
+            'tier_level'       => $this->tier_level,
         ];
     }
 }

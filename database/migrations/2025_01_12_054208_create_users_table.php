@@ -25,11 +25,14 @@ return new class extends Migration
             $table->boolean('is_used_key')->default(false);
             $table->string('role')->default('staff');
             $table->string('specialist')->nullable();
-            $table->decimal('badage')->default(0);
-            $table->decimal('tier_lavel')->default(0);
+            $table->decimal('badge', 10, 2)->default(0);
+            $table->decimal('tier_level', 10, 2)->default(0);
             $table->string('pronoun')->nullable();
-            $table->string('exprience_level')->default('foundation');
+            $table->string('experience_level')->default('foundation');
             $table->string('disc_tag')->nullable();
+            $table->string('timezone')->nullable();
+            $table->boolean('badges_alert')->default(false);
+            $table->boolean('goals_alert')->default(false);
 
             $table->json('metadata')->nullable()->comment('Flexible storage for additional user data');
             $table->timestamp('email_verified_at')->nullable();
