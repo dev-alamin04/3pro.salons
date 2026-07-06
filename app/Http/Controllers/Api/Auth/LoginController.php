@@ -22,14 +22,14 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error(null, $validator->errors()->first(), 422);
+            return $this->error([], $validator->errors()->first(), 422);
         }
 
         $validated = $validator->validated();
 
         $user = User::where('secret_key', $validated['secret_key'])->first();
         if (! $user || $user->is_used_key == true) {
-            return $this->error(null, 'Secret key is invalid or already used', 422);
+            return $this->error([], 'Secret key is invalid or already used', 422);
         }
         $user->update(['password' => Hash::make($validated['password']), 'email_verified_at' => now(), 'is_used_key' => true]);
 
@@ -53,22 +53,22 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error(null, $validator->errors()->first(), 422);
+            return $this->error([], $validator->errors()->first(), 422);
         }
 
         $user = User::where('email', $request->email)->first();
 
         if (! $user->email_verified_at) {
-            return $this->error(null, 'Please verify your email before logging in.', 403);
+            return $this->error([], 'Please verify your email before logging in.', 403);
         }
 
         if (! Hash::check($request->password, $user->password)) {
-            return $this->error(null, 'Invalid email or password', 401);
+            return $this->error([], 'Invalid email or password', 401);
         }
 
         // Check account status
         if (! $user->is_active) {
-            return $this->error(null, 'Your account is inactive. Please contact support.', 403);
+            return $this->error([], 'Your account is inactive. Please contact support.', 403);
         }
 
         // Create token
@@ -88,7 +88,7 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error(null, $validator->errors()->first(), 422);
+            return $this->error([], $validator->errors()->first(), 422);
         }
 
         return OtpHelper::sendEmailOtp($request->email, 'forgot_password');
@@ -103,14 +103,14 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error(null, $validator->errors()->first(), 422);
+            return $this->error([], $validator->errors()->first(), 422);
         }
 
         $cacheKey  = 'user_otp_' . $request->email;
         $cachedOtp = Cache::get($cacheKey);
 
         if (! $cachedOtp || $cachedOtp != $request->otp) {
-            return $this->error(null, 'OTP is invalid or expired.', 400);
+            return $this->error([], 'OTP is invalid or expired.', 400);
         }
 
         $user = User::where('email', $request->email)->first();
@@ -128,14 +128,14 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error(null, $validator->errors()->first(), 422);
+            return $this->error([], $validator->errors()->first(), 422);
         }
 
         $cacheKey  = 'user_otp_' . $request->email;
         $cachedOtp = Cache::get($cacheKey);
 
         if (! $cachedOtp || $cachedOtp != $request->otp) {
-            return $this->error(null, 'OTP is invalid or expired.', 400);
+            return $this->error([], 'OTP is invalid or expired.', 400);
         }
 
         return $this->success([], 'OTP verified successfully.');
@@ -148,7 +148,7 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error(null, $validator->errors()->first(), 422);
+            return $this->error([], $validator->errors()->first(), 422);
         }
 
         return OtpHelper::sendEmailOtp($request->email, 'forgot_password');

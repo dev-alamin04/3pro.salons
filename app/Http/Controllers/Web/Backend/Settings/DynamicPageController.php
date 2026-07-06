@@ -239,7 +239,7 @@ class DynamicPageController extends Controller
     //         ->first();
 
     //     if (! $page) {
-    //         return $this->error(null, 'Page not found.', 404);
+    //         return $this->error([], 'Page not found.', 404);
     //     }
 
     //     return $this->success([
@@ -256,7 +256,7 @@ class DynamicPageController extends Controller
             ->first();
 
         if (! $page) {
-            return $this->error(null, 'Page not found.', 404);
+            return $this->error([], 'Page not found.', 404);
         }
 
         return $this->success([

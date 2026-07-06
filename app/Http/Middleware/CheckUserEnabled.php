@@ -20,7 +20,7 @@ class CheckUserEnabled
             if (!Gate::allows('is_active', $user)) {
                 $request->user()->currentAccessToken()?->delete();
 
-                return $this->error(null, 'Your account is disabled.', 403);
+                return $this->error([], 'Your account is disabled.', 403);
             }
         }
 

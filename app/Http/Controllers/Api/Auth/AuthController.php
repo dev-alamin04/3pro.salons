@@ -24,7 +24,7 @@ class AuthController extends Controller
     public function show(User $user)
     {
         if (! $user) {
-            return $this->error(null, 'User not found', 404);
+            return $this->error([], 'User not found', 404);
         }
         return $this->success($user, 'User details retrieved');
     }
@@ -60,13 +60,13 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->errors(), 'Validation failed', 422);
+            return $this->error([], $validator->errors()->first(), 422);
         }
 
         $user = $request->user(); // Authenticated user via Sanctum
 
         if (! Hash::check($request->current_password, $user->password)) {
-            return $this->error(null, 'Current password is incorrect.', 401);
+            return $this->error([], 'Current password is incorrect.', 401);
         }
 
         $user->update(['password' => Hash::make($request->new_password)]);

@@ -16,11 +16,11 @@ class TeamManagementController extends Controller
     public function createAccount(Request $request)
     {
         if ($request->user()->role !== 'owner') {
-            return $this->error("Only Owner or manager can create new account");
+            return $this->error([], "Only Owner or manager can create new account", 403);
         }
         $salon_id = $request->user()->currentSalon?->salon_id;
         if (! $salon_id) {
-            return $this->error([], 'No salon assigned.');
+            return $this->error([], 'No salon assigned.', 404);
         }
         $user = app(UserController::class)->userCreate($request, $salon_id);
         return $this->success($user, 'Account created successfully');
@@ -32,7 +32,7 @@ class TeamManagementController extends Controller
         $salon_id = $user->currentSalon?->salon_id;
 
         if (! $salon_id) {
-            return $this->error([], 'No salon assigned.');
+            return $this->error([], 'No salon assigned.', 404);
         }
 
         $teamMembers = UserSalon::team($salon_id, 'owner')
@@ -52,7 +52,7 @@ class TeamManagementController extends Controller
     public function teamswitch(Request $request, User $user)
     {
         if (! in_array($request->user()->role, ['owner', 'lead'])) {
-            return $this->error("Only Owner or manager can switch account");
+            return $this->error([], "Only Owner or manager can switch account", 403);
         }
 
         $salon_id = $request->user()->currentSalon->salon_id ?? null;

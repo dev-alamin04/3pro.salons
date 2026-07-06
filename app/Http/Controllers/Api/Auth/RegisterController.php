@@ -42,11 +42,11 @@ class RegisterController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->errors(), 'Validation failed', 422);
+            return $this->error([], $validator->errors()->first(), 422);
         }
 
         if (! Cache::has($this->registerDataCacheKey($request->email))) {
-            return $this->error(null, 'No pending registration found for this email', 404);
+            return $this->error([], 'No pending registration found for this email', 404);
         }
 
         return OtpHelper::sendEmailOtp($request->email, 'register');
@@ -60,21 +60,21 @@ class RegisterController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->errors(), 'Validation failed', 422);
+            return $this->error([], $validator->errors()->first(), 422);
         }
 
         $otpCacheKey = 'user_otp_' . $request->email;
         $cachedOtp   = Cache::get($otpCacheKey);
 
         if (! $cachedOtp || $cachedOtp != $request->otp) {
-            return $this->error(null, 'OTP expired or invalid!', 400);
+            return $this->error([], 'OTP expired or invalid!', 400);
         }
 
         $dataCacheKey = $this->registerDataCacheKey($request->email);
         $data         = Cache::get($dataCacheKey);
 
         if (! $data) {
-            return $this->error(null, 'Registration data expired, please register again', 400);
+            return $this->error([], 'Registration data expired, please register again', 400);
         }
 
         $location = $data['location'] ?? null;
