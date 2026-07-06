@@ -3,13 +3,13 @@
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\CheckUserEnabled;
 use App\Http\Middleware\Guest;
-use App\Http\Middleware\Recruiter;
-use App\Http\Middleware\User;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -39,9 +39,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'admin'     => Admin::class,
-            'guest'     => Guest::class,
-            'enabled'   => CheckUserEnabled::class,
+            'admin'   => Admin::class,
+            'guest'   => Guest::class,
+            'enabled' => CheckUserEnabled::class,
         ]);
 
         // Ensure web middleware group includes CSRF protection
@@ -60,7 +60,26 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(function (AuthenticationException $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json([
+                    'status'  => false,
+                    'message' => __('Unauthenticated'),
+                ], 401);
+            }
+            return redirect()->route('login');
+        });
+
+        $exceptions->render(function (ValidationException $e, $request) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json([
+                    'status'  => false,
+                    'message' => $e->errors() ? collect($e->errors())->flatten()->first() : $e->getMessage(),
+                    'data'    => null,
+                    'code'    => 422,
+                ], 422);
+            }
+        });
     })
     ->withSchedule(function (Schedule $schedule) {
         // $schedule->job(new SyncShopifyProductsJob())->dailyAt('02:00');
