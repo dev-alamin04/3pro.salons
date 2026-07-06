@@ -109,8 +109,8 @@ class BadgeController extends Controller
             $pillar?->decrement('completed');
 
             $user = $badge->user;
-            if ($user && $user->badage > 0) {
-                $user->decrement('badage');
+            if ($user && $user->badge > 0) {
+                $user->decrement('badge');
             }
 
             $badge->delete();
@@ -130,12 +130,12 @@ class BadgeController extends Controller
         $pillarCount = UserPiller::where('user_id', $user->id)->count();
         $threshold   = $pillarCount * self::BADGES_PER_PILLAR;
 
-        if ($pillarCount === 0 || $user->badage < $threshold) {
+        if ($pillarCount === 0 || $user->badge < $threshold) {
             return;
         }
 
         UserPiller::where('user_id', $user->id)->update(['completed' => 0]);
-        $user->badage = 0;
+        $user->badge = 0;
 
         $currentIndex = array_search($user->exprience_level, self::EXPERIENCE_LEVELS);
         if ($currentIndex !== false && isset(self::EXPERIENCE_LEVELS[$currentIndex + 1])) {
@@ -150,7 +150,7 @@ class BadgeController extends Controller
 
         $pillar->increment('completed');
         $targetUser = User::find($user_id);
-        $targetUser->increment('badage');
+        $targetUser->increment('badge');
 
         $this->checkAndLevelUp($targetUser->fresh());
 
