@@ -16,27 +16,35 @@ class LoginController extends Controller
 
     public function setPassword(Request $request)
     {
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             "password"   => "required|string|min:8",
             "secret_key" => "required|exists:users,secret_key",
         ]);
 
+        if ($validator->fails()) {
+            return $this->error(null, $validator->errors()->first(), 422);
+        }
+
+        $validated = $validator->validated();
+
         $user = User::where('secret_key', $validated['secret_key'])->first();
         if (! $user || $user->is_used_key == true) {
-            return $this->error([], 'Secret key is invalid or already used', 422);
+            return $this->error(null, 'Secret key is invalid or already used', 422);
         }
         $user->update(['password' => Hash::make($validated['password']), 'email_verified_at' => now(), 'is_used_key' => true]);
+
         $piller = ['time', 'cleanliness', 'appearance', 'self_motivation', 'downtime'];
         foreach ($piller as $p) {
             $user->myPiller()->create(['name' => $p]);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
-        return $this->success(['user' => $user,
-            'token'                       => $token,
-            'token_type'                  => 'Bearer'], 'user password set successfully', 201);
+        return $this->success([
+            'user'       => $user,
+            'token'      => $token,
+            'token_type' => 'Bearer',
+        ], 'user password set successfully', 201);
     }
-
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -45,7 +53,7 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->errors(), 'email or password is invalid', 422);
+            return $this->error(null, $validator->errors()->first(), 422);
         }
 
         $user = User::where('email', $request->email)->first();
@@ -80,7 +88,7 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->errors(), 'Validation failed', 422);
+            return $this->error(null, $validator->errors()->first(), 422);
         }
 
         return OtpHelper::sendEmailOtp($request->email, 'forgot_password');
@@ -95,7 +103,7 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->errors(), 'Validation failed', 422);
+            return $this->error(null, $validator->errors()->first(), 422);
         }
 
         $cacheKey  = 'user_otp_' . $request->email;
@@ -120,7 +128,7 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->errors(), 'Validation failed', 422);
+            return $this->error(null, $validator->errors()->first(), 422);
         }
 
         $cacheKey  = 'user_otp_' . $request->email;
@@ -140,7 +148,7 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->errors(), 'Validation failed', 422);
+            return $this->error(null, $validator->errors()->first(), 422);
         }
 
         return OtpHelper::sendEmailOtp($request->email, 'forgot_password');
