@@ -45,7 +45,8 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->error($validator->errors(), 'Validation failed', 422);
+            $firstError = $validator->errors()->first();
+            return $this->error(null, $firstError, 422);
         }
 
         $user = User::where('email', $request->email)->first();
@@ -72,7 +73,6 @@ class LoginController extends Controller
             'token_type' => 'Bearer',
         ], 'Login successful');
     }
-
     public function forgotPassword(Request $request)
     {
         $validator = Validator::make($request->all(), [
