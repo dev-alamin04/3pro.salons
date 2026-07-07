@@ -76,16 +76,13 @@ a#fullscreenBtn {
                     <div class="profile_info d-flex align-items-center gap-2">
                         <div class="profile_thumb" style="position:relative;">
                             @php
-                                $profilePhoto = Auth::user()->profile_photo_url;
-                                $Photo = Auth::user()->avatar_path;
+                                $profilePhoto = Auth::user()->avatar_path
+                                    ? asset(Auth::user()->avatar_path)
+                                    : asset('backend/assets/img/profile.png');
                             @endphp
-                            @if ($Photo == null)
-                                <img class="img-xs rounded-circle admin_picture" src="{{ $profilePhoto }}"
-                                    alt="" />
-                            @else
-                                <img class="img-xs rounded-circle admin_picture"
-                                    src="{{ asset("uploads/profileImages/$Photo") }}" alt="" />
-                            @endif
+                            <img class="admin_picture rounded-circle"
+                                src="{{ $profilePhoto }}"
+                                alt="profile" />
 
                             {{-- Online dot --}}
                             <span style="

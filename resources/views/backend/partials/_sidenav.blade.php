@@ -121,7 +121,7 @@
                 </div>
             </a>
             <ul>
-                <li> <a href="/admin/profile">Profile</a> </li>
+               <li> <a href="/admin/profile">Profile Settings</a> </li>
                 <li> <a href="/admin/system-setting">System Settings</a> </li>
                 <li> <a href="/admin/dynamic-page">Dynamic pages</a> </li>
                 <li> <a href="/admin/mail-setting">Mail Settings</a> </li>

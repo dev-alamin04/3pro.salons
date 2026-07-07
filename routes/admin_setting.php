@@ -1,22 +1,24 @@
 <?php
 
-use App\Http\Controllers\Web\Backend\Settings\SocialMediaController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\Backend\Settings\DynamicPageController;
 use App\Http\Controllers\Web\Backend\Settings\MailSettingController;
 use App\Http\Controllers\Web\Backend\Settings\ProfileController;
+use App\Http\Controllers\Web\Backend\Settings\SocialMediaController;
 use App\Http\Controllers\Web\Backend\Settings\SystemSettingController;
-
+use Illuminate\Support\Facades\Route;
 
 // |--------------------------------------------------------------------------
 // |                                Admin Setting route for dashboard
 // |--------------------------------------------------------------------------
 
-
 // Admin Profile  ____________________________________________________________
 Route::controller(ProfileController::class)->group(function () {
-    Route::get('/profile', 'show')->name('admin.profile.show');
-    // => Route inject into routes\auth.php 
+    Route::post('/update-profile-picture', 'UpdateProfilePicture')->name('update.profile.picture');
+    Route::post('/update-profile-password', 'UpdatePassword')->name('update.Password');
+
+    //! Route for ProfileController
+    Route::get('/profile', 'showProfile')->name('admin.profile.show');
+    Route::post('/update-profile', 'UpdateProfile')->name('update.profile');
 });
 
 //! Route for SystemSettingController_______________________________________________________
