@@ -2,7 +2,7 @@
 @section('title', '|| Create User')
 @section('content')
     <div class="content-wrapper">
-        <x-breadcrumbs title="Create User" subtitle="Add a new user to the platform." />
+        <x-breadcrumbs title="Create User account Or Salon" subtitle="Add a new user to the platform." />
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
