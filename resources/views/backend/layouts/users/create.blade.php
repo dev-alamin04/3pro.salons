@@ -7,7 +7,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Create User</h4>
+                        <h4 class="card-title">Create User Account and Salon</h4>
                         <form action="{{ route('users.store') }}" method="POST">
                             @csrf
                             <div class="row">
@@ -31,8 +31,8 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Assign Role <span class="text-danger">*</span></label>
                                     <select name="role" class="form-control @error('role') is-invalid @enderror">
-                                        <option value="">-- Select Role --</option>
-                                        <option value="owner" {{ old('role') == 'owner' ? 'selected' : '' }}>Owner</option>
+                                        <option value="">-- Select Account Type --</option>
+                                        <option value="owner" {{ old('role') == 'owner' ? 'selected' : '' }}>Salon</option>
                                         <option value="staff" {{ old('role') == 'staff' ? 'selected' : '' }}>Staff</option>
                                         <option value="lead"  {{ old('role') == 'lead'  ? 'selected' : '' }}>Lead</option>
                                     </select>
