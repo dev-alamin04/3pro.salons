@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Secret Key</title>
+    <title>Your 3 Pro Key</title>
 </head>
 <body style="margin:0;padding:0;background-color:#0d0f10;font-family:'Segoe UI',Arial,sans-serif;">
 
@@ -28,13 +28,13 @@
                                 You've been assigned to a salon!
                             </h2>
                             <p style="color:#8a9294;font-size:14px;line-height:1.7;margin:0 0 32px;">
-                                Your account has been set up. Use the secret key below to access your dashboard.
+                                Your account has been set up. Use the 3 Pro key below to access your dashboard.
                                 Keep this key safe and do not share it with anyone.
                             </p>
 
                             {{-- Secret Key Box --}}
                             <div style="background-color:#111314;border:1px solid #2a2d2f;border-radius:12px;padding:24px;text-align:center;margin-bottom:32px;">
-                                <p style="color:#8a9294;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin:0 0 12px;">Your Secret Key</p>
+                                <p style="color:#8a9294;font-size:12px;text-transform:uppercase;letter-spacing:2px;margin:0 0 12px;">Your 3 Pro Key</p>
                                 <p style="color:#00D4FF;font-size:28px;font-weight:700;letter-spacing:4px;margin:0;font-family:monospace;">
                                     {{ $user->secret_key }}
                                 </p>
