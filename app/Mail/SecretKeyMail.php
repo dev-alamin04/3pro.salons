@@ -21,7 +21,7 @@ class SecretKeyMail extends Mailable
     }
     public function envelope(): Envelope
     {
-        return new Envelope(subject: 'Your Secret Key -' . $this->user->name);
+        return new Envelope(subject: 'Your 3 Pro Key -' . $this->user->name);
     }
 
     public function content(): Content
