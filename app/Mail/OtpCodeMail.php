@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 
-class OtpCodeMail extends Mailable implements ShouldQueue
+class OtpCodeMail extends Mailable
 {
     use Queueable, SerializesModels;
 

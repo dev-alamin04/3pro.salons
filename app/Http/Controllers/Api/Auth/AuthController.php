@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
@@ -86,6 +87,16 @@ class AuthController extends Controller
         $salonId = $user->currentSalon?->salon_id;
 
         $teamCount = $salonId ? UserSalon::team($salonId)->current()->count() : 0;
+
+        if ($user->role === 'owner') {
+            $onboarded =  $user->currentSalon?->onboardings()->count();
+
+            $is_onboarded = false;
+            if ($onboarded > 0) {
+                $is_onboarded = true;
+            }
+            $user->setAttribute('is_onboarded', $is_onboarded);
+        }
 
         $user->setAttribute('teamCount', $teamCount);
 
