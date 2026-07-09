@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Helpers\OtpHelper;
@@ -73,6 +74,15 @@ class LoginController extends Controller
 
         // Create token
         $token = $user->createToken('auth_token')->plainTextToken;
+        if ($user->role === 'owner') {
+            $onboarded = $user->currentSalon?->salon?->salonOnboardings()->count();
+
+            $is_onboarded = false;
+            if ($onboarded > 0) {
+                $is_onboarded = true;
+            }
+            $user->setAttribute('is_onboarded', $is_onboarded);
+        }
 
         return $this->success([
             'user'       => $user,
