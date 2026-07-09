@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Salons;
 
 use App\Http\Controllers\Controller;
@@ -104,7 +105,7 @@ class TeamManagementController extends Controller
         $user     = $request->user();
         $salon_id = $user->currentSalon?->salon_id;
 
-        if (! $salon_id) {
+        if (! $salon_id || $user->role !== 'owner') {
             return $this->error([], 'No salon assigned.');
         }
 
@@ -123,11 +124,10 @@ class TeamManagementController extends Controller
             'user'               => UserResource::make($user),
             'team_members_count' => $teamMembersCount,
             'leader_count'       => $leaderCount,
-            'tasks_count'        => $teamMembers,
+            'team_members'       => $teamMembers,
             'badges_count'       => $badgesCount,
             'onboardings'        => $onboardings,
             'pendingBadges'      => $pendingBadges,
         ], 'Dashboard data fetched successfully');
     }
-
 }

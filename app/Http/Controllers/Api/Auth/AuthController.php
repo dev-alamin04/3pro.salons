@@ -89,7 +89,7 @@ class AuthController extends Controller
         $teamCount = $salonId ? UserSalon::team($salonId)->current()->count() : 0;
 
         if ($user->role === 'owner') {
-            $onboarded =  $user->currentSalon?->onboardings()->count();
+            $onboarded = $user->currentSalon?->salon?->salonOnboardings()->count();
 
             $is_onboarded = false;
             if ($onboarded > 0) {
