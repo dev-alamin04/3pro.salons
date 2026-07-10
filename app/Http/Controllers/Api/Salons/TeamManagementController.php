@@ -42,9 +42,13 @@ class TeamManagementController extends Controller
                 'user.myPiller:id,user_id,name,level,completed',
             ])->get();
 
+        $teamMembers->each(function ($teamMember) {
+            $totalCompleted = $teamMember->user->myPiller->sum('completed');
+            $score = min(5, floor($totalCompleted / 60));
+            $teamMember->user->setAttribute('score', $score);
+        });
         return $teamMembers;
     }
-
     public function myTeams(Request $request)
     {
         $teamMembers = $this->team($request);
