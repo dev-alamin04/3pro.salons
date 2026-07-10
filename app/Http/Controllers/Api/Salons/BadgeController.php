@@ -121,7 +121,7 @@ class BadgeController extends Controller
 
     public function badgesHistory(User $user)
     {
-        $badges = $user->myBadges()->with(['pillar', 'user:id,name', 'assinedBy:id,name'])->where('status', "approved")->orderBy("created_at", "desc")->get();
+        $badges = $user->myBadges()->with(['pillar', 'user:id,name', 'assinedBy:id,name'])->orderBy("created_at", "desc")->get();
         return $this->success($badges, "successfully get badges history");
     }
 
