@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Salons;
 
 use App\Http\Controllers\Controller;
@@ -44,10 +45,15 @@ class BadgeController extends Controller
             'user_id'          => 'required|exists:users,id',
             'piller_id'        => 'required|exists:user_pillers,id',
             'notes'            => 'nullable|string',
-            'perfomence_level' => 'required|string',
+            'perfomence_level' => "required|string|in:foundation,advanced,mastery",
             'is_visible'       => 'required|boolean',
         ]);
         $validated['salon_id'] = $request->user()->currentSalon->salon_id ?? null;
+
+        $user = User::findOrFail($validated['user_id']);
+        if ($user->experience_level !== $validated['perfomence_level']) {
+            return $this->error([], "You can only assign badges for this" . $user->experience_level . "level", 422);
+        }
 
         $badge = DB::transaction(function () use ($request, $validated) {
             $badge = $request->user()->badge_assigned_by()->create($validated);
