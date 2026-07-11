@@ -66,7 +66,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::get('my-goals', [GoalController::class, 'myGoals']);
     Route::post('update-goal/level/{goal}', [GoalController::class, 'updateLevel']);
     Route::get('salon-user', [GoalController::class, 'salonUser']);
-    Route::get('piller-details/{user}', [GoalController::class, 'pillerDetails']);
+    Route::get('single-user-pillars/{user}', [GoalController::class, 'pillerDetails']);
 
     // Badges -------------------------------------------------------------------
     Route::get('badges-history/{user}', [BadgeController::class, 'badgesHistory']);
