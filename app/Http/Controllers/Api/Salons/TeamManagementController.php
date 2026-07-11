@@ -134,4 +134,16 @@ class TeamManagementController extends Controller
             'pendingBadges'      => $pendingBadges,
         ], 'Dashboard data fetched successfully');
     }
+
+    public function userlist(Request $request)
+    {
+        $user     = $request->user();
+        $salon_id = $user->currentSalon?->salon_id;
+
+        if (! $salon_id) {
+            return $this->error([], 'No salon assigned.', 404);
+        }
+        $teamMembers = UserSalon::team($salon_id, 'owner')->with(['user:id,name,specialist,pronoun',])->get();
+        return $this->success($teamMembers, 'successfully get teammember list');
+    }
 }
