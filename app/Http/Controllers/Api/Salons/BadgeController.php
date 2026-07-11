@@ -52,7 +52,7 @@ class BadgeController extends Controller
 
         $user = User::findOrFail($validated['user_id']);
         if ($user->experience_level !== $validated['perfomence_level']) {
-            return $this->error([], "You can only assign badges for this" . $user->experience_level . "level", 422);
+            return $this->error([], "You can only assign badges for this " . $user->experience_level . "level", 422);
         }
 
         $badge = DB::transaction(function () use ($request, $validated) {
