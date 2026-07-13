@@ -39,7 +39,7 @@ class TeamManagementController extends Controller
 
         $teamMembers = UserSalon::team($salon_id, 'owner')
             ->with([
-                'user:id,name,email,role,avatar_path,specialist,pronoun,experience_level,trail_day,tier_level,is_trail',
+                'user:id,name,email,role,avatar_path,specialist,pronoun,experience_level,trail_start_date,tier_level,is_trail',
                 'user.myPiller:id,user_id,name,level,completed',
             ])->get();
 
