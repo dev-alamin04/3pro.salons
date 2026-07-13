@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\UserSalon;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class TeamManagementController extends Controller
 {
@@ -39,15 +41,36 @@ class TeamManagementController extends Controller
 
         $teamMembers = UserSalon::team($salon_id, 'owner')
             ->with([
-                'user:id,name,email,role,avatar_path,specialist,pronoun,experience_level,trail_start_date,tier_level,is_trail',
+                'user:id,name,email,role,avatar_path,specialist,pronoun,experience_level,trail_end_date,tier_level,is_trail',
                 'user.myPiller:id,user_id,name,level,completed',
             ])->get();
 
-        $teamMembers->each(function ($teamMember) {
+        $expiredUserIds = [];
+        $teamMembers->each(function ($teamMember) use (&$expiredUserIds) {
             $totalCompleted = $teamMember->user->myPiller->sum('completed');
             $score = min(5, floor($totalCompleted / 60));
             $teamMember->user->setAttribute('score', $score);
+
+            $remainingDays = null;
+            $isTrail = $teamMember->user->is_trail;
+
+            if ($isTrail && $teamMember->user->trail_end_date) {
+                $remainingDays = Carbon::today()->diffInDays(Carbon::parse($teamMember->user->trail_end_date), false);
+
+                if ($remainingDays <= 0) {
+                    $remainingDays = 0;
+                    $isTrail = false;
+                    $expiredUserIds[] = $teamMember->user->id;
+                }
+            }
+            $teamMember->user->setAttribute('trail_end_date', $remainingDays);
+            $teamMember->user->setAttribute('is_trail', $isTrail);
         });
+
+        if (! empty($expiredUserIds)) {
+            User::whereIn('id', $expiredUserIds)->update(['is_trail' => false]);
+        }
+
         return $teamMembers;
     }
     // public function myTeams(Request $request)
@@ -171,5 +194,35 @@ class TeamManagementController extends Controller
         }
         $teamMembers = UserSalon::team($salon_id, 'owner')->with(['user:id,name,specialist,pronoun',])->get();
         return $this->success($teamMembers, 'successfully get teammember list');
+    }
+
+
+    public function trail(Request $request, User $user)
+    {
+        $rUser  = $request->user();
+        $salon  = $user->currentSalon?->salon_id;
+        $rSalon = $rUser->currentSalon?->salon_id;
+
+        if ($rUser->role !== 'owner' || $salon !== $rSalon) {
+            return $this->error([], "you can't take this action", 403);
+        }
+
+        $validated = $request->validate([
+            'trails_end_date' => 'nullable|integer|min:1',
+        ]);
+
+        $days = $validated['trails_end_date'] ?? 90;
+
+        $baseDate = $user->trails_end_date && Carbon::parse($user->trails_end_date)->isFuture()
+            ? Carbon::parse($user->trails_end_date) : Carbon::today();
+
+        $newEndDate = $baseDate->addDays($days);
+
+        $user->update([
+            'trails_end_date' => $newEndDate->toDateString(),
+            'is_trail'        => true,
+        ]);
+
+        return $this->success($user->fresh(), 'Trial updated successfully');
     }
 }
