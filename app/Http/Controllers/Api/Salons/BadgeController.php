@@ -189,4 +189,5 @@ class BadgeController extends Controller
         }
         $user->save();
     }
+
 }
