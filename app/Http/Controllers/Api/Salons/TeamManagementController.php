@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Salons;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Web\Backend\User\UserController;
 use App\Http\Resources\UserResource;
+use App\Models\Badge;
 use App\Models\User;
 use App\Models\UserSalon;
 use App\Traits\ApiResponse;
@@ -38,7 +39,7 @@ class TeamManagementController extends Controller
 
         $teamMembers = UserSalon::team($salon_id, 'owner')
             ->with([
-                'user:id,name,email,role,avatar_path,specialist,pronoun,experience_level',
+                'user:id,name,email,role,avatar_path,specialist,pronoun,experience_level,trail_day,tier_level,is_trail',
                 'user.myPiller:id,user_id,name,level,completed',
             ])->get();
 
@@ -49,10 +50,35 @@ class TeamManagementController extends Controller
         });
         return $teamMembers;
     }
+    // public function myTeams(Request $request)
+    // {
+    //     $teamMembers = $this->team($request);
+    //     $badges  = $teamMembers->myBadges()->with(['assinedBy:id,name', 'salon:id,name'])->where('is_visible', true)->latest()->get();
+    //     $history = $teamMembers->myBadges()->selectRaw('YEAR(created_at) as year, COUNT(*) as count')->groupBy('year')->orderBy('year', 'desc')->get();
+
+    //     $response = [
+    //         'teammember' => $teamMembers,
+    //         'badges'     => $badges,
+    //         'history'    => $history
+    //     ];
+    //     return $this->success($response, 'Successfully fetched team members.');
+    // }
+
+
     public function myTeams(Request $request)
     {
         $teamMembers = $this->team($request);
-        return $this->success($teamMembers, 'Successfully fetched team members.');
+        $userIds = $teamMembers->pluck('user.id')->filter()->values();
+        $badges = Badge::whereIn('user_id', $userIds)->with(['assinedBy:id,name', 'salon:id,name'])->where('is_visible', true)->latest()->get();
+        $history = Badge::whereIn('user_id', $userIds)->selectRaw('YEAR(created_at) as year, COUNT(*) as count')->groupBy('year')->orderBy('year', 'desc')->get();
+
+        $response = [
+            'teammember' => $teamMembers,
+            'badges'     => $badges,
+            'history'    => $history,
+        ];
+
+        return $this->success($response, 'Successfully fetched team members.');
     }
     public function teamswitch(Request $request, User $user)
     {

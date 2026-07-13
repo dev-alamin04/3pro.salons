@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('specialist')->nullable();
             $table->decimal('badge', 10, 2)->default(0);
             $table->decimal('tier_level', 10, 2)->default(0);
+            $table->date('trail_day')->nullable();
+            $table->boolean('is_trail')->nullable();
             $table->string('pronoun')->nullable();
             $table->string('experience_level')->default('foundation');
             $table->string('disc_tag')->nullable();
@@ -42,7 +44,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
