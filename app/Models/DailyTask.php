@@ -9,7 +9,7 @@ class DailyTask extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'target_date'  => 'datetime',
+        'target_date'  => 'date',
         'is_completed' => 'boolean',
     ];
     public function user()
