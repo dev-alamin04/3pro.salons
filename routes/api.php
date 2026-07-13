@@ -58,6 +58,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::get('/history/{user}', [TeamManagementController::class, 'ProfileHistory']);
     Route::get('/dashboard', [TeamManagementController::class, 'dashboard']);
     Route::get('/user-list', [TeamManagementController::class, 'userlist']);
+    Route::post('/trail/{user}', [TeamManagementController::class, 'trail']);
 
     // Goals -------------------------------------------------------------------
 
