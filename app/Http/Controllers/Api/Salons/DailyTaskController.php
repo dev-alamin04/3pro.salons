@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Salons;
 
 use App\Http\Controllers\Controller;
@@ -26,7 +27,6 @@ class DailyTaskController extends Controller
         }
         $task = $request->user()->task_assinged_by()->create($validated);
         return $this->success($task, "Task created successfully");
-
     }
 
     public function update(Request $request, DailyTask $dailyTask)
@@ -66,7 +66,12 @@ class DailyTaskController extends Controller
 
     public function myTasks(Request $request, User $user)
     {
-        $tasks = $user->myTask()->where('target_date', today())->orWhere('target_date', today()->subDay())->latest()->get();
+        $tasks = $user->myTask()
+            ->whereIn('target_date', [
+                today()->toDateString(),
+                today()->copy()->subDay()->toDateString(),
+            ])->latest()->get();
+
         return $this->success($tasks, "Successfully fetched my tasks");
     }
 }

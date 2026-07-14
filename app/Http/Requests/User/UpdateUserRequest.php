@@ -25,6 +25,7 @@ class UpdateUserRequest extends BaseRequest
             'disc_tag'    => 'nullable|string|max:50',
             'badges_alert' => 'nullable|boolean',
             'goals_alert'  => 'nullable|boolean',
+            'timezone'     => 'nullable|boolean'
         ];
     }
 }
