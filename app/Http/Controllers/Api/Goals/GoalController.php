@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Goals;
 
 use App\Http\Controllers\Controller;
@@ -28,7 +29,7 @@ class GoalController extends Controller
         $validated['target_date'] = $request->target_date ?? today()->toDateString();
         $gaol                     = $request->user()->goal_assigned_by()->create($validated);
 
-        return $this->success($gaol, 'Gaol create successfully');
+        return $this->success($gaol, 'Goal created successfully');
     }
 
     public function lastGaol(Request $request, User $user)
@@ -52,8 +53,14 @@ class GoalController extends Controller
 
         $user = $request->user();
 
-        if ($user->id !== $goal->user_id && $goal->is_public !== false) {
-            return $this->error([], "You can only update your personal goal status");
+        if ($goal->is_public) {
+            if ($user->id !== $goal->assigned_by) {
+                return $this->error([], "Only the person who assigned this goal can update it");
+            }
+        } else {
+            if ($user->id !== $goal->user_id) {
+                return $this->error([], "You can only update your personal goal status");
+            }
         }
 
         $salon_id = $goal->user->currentSalon?->salon_id;
@@ -63,11 +70,10 @@ class GoalController extends Controller
         }
 
         $goal->update(['progress' => $request->progress]);
-        if( $goal->progress >= 5) {
-            $goal->update(['status' => 'completed']);
-        }else {
-            $goal->update(['status' => 'in_progress']);
-        }
+
+        $goal->update([
+            'status' => $goal->progress >= 5 ? 'completed' : 'in_progress',
+        ]);
 
         return $this->success($goal, 'Goal updated successfully');
     }
