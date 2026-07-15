@@ -30,9 +30,6 @@
                     <div class="card card-body">
                         <h4 class="mb-3">{{ $page->page_title }}</h4>
                         <div class="content-wrapper border p-3 rounded ">
-                            <img src="{{ asset($page->banner) }}" alt="" style="height: 200px; width: 100%;"
-                                class="img-fluid object-cover mb-5">
-
                             {!! $page->page_content !!}
                         </div>
 

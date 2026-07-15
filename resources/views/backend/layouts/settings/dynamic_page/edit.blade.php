@@ -44,17 +44,6 @@
                                 @enderror
                             </div>
 
-                            {{-- Banner Image --}}
-                            <div class="mt-4 input-style-1">
-                                <label for="banner">Banner:</label>
-                                <input type="file" id="banner" name="banner"
-                                    class="dropify @error('banner') is-invalid @enderror"
-                                    data-default-file="{{ asset($data->banner ?? 'backend/assets/img/image_placeholder.png') }}">
-
-                                @error('banner')
-                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
-                                @enderror
-                            </div>
 
                             <div class="mt-4 input-style-1">
                                 <label for="page_content">Content:</label>
