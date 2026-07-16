@@ -213,8 +213,8 @@ class TeamManagementController extends Controller
 
         $days = $validated['trail_end_date'] ?? 90;
 
-        $baseDate = $user->trails_end_date && Carbon::parse($user->trails_end_date)->isFuture()
-            ? Carbon::parse($user->trails_end_date) : Carbon::today();
+        $baseDate = $user->trail_end_date && Carbon::parse($user->trail_end_date)->isFuture()
+            ? Carbon::parse($user->trail_end_date) : Carbon::today();
 
         $newEndDate = $baseDate->addDays($days);
 
