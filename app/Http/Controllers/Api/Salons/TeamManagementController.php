@@ -225,4 +225,16 @@ class TeamManagementController extends Controller
 
         return $this->success($user->fresh(), 'Trial updated successfully');
     }
+
+    public function PromotionDemotion(Request $request, User $user)
+    {
+        $rUser = $request->user();
+        if ($rUser->role !== 'owner' && $rUser->currentSalon->salon_id !== $user->currentSalon->salon_id) {
+            return $this->error([], "you can't take this action", 403);
+        }
+        //toggle role between lead and staff
+        $newRole = $user->role === 'lead' ? 'staff' : 'lead';
+        $user->update(['role' => $newRole]);
+        return $this->success($user, 'User role updated successfully');
+    }
 }
