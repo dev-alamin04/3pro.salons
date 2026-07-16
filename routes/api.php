@@ -79,6 +79,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::delete('badges/{badge}', [BadgeController::class, 'destroy']);
     Route::get('/pillar-details/{pillar}', [BadgeController::class, 'pillarDetails']);
     Route::post('/badge-reponsed/{badge}', [BadgeController::class, 'acceptReject']);
+    Route::post('/update-next-level/{user}', [BadgeController::class, 'updateNextLevel']);
 
     // Daily Task -------------------------------------------------------------------
 

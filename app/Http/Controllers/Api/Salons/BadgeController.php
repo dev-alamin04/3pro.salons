@@ -190,4 +190,24 @@ class BadgeController extends Controller
         $user->save();
     }
 
+    public function updateNextLevel(Request $request, User $user)
+    {
+        $rUser = $request->user();
+        if ($rUser->role !== 'owner' || $rUser->currentSalon->salon_id !== $user->currentSalon->salon_id) {
+            return $this->error([], "you can't take this action", 403);
+        }
+        $currentIndex = array_search($user->experience_level, self::EXPERIENCE_LEVELS);
+        if ($currentIndex === false || ! isset(self::EXPERIENCE_LEVELS[$currentIndex + 1])) {
+            return $this->error([], "User is already at the highest level or level is invalid", 422);
+        }
+        DB::transaction(function () use ($user, $currentIndex) {
+            $user->experience_level = self::EXPERIENCE_LEVELS[$currentIndex + 1];
+            $user->tier_level       = $currentIndex + 1;
+            $user->badge            = 0;
+            $user->save();
+            $user->myPiller()->update(['completed' => 0]);
+        });
+
+        return $this->success($user->fresh(), 'Experience level updated successfully');
+    }
 }
