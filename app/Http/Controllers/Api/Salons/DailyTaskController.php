@@ -74,4 +74,26 @@ class DailyTaskController extends Controller
 
         return $this->success($tasks, "Successfully fetched my tasks");
     }
+
+
+    public function journy(Request $request)
+    {
+        $user = $request->user();
+        $pillars = $user->myPiller()->get();
+
+        $pillars->each(function ($pillar) {
+            $pillar->setAttribute('is_completed', $pillar->completed >= 60);
+            $pillar->setAttribute('total', 60);
+        });
+
+        $next_level_need = max(0, ($pillars->count() * 60) - (int)$pillars->sum('completed'));
+
+        $response = [
+            'user'  => $user,
+            'pillars' => $pillars,
+            'next_level_need' => $next_level_need,
+        ];
+
+        return $this->success($response, "Journey fetched successfully");
+    }
 }

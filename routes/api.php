@@ -88,6 +88,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::delete('daily-task/{dailyTask}', [DailyTaskController::class, 'destroy']);
     Route::post('daily-task/{dailyTask}/mark-as-completed', [DailyTaskController::class, 'markasCompleted']);
     Route::get('tasks/{user}', [DailyTaskController::class, 'myTasks']);
+    Route::get('journey', [DailyTaskController::class, 'journy']);
 
     // Skills -------------------------------------------------------------------
     Route::apiResource('skills', SkillController::class)->parameters(['skills' => 'skill']);
