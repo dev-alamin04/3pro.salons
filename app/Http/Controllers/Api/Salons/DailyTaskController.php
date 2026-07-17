@@ -86,8 +86,8 @@ class DailyTaskController extends Controller
             $pillar->setAttribute('total', 60);
             if ($pillar->completed >= 60) {
                 $badge = $user->myBadges()->where('pillar_id', $pillar->id)->latest()->first();
-                $pillar->setAttribute('completed_at', $badge?->updated_at);
             }
+            $pillar->setAttribute('completed_at', $badge?->updated_at ?? null);
         });
         $next_level_need = max(0, ($pillars->count() * 60) - (int) $pillars->sum('completed'));
         $response = [
