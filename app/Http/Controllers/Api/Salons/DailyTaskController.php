@@ -81,13 +81,15 @@ class DailyTaskController extends Controller
         $user = $request->user();
         $pillars = $user->myPiller()->get();
 
-        $pillars->each(function ($pillar) {
+        $pillars->each(function ($pillar) use ($user) {
             $pillar->setAttribute('is_completed', $pillar->completed >= 60);
             $pillar->setAttribute('total', 60);
+            if ($pillar->completed >= 60) {
+                $badge = $user->myBadges()->where('pillar_id', $pillar->id)->latest()->first();
+                $pillar->setAttribute('completed_at', $badge?->updated_at);
+            }
         });
-
-        $next_level_need = max(0, ($pillars->count() * 60) - (int)$pillars->sum('completed'));
-
+        $next_level_need = max(0, ($pillars->count() * 60) - (int) $pillars->sum('completed'));
         $response = [
             'user'  => $user,
             'pillars' => $pillars,
