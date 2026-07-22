@@ -39,7 +39,7 @@ class TeamManagementController extends Controller
             return $this->error([], 'No salon assigned.', 404);
         }
 
-        $teamMembers = UserSalon::team($salon_id, 'owner')
+        $teamMembers = UserSalon::team($salon_id, 'owner')->where('is_current', 1)
             ->with([
                 'user:id,name,email,role,avatar_path,specialist,pronoun,experience_level,trail_end_date,tier_level,is_trail',
                 'user.myPiller:id,user_id,name,level,completed',
@@ -53,6 +53,8 @@ class TeamManagementController extends Controller
 
             $remainingDays = null;
             $isTrail = $teamMember->user->is_trail;
+
+            Log::info('trails ' . ($isTrail ? 'true' : 'false'));
 
             if ($isTrail && $teamMember->user->trail_end_date) {
                 $remainingDays = Carbon::today()->diffInDays(Carbon::parse($teamMember->user->trail_end_date), false);
@@ -117,6 +119,9 @@ class TeamManagementController extends Controller
             return $this->error([], " You can't take this action");
         }
 
+        if ($user->currentSalon?->salon_id === $salon_id) {
+            return $this->error([], "This user is already part of your salon", 403);
+        }
         $user->currentSalon?->update(['is_current' => false]);
 
         $request->user()->salon_assigned_by()->updateOrCreate(
