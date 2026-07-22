@@ -11,7 +11,7 @@ use App\Models\UserSalon;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Log;
 
 class TeamManagementController extends Controller
 {
@@ -56,6 +56,8 @@ class TeamManagementController extends Controller
 
             if ($isTrail && $teamMember->user->trail_end_date) {
                 $remainingDays = Carbon::today()->diffInDays(Carbon::parse($teamMember->user->trail_end_date), false);
+
+                Log::info("User ID: {$teamMember->user->id}, Remaining Days: {$remainingDays}");
 
                 if ($remainingDays <= 0) {
                     $remainingDays = 0;
