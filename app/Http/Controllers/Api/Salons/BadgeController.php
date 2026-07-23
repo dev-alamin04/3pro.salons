@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api\Salons;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BadgeAwardedMail;
 use App\Models\Badge;
 use App\Models\User;
 use App\Models\UserPiller;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class BadgeController extends Controller
 {
@@ -126,11 +128,17 @@ class BadgeController extends Controller
         $badge->update(['status' => $request->status]);
 
         if ($request->status === 'approved') {
-            $pillar     = UserPiller::findOrFail($badge->piller_id);
-            $targetUser = User::findOrFail($badge->user_id);
+            $badge->loadMissing(['pillar', 'user', 'assinedBy']);
+
+            $pillar     = $badge->pillar;
+            $targetUser = $badge->user;
+            $assignedBy = $badge->assinedBy;
+
             $this->incrementDecrement($pillar, $targetUser);
+            Mail::to($targetUser->email)->send(new BadgeAwardedMail($targetUser, $badge, $assignedBy, $pillar));
         }
-        return $this->success($badge->fresh(), "you can't take this action");
+
+        return $this->success($badge->fresh(), "badge status updated successfully");
     }
     public function destroy(Badge $badge)
     {
