@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('timezone')->nullable();
             $table->boolean('badges_alert')->default(false);
             $table->boolean('goals_alert')->default(false);
+            $table->boolean('is_pro')->default(false);
 
             $table->json('metadata')->nullable()->comment('Flexible storage for additional user data');
             $table->timestamp('email_verified_at')->nullable();
