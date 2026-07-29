@@ -210,7 +210,7 @@ class BadgeController extends Controller
 
         if ($currentIndex === $masteryIndex && $user->badge < 300) {
             $user->myPiller()->update(['completed' => 60]);
-            $user->update(['is_pro' => true, 'badge' => 300]);
+            $user->update(['is_pro' => true, 'badge' => 300, 'is_trail' => false, 'trail_end_date' => null]);
             return $this->success($user->fresh(), 'Experience level updated successfully');
         }
         if ($currentIndex === false || ! isset(self::EXPERIENCE_LEVELS[$currentIndex + 1])) {
