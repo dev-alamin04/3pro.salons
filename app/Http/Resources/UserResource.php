@@ -26,6 +26,7 @@ class UserResource extends JsonResource
             'salon_location'   => $this->currentSalon?->salon?->location,
             'badge'            => $this->badge,
             'tier_level'       => $this->tier_level,
+            'is_pro'           => $this->is_pro,
         ];
     }
 }
