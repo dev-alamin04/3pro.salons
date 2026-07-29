@@ -205,6 +205,14 @@ class BadgeController extends Controller
             return $this->error([], "you can't take this action", 403);
         }
         $currentIndex = array_search($user->experience_level, self::EXPERIENCE_LEVELS);
+
+        $masteryIndex = array_search('mastery', self::EXPERIENCE_LEVELS);
+
+        if ($currentIndex === $masteryIndex && $user->badge < 300) {
+            $user->myPiller()->update(['completed' => 60]);
+            $user->update(['is_pro' => true, 'badge' => 300]);
+            return $this->success($user->fresh(), 'Experience level updated successfully');
+        }
         if ($currentIndex === false || ! isset(self::EXPERIENCE_LEVELS[$currentIndex + 1])) {
             return $this->error([], "User is already at the highest level or level is invalid", 422);
         }

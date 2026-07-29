@@ -28,7 +28,7 @@ return new class extends Migration
             $table->decimal('badge', 10, 2)->default(0);
             $table->decimal('tier_level', 10, 2)->default(0);
             $table->date('trail_end_date')->nullable();
-            $table->boolean('is_trail')->default('false');
+            $table->boolean('is_trail')->default(false);
             $table->string('pronoun')->nullable();
             $table->string('experience_level')->default('foundation');
             $table->string('disc_tag')->nullable();
