@@ -44,7 +44,7 @@ class User extends Authenticatable
         'joined_at'         => 'datetime',
         'is_trail'          => 'boolean',
         'is_used_key'       => 'boolean',
-        ''
+        'is_pro'            => 'boolean'
     ];
 
     // Scopes
