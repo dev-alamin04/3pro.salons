@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Salons;
 
 use App\Http\Controllers\Controller;
@@ -61,10 +62,13 @@ class ReportController extends Controller
 
     public function destroy(Request $request, Report $report)
     {
-        if ($report->repoted_by !== $request->user()->id) {
+        $user = $request->user();
+        $isReporter    = $user->id === $report->repoted_by;
+        $isSalonOwner  = $user->role === 'owner' && $report->salon_id === $user->currentSalon?->salon_id;
+
+        if (! $isReporter && ! $isSalonOwner) {
             return $this->error([], "You are not authorized to delete this report");
         }
-
         $report->delete();
         return $this->success([], "Report deleted successfully");
     }
@@ -96,7 +100,6 @@ class ReportController extends Controller
             'badges_count'       => $badgesCount,
             'reports'            => $reports,
         ], "Successfully fetched report summary");
-
     }
 
     public function authorized(User $requester, int $targetUserId): bool
