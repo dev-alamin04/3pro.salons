@@ -94,6 +94,9 @@ class TeamManagementController extends Controller
 
     public function myTeams(Request $request)
     {
+        if($request->user()->currentSalon?->salon_id === null){
+            return $this->error([], 'No salon assigned.', 404);
+        }
         $teamMembers = $this->team($request);
         $userIds = $teamMembers->pluck('user.id')->filter()->values();
         $badges = Badge::whereIn('user_id', $userIds)->with(['assinedBy:id,name', 'salon:id,name'])->where('is_visible', true)->latest()->get();
