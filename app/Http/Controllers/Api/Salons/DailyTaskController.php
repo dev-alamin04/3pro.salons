@@ -25,6 +25,9 @@ class DailyTaskController extends Controller
         if (empty($validated['salon_id'])) {
             return $this->error([], "You can't take this action");
         }
+        if ($request->user()->role === 'staff' && $validated['user_id'] !== $request->user()->id) {
+            return $this->error([], "You can't assign task to other users");
+        }
         $task = $request->user()->task_assinged_by()->create($validated);
         return $this->success($task, "Task created successfully");
     }
