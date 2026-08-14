@@ -59,9 +59,9 @@ class LoginController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (! $user->email_verified_at) {
-            return $this->error([], 'Please verify your email before logging in.', 403);
-        }
+        // if (! $user->email_verified_at) {
+        //     return $this->error([], 'Please verify your email before logging in.', 403);
+        // }
 
         if (! Hash::check($request->password, $user->password)) {
             return $this->error([], 'Invalid email or password', 401);
