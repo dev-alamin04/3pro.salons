@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Web\Backend\Settings;
 
 use App\Http\Controllers\Controller;
@@ -23,20 +24,25 @@ class MailSettingController extends Controller
             'mail_password'     => 'nullable|string',
             'mail_encryption'   => 'nullable|string',
             'mail_from_address' => 'nullable|string',
+            'app_name'          => 'nullable|string',
         ]);
 
         try {
             $envFile    = base_path('.env');
             $envContent = File::get($envFile);
 
+            $appName = "\"" . $request->app_name . "\""; // Wrap the app name in double quotes
+            $password = "\"" . $request->mail_password . "\""; // Wrap the password in double quotes
+
             $replacements = [
                 'MAIL_MAILER'       => $request->mail_mailer,
                 'MAIL_HOST'         => $request->mail_host,
                 'MAIL_PORT'         => $request->mail_port,
                 'MAIL_USERNAME'     => $request->mail_username,
-                'MAIL_PASSWORD'     => $request->mail_password,
+                'MAIL_PASSWORD'     => $password,
                 'MAIL_ENCRYPTION'   => $request->mail_encryption,
                 'MAIL_FROM_ADDRESS' => $request->mail_from_address,
+                'APP_NAME'          => $appName,
             ];
 
             foreach ($replacements as $key => $value) {

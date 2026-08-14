@@ -1,9 +1,6 @@
 <?php
 namespace App\Services;
 
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\Subcategory;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;

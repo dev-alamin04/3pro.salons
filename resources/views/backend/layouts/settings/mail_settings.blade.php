@@ -103,6 +103,18 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-6 mt-4">
+                                    <div class="input-style-1">
+                                        <label for="app_name">APP NAME:</label>
+                                        <input type="text" placeholder="Enter app name" id="app_name"
+                                            class="form-control @error('app_name') is-invalid @enderror"
+                                            name="app_name" value="{{ config('app.name') }}" />
+                                        @error('app_name')
+                                            <span class="invalid-feedback"
+                                                role="alert"><strong>{{ $message }}</strong></span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row mt-4">
