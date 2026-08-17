@@ -121,6 +121,11 @@ class User extends Authenticatable
         return $this->hasMany(UserSkill::class, 'user_id');
     }
 
+    public function skill_assigned_by()
+    {
+        return $this->hasMany(UserSkill::class, 'assigned_by');
+    }
+
     public function report_assigned_by()
     {
         return $this->hasMany(Report::class, 'repoted_by');

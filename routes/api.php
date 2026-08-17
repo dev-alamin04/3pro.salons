@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\DynamicPageController;
 use App\Http\Controllers\Api\Goals\GoalController;
 use App\Http\Controllers\Api\Salons\BadgeController;
 use App\Http\Controllers\Api\Salons\DailyTaskController;
@@ -19,6 +20,11 @@ Route::middleware('throttle:5,1')->controller(RegisterController::class)->group(
     Route::post('register', 'register');
     Route::post('resend-otp', 'resendOtp');
     Route::post('verify-otp', 'verifyRegisterOtp');
+});
+
+Route::controller(DynamicPageController::class)->group(function () {
+    Route::get('/dynamic-pages', 'dynamicPages');
+    Route::get('/dynamic-pages/{slug}', 'single');
 });
 
 // User Login -------------------------------------------------------------------------
@@ -69,6 +75,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
     Route::post('update-goal/level/{goal}', [GoalController::class, 'updateLevel']);
     Route::get('salon-user', [GoalController::class, 'salonUser']);
     Route::get('single-user-pillars/{user}', [GoalController::class, 'pillerDetails']);
+    Route::delete('delete-goal/{goal}', [GoalController::class, 'destroy']);
 
     // Badges -------------------------------------------------------------------
     Route::get('badges-history/{user}', [BadgeController::class, 'badgesHistory']);
@@ -92,6 +99,9 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
 
     // Skills -------------------------------------------------------------------
     Route::apiResource('skills', SkillController::class)->parameters(['skills' => 'skill']);
+    Route::patch('skills/{skill}/level', [SkillController::class, 'updateLevel']);
+    Route::post('skills/assign', [SkillController::class, 'assignSkill']);
+    Route::get('skills/user/{user}', [SkillController::class, 'userSkills']);
 
     // Reports -----------------------------------------------------------------
 

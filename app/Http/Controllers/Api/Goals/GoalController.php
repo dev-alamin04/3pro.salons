@@ -111,8 +111,8 @@ class GoalController extends Controller
         $user     = $request->user();
         $salon_id = $user->currentSalon?->salon_id;
 
-        if ($goal->salon_id !== $salon_id || $user->id !== $goal->user_id) {
-            return $this->error([], "You are not authorized to delete this goal");
+        if ($goal->is_public && ($goal->salon_id !== $salon_id || $user->role === "staff")) {
+            return $this->error([], "You can't delete this goal");
         }
         $goal->delete();
         return $this->success([], "Goal deleted successfully");

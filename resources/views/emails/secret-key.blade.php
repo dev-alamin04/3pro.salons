@@ -56,7 +56,7 @@
                     {{-- Footer --}}
                     <tr>
                         <td style="background-color:#111314;padding:24px;text-align:center;border-top:1px solid #2a2d2f;">
-                            <p style="color:#4a5254;font-size:12px;margin:0;">© {{ date('Y') }} Dayna. All rights reserved.</p>
+                            <p style="color:#4a5254;font-size:12px;margin:0;">© {{ date('Y') }} {{ $systemSetting->copyright_text }}</p>
                         </td>
                     </tr>
 
