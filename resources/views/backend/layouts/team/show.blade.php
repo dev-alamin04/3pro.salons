@@ -15,7 +15,7 @@
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <img src="{{ $team->avatar_path ?? $team->profile_photo_url }}" alt="Avatar"
+                        <img src="{{ asset($team->avatar_path ?? $team->profile_photo_url) }}" alt="Avatar"
                             class="rounded-circle mb-3" width="120" height="120">
                         <h4 class="mb-1">{{ $team->name }}</h4>
                         <p class="text-muted mb-2">{{ $team->email }}</p>
