@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Api\Goals;
 
 use App\Http\Controllers\Controller;
@@ -27,6 +26,7 @@ class GoalController extends Controller
         ]);
 
         $validated['target_date'] = $request->target_date ?? today()->toDateString();
+        $validated['salon_id']    = $request->user()->currentSalon?->salon_id;
         $gaol                     = $request->user()->goal_assigned_by()->create($validated);
 
         return $this->success($gaol, 'Goal created successfully');
@@ -34,7 +34,7 @@ class GoalController extends Controller
 
     public function lastGaol(Request $request, User $user)
     {
-        $goal = $user->mygoal()->with('assinedBy:id,name')->where('assigned_by', $request->user()->id)->where('is_public', true)->latest()->get();
+        $goal = $user->mygoal()->with('assinedBy:id,name')->where('salon_id', $user->currentSalon?->salon_id)->where('is_public', true)->latest()->get();
         return $this->success($goal, 'successfully get goal');
     }
 
@@ -104,5 +104,17 @@ class GoalController extends Controller
             ])->get();
 
         return $this->success($teamMembers, 'Successfully fetched team members.');
+    }
+
+    public function destroy(Request $request, Goal $goal)
+    {
+        $user     = $request->user();
+        $salon_id = $user->currentSalon?->salon_id;
+
+        if ($goal->salon_id !== $salon_id || $user->id !== $goal->user_id) {
+            return $this->error([], "You are not authorized to delete this goal");
+        }
+        $goal->delete();
+        return $this->success([], "Goal deleted successfully");
     }
 }
