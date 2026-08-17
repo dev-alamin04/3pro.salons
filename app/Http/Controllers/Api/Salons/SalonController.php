@@ -55,9 +55,11 @@ class SalonController extends Controller
             return $this->error([], 'No salon assigned.');
         }
 
-        $existingTitles = $salon->salonOnboardings()->pluck('title')->toArray();
+        // Delete all existing onboardings for this salon
+        $salon->salonOnboardings()->delete();
 
-        $newOnboardings = collect($request->onboardings)->filter(fn($title) => ! in_array($title, $existingTitles))
+        // Insert new onboardings
+        $newOnboardings = collect($request->onboardings)
             ->map(fn($title) => [
                 'salon_id'   => $salon->id,
                 'title'      => $title,
@@ -65,11 +67,9 @@ class SalonController extends Controller
                 'updated_at' => now(),
             ])->toArray();
 
-        if (! empty($newOnboardings)) {
-            OnboardingSalon::insert($newOnboardings);
-        }
+        OnboardingSalon::insert($newOnboardings);
 
-        return $this->success([], 'Successfully added onboardings.');
+        return $this->success([], 'Successfully synced onboardings.');
     }
 
     public function removeOnboarding(Request $request, OnboardingSalon $salonOnboarding)
