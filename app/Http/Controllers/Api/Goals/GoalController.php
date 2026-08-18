@@ -52,18 +52,17 @@ class GoalController extends Controller
         ]);
 
         $user = $request->user();
+        $salon_id = $goal->user->currentSalon?->salon_id;
 
         if ($goal->is_public) {
-            if ($user->id !== $goal->assigned_by) {
-                return $this->error([], "Only the person who assigned this goal can update it");
-            }
+                    if ($goal->salon_id !== $salon_id || $user->role === "staff") {
+            return $this->error([], "Only the person who assigned this goal can update it");
+        }
         } else {
             if ($user->id !== $goal->user_id) {
                 return $this->error([], "You can only update your personal goal status");
             }
         }
-
-        $salon_id = $goal->user->currentSalon?->salon_id;
 
         if ($user->currentSalon?->salon_id !== $salon_id) {
             return $this->error([], "You can't take this action");
