@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\DynamicPageController;
 use App\Http\Controllers\Api\Goals\GoalController;
 use App\Http\Controllers\Api\Salons\BadgeController;
@@ -26,6 +27,9 @@ Route::controller(DynamicPageController::class)->group(function () {
     Route::get('/dynamic-pages', 'dynamicPages');
     Route::get('/dynamic-pages/{slug}', 'single');
 });
+
+// Contact / Support Form -------------------------------------------------------
+Route::post('contact-support', [ContactController::class, 'store']);
 
 // User Login -------------------------------------------------------------------------
 Route::middleware('throttle:5,1')->controller(LoginController::class)->group(function () {
