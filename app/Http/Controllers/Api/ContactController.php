@@ -16,7 +16,7 @@ class ContactController extends Controller
     {
         $attachmentPath = null;
         if ($request->hasFile('attachment')) {
-            $attachmentPath = uploadFile($request->file('attachment'), 'contact-attachments');
+            $attachmentPath = uploadFile($request->file('attachment'), 'uploads/contact-attachments');
         }
 
         $validatedData = $request->validated();
