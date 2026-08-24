@@ -203,7 +203,14 @@
                                 $ext     = strtolower(pathinfo($contact->attachment, PATHINFO_EXTENSION));
                                 $isImage = in_array($ext, ['jpg','jpeg','png','gif','webp']);
                                 $isVideo = in_array($ext, ['mp4','mov','avi','webm']);
-                                $fileUrl = asset('storage/' . $contact->attachment);
+                                
+                                // Check if path starts with '/' (from custom uploadFile helper) 
+                                // or if it's a native Laravel storage path
+                                if (str_starts_with($contact->attachment, '/')) {
+                                    $fileUrl = asset($contact->attachment);
+                                } else {
+                                    $fileUrl = asset('storage/' . $contact->attachment);
+                                }
                             @endphp
                             <div class="mt-2">
                                 @if($isImage)
