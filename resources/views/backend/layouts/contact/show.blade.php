@@ -204,12 +204,14 @@
                                 $isImage = in_array($ext, ['jpg','jpeg','png','gif','webp']);
                                 $isVideo = in_array($ext, ['mp4','mov','avi','webm']);
                                 
-                                // Check if path starts with '/' (from custom uploadFile helper) 
-                                // or if it's a native Laravel storage path
-                                if (str_starts_with($contact->attachment, '/')) {
-                                    $fileUrl = asset($contact->attachment);
+                                $cleanPath = ltrim($contact->attachment, '/'); // Remove leading slash if any
+                                
+                                // Check if the file exists in the storage symlink directory
+                                if (file_exists(public_path('storage/' . $cleanPath))) {
+                                    $fileUrl = asset('storage/' . $cleanPath);
                                 } else {
-                                    $fileUrl = asset('storage/' . $contact->attachment);
+                                    // Otherwise assume it's directly in the public folder (via uploadFile)
+                                    $fileUrl = asset($cleanPath);
                                 }
                             @endphp
                             <div class="mt-2">
