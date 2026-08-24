@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Backend\Badge\BadgeController;
+use App\Http\Controllers\Web\Backend\Contact\ContactSubmissionController;
 use App\Http\Controllers\Web\Backend\Dashboard\DashboardController;
 use App\Http\Controllers\Web\Backend\Goal\GoalController;
 use App\Http\Controllers\Web\Backend\Onboarding\OnboardingController;
@@ -48,3 +49,9 @@ Route::resource('team', TeamController::class)->only(['index', 'show'])->names('
 
 // Daily Tasks Controller _________________________________________________________________
 Route::resource('tasks', DailyTaskController::class)->only(['index', 'show'])->names('admin.tasks');
+
+// Contact Submissions Controller _________________________________________________________
+Route::resource('contacts', ContactSubmissionController::class)
+    ->only(['index', 'show', 'update', 'destroy'])
+    ->names('admin.contacts');
+Route::post('contacts/{contact}/reply', [ContactSubmissionController::class, 'reply'])->name('admin.contacts.reply');

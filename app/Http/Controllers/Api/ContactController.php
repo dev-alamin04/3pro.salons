@@ -29,7 +29,7 @@ class ContactController extends Controller
 
         return $this->success(
             [],
-            'Got it. ✅ Your message is on its way to our team — we typically respond within 1–2 business days. Keep an eye on your email.',
+            'Got it. Your message is on its way to our team — we typically respond within 1–2 business days. Keep an eye on your email.',
             200
         );
     }

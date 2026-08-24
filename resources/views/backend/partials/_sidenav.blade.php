@@ -112,6 +112,24 @@
         </li>
 
         <li class="">
+            <a href="{{ route('admin.contacts.index') }}" aria-expanded="false">
+                <div class="nav_icon_small">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="nav_title d-flex align-items-center justify-content-between w-100">
+                    <span>Support Requests</span>
+                    @php $unreadCount = \App\Models\ContactSubmission::where('is_read', false)->count(); @endphp
+                    @if($unreadCount > 0)
+                        <span class="badge rounded-pill ms-2"
+                              style="background:#ef4444;font-size:10px;min-width:18px;">
+                            {{ $unreadCount }}
+                        </span>
+                    @endif
+                </div>
+            </a>
+        </li>
+
+        <li class="">
             <a class="has-arrow" href="#" aria-expanded="false">
                 <div class="nav_icon_small">
                     <i class="fa-solid fa-gear"></i>
