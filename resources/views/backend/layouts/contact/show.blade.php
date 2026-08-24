@@ -121,7 +121,7 @@
 
     /* ── Attachment ─────────────────────────── */
     .cs-attachment img,
-    .cs-attachment video { width:100%; border-radius:10px; border:1px solid var(--border); }
+    .cs-attachment video { width:400px; height:400px; max-width:100%; object-fit:cover; border-radius:10px; border:1px solid var(--border); }
 
     /* ── Char counter ───────────────────────── */
     #char-count { font-size:11px; color:var(--muted); text-align:right; margin-top:4px; }
@@ -203,9 +203,9 @@
                                 $ext     = strtolower(pathinfo($contact->attachment, PATHINFO_EXTENSION));
                                 $isImage = in_array($ext, ['jpg','jpeg','png','gif','webp']);
                                 $isVideo = in_array($ext, ['mp4','mov','avi','webm']);
-                                
+
                                 $cleanPath = ltrim($contact->attachment, '/'); // Remove leading slash if any
-                                
+
                                 // Check if the file exists in the storage symlink directory
                                 if (file_exists(public_path('storage/' . $cleanPath))) {
                                     $fileUrl = asset('storage/' . $cleanPath);
