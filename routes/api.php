@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 // User Register ----------------------------------------------------------------------
 Route::middleware('throttle:5,1')->controller(RegisterController::class)->group(function () {
-    Route::post('register', 'register');
+    // Route::post('register', 'register');
     Route::post('resend-otp', 'resendOtp');
     Route::post('verify-otp', 'verifyRegisterOtp');
 });
