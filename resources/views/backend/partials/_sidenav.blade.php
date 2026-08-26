@@ -15,7 +15,7 @@
             <i class="ti-close"></i>
         </div>
     </div>
-      <ul id="sidebar_menu" class="mt-5">
+    <ul id="sidebar_menu" class="mt-5">
         <li class="">
             <a href="/admin/dashboard" aria-expanded="false" class="active">
                 <div class="nav_icon_small">
@@ -45,7 +45,8 @@
                     <span>Salon Management</span>
                 </div>
             </a>
-        </li>        <li class="">
+        </li>
+        <!-- <li class="">
             <a href="{{ route('onboardings.index') }}" aria-expanded="false">
                 <div class="nav_icon_small">
                     <i class="fas fa-list-check"></i>
@@ -54,7 +55,7 @@
                     <span>Onboarding</span>
                 </div>
             </a>
-        </li>
+        </li> -->
 
         <li class="">
             <a href="{{ route('admin.goals.index') }}" aria-expanded="false">
@@ -120,10 +121,10 @@
                     <span>Support Requests</span>
                     @php $unreadCount = \App\Models\ContactSubmission::where('is_read', false)->count(); @endphp
                     @if($unreadCount > 0)
-                        <span class="badge rounded-pill ms-2"
-                              style="background:#ef4444;font-size:10px;min-width:18px;">
-                            {{ $unreadCount }}
-                        </span>
+                    <span class="badge rounded-pill ms-2"
+                        style="background:#ef4444;font-size:10px;min-width:18px;">
+                        {{ $unreadCount }}
+                    </span>
                     @endif
                 </div>
             </a>
@@ -139,7 +140,7 @@
                 </div>
             </a>
             <ul>
-               <li> <a href="/admin/profile">Profile Settings</a> </li>
+                <li> <a href="/admin/profile">Profile Settings</a> </li>
                 <li> <a href="/admin/system-setting">System Settings</a> </li>
                 <li> <a href="/admin/dynamic-page">Dynamic pages</a> </li>
                 <li> <a href="/admin/mail-setting">Mail Settings</a> </li>
