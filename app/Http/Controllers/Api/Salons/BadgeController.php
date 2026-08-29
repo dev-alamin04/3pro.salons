@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Api\Salons;
 
 use App\Http\Controllers\Controller;
@@ -169,6 +168,12 @@ class BadgeController extends Controller
         return $this->success($badges, "successfully get pillar details");
     }
 
+    public function notes(User $user)
+    {
+        $notes = $user->myBadges()->whereNotNull('notes')->where('is_visible', true)->pluck('notes');
+        return $this->success($notes, "successfully get notes");
+    }
+
     public function incrementDecrement(UserPiller $pillar, User $user): bool
     {
         $pillar->increment('completed');
@@ -193,7 +198,7 @@ class BadgeController extends Controller
         $currentIndex = array_search($user->experience_level, self::EXPERIENCE_LEVELS);
         if ($currentIndex !== false && isset(self::EXPERIENCE_LEVELS[$currentIndex + 1])) {
             $user->experience_level = self::EXPERIENCE_LEVELS[$currentIndex + 1];
-            $user->tier_level = $currentIndex + 1;
+            $user->tier_level       = $currentIndex + 1;
         }
         $user->save();
     }

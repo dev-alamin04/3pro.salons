@@ -83,6 +83,7 @@ Route::middleware(['auth:sanctum', 'enabled'])->group(function () {
 
     // Badges -------------------------------------------------------------------
     Route::get('badges-history/{user}', [BadgeController::class, 'badgesHistory']);
+    Route::get('notes/{user}', [BadgeController::class, 'notes']);
     Route::get('badges', [BadgeController::class, 'index']);
     Route::get('badges/{badge}', [BadgeController::class, 'show']);
     Route::post('badges', [BadgeController::class, 'storeBadge']);
